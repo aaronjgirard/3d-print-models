@@ -8,7 +8,7 @@ wall; without support Orca lays a 105 mm overhang wall in mid air at z 16.6 and 
 The enforcer box covers only the slot roof, and support_type normal(manual) keeps support everywhere else off.
 
 Usage:
-    python -I build_fix_plate.py --out secret_drawers_fixbadprinton1.3mf
+    python -I build_fix_plate.py --out secret_drawers_fixbadprinton1.3mf --x0 10
 
 Needs trimesh and numpy (conda env marble-run).
 '''
@@ -67,11 +67,14 @@ def main():
     ap.add_argument('--name',  default='fixbadprinton1: lower tube')
     ## [mm] slot roof box in the stl frame: wall x 0-4, slot y 12.7-125.3, flat top 16.3, gable peak 18.3
     ap.add_argument('--box',   default='-0.5,12.0,14.5,4.5,126.0,18.6')
+    ## [mm] left edge of the part on the bed, default centred; 10 keeps the tube off the x bar dent like plate 1
+    ap.add_argument('--x0',    default=None, type=float)
     a = ap.parse_args()
 
     mesh   = trimesh.load(os.path.join(a.src, a.part + '.stl'))
     ext    = mesh.extents
-    x0, y0 = (par['bed'] - ext[0]) / 2.0, (par['bed'] - ext[1]) / 2.0
+    x0     = (par['bed'] - ext[0]) / 2.0 if a.x0 is None else a.x0
+    y0     = (par['bed'] - ext[1]) / 2.0
     proj   = json.load(open(a.base))
     proj.update(proj_over)
     proj.update(fix_over)
