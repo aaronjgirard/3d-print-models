@@ -1,0 +1,48 @@
+{
+	"from": "User",
+	"inherits": "Generic PETG @Sovol SV06 ACE",
+	"name": "PETG @SV06 ACE",
+	"filament_settings_id": [
+		"PETG @SV06 ACE"
+	],
+	"version": "2.4.0.10",
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"nozzle_temperature_initial_layer": [
+		"245"
+	],
+	"nozzle_temperature": [
+		"240"
+	],
+	"hot_plate_temp_initial_layer": [
+		"80"
+	],
+	"hot_plate_temp": [
+		"80"
+	],
+	"textured_plate_temp_initial_layer": [
+		"80"
+	],
+	"textured_plate_temp": [
+		"80"
+	],
+	"filament_max_volumetric_speed": [
+		"12"
+	],
+	"close_fan_the_first_x_layers": [
+		"3"
+	],
+	"fan_min_speed": [
+		"30"
+	],
+	"fan_max_speed": [
+		"60"
+	],
+	"overhang_fan_speed": [
+		"100"
+	],
+	"filament_retraction_length": [
+		"1"
+	]
+}

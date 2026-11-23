@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-22 21:24 MST
+Updated 2026-11-22 21:36 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -15,6 +15,7 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 | `Kilauea/` | 190 mm relief of the Kilauea summit with the 2023 nodal array as raised dots |
 | `WA_DNR/` | relief of the Horse Heaven Hills (WA) CO2 site survey with its receivers as raised dots |
 | `Mountains/` | Mount Rainier (with the Disappointment Cleaver route) and Mount St. Helens before 1980 and in 2022, all at one scale |
+| `dragon-egg/` | spirit dragon and a two-part egg, with OrcaSlicer presets |
 | `secret drawers/` | dial and two-drawer puzzle box |
 | `biserica_neagra_3dprint/` | the Black Church of Brasov, rebuilt from a public scan as a printable solid |
 | `CSM_GP_logos/` | Colorado School of Mines Geophysics logo and banner plaques |

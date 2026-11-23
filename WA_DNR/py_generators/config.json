@@ -18,6 +18,6 @@
     "hole_segs"    : 32,
     "edge_wall_mm" : 0.8,
     "simplify_mm"  : 0.001,
-    "out_dir"      : "~/3Dprinting/WA_COLUMBIA_RIVER_VALLEY/out",
+    "out_dir"      : "out",
     "name"         : "hhh_survey_vexag3"
 }

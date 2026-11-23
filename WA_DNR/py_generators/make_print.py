@@ -30,7 +30,8 @@ from manifold3d import Manifold, Mesh, CrossSection
 
 def load_config(path):
     '''
-    Read the json config and expand user paths.
+    Read the json config, expand user paths and take relative paths
+    from the folder of the config file.
 
     Args:
         path (str): path to config.json
@@ -40,8 +41,9 @@ def load_config(path):
     '''
     with open(path) as f:
         cfg = json.load(f)
+    base = os.path.dirname(os.path.abspath(path))
     for k in ['boundary_kmz', 'receiver_csv', 'out_dir']:
-        cfg[k] = os.path.expanduser(cfg[k])
+        cfg[k] = os.path.join(base, os.path.expanduser(cfg[k]))
     return cfg
 
 

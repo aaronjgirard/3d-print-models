@@ -1,0 +1,54 @@
+{
+	"from": "User",
+	"inherits": "Generic PLA @Sovol SV06 ACE",
+	"name": "Silk PLA @SV06 ACE",
+	"filament_settings_id": [
+		"Silk PLA @SV06 ACE"
+	],
+	"version": "2.4.0.10",
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"nozzle_temperature_initial_layer": [
+		"225"
+	],
+	"nozzle_temperature": [
+		"220"
+	],
+	"hot_plate_temp_initial_layer": [
+		"60"
+	],
+	"hot_plate_temp": [
+		"60"
+	],
+	"textured_plate_temp_initial_layer": [
+		"60"
+	],
+	"textured_plate_temp": [
+		"60"
+	],
+	"filament_max_volumetric_speed": [
+		"7"
+	],
+	"close_fan_the_first_x_layers": [
+		"1"
+	],
+	"fan_min_speed": [
+		"80"
+	],
+	"fan_max_speed": [
+		"100"
+	],
+	"overhang_fan_speed": [
+		"100"
+	],
+	"dont_slow_down_outer_wall": [
+		"1"
+	],
+	"filament_retraction_length": [
+		"1"
+	],
+	"filament_retract_lift_enforce": [
+		"Top Only"
+	]
+}
