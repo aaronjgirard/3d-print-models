@@ -11,9 +11,13 @@ The screen flickers or shows a partial image because static electricity from the
 
 1. Get the STLs (or Sovol's G-code) from [Sovol's Google Drive folder](https://drive.google.com/drive/folders/1yZ5ONajmdrtVkb3aJksB8cJTlVf9wOEm?usp=drive_link) and print them.
 2. Remove the three clips that hold the screen flat cable to the profile, without damaging the cable.
-3. Fit the pads on the profile in the order shown in Sovol's installation diagram; they can be slid into place afterwards.
+3. Fit the pads on the profile in order A, C, A, B (photo below); they can be slid into place afterwards.
 4. Put the cable back in the clips and clip them onto the profile over the pads.
 5. Check the cable's route so the heated bed cannot hit it when it moves.
+
+![Longboard pads installed on the SV06 ACE frame profile, labelled A, C, A, B from left to right](longboard_pads_installed.png)
+
+*The pads installed on my printer, labelled A, C, A, B from left to right.*
 
 ## Files
 The STLs are Sovol's and are not in this repo; get them from the Drive folder above. Only my sliced G-code is kept here, locally (`Sovol_SV06_ACE_Longboard_pads_PLA_0.2_1h15m.gcode`); G-code is not published.
