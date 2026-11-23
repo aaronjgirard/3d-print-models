@@ -14,6 +14,11 @@ Biserica Neagra din Brasov, scan by Institutul National al Patrimoniului (cimec)
   biserica_neagra_3dprint/*.stl are solids rebuilt from that scan by make_stl.py
   License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 
+Sovol Technology Co., Limited
+  Printer_Fix/longboard_pads_installed.png is Sovol's installation photo from
+  https://wiki.sovol3d.com/en/SV06-ACE-Troubleshooting/SV06-ACE-screen-flickers-and-image-is-not-fully-displayed
+  It is not licensed under Apache-2.0 or any other license here.
+
 Colorado School of Mines, Department of Geophysics
   The logo artwork in CSM_GP_logos/ is a trademark of the Colorado School of
   Mines and is not licensed under Apache-2.0 or any other license here.
