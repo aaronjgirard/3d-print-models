@@ -1,11 +1,11 @@
 # 3D print models
 
-Updated 2026-11-22 21:15 MST
+Updated 2026-11-22 21:22 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
 ## About me
-I'm Aaron Girard, a geophysicist. I have a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use, playing with and having fun with: tuning it, fixing it, and printing whatever seems fun. So far that means marble runs, terrain reliefs of volcanoes and seismic surveys I have worked on, a puzzle box and a few printer fixes. Most of the models are built by code (Python with trimesh and manifold3d) so they can be changed and rebuilt. I like open source, and I learn a lot from the people who share their designs and settings, so this is me sharing back. If you found this by chance, welcome; take what is useful.
+I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use, playing with and having fun with: tuning it, breaking it, fixing it, and printing whatever seems fun. Most of the models are built by code (Python with trimesh and manifold3d) so they can be changed and rebuilt. I like open source, and I learn a lot from the people who share their designs and settings, so this is me sharing back. If you found this by chance, welcome; take what is useful.
 
 ## What's here
 

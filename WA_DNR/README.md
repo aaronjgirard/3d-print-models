@@ -1,6 +1,6 @@
 # hhh survey relief model (WA DNR 3D survey, Columbia River valley)
 
-Updated 2026-11-22 21:40 MST (private paths removed; 21:15 citation and published-file note added; 2026-11-17 20:42 MST: array center lat/lon on the south wall; 0.9 mm dot version, brown PLA+, 20:38)
+Updated 2026-11-22 21:20 MST (private paths removed; 21:15 citation and published-file note added; 2026-11-17 20:42 MST: array center lat/lon on the south wall; 0.9 mm dot version, brown PLA+, 20:38)
 
 ## Citation and published files
 The receivers are the deployed stations of the WA DNR Horse Heaven Hills 3D survey. Please cite: Girard, A. J., D. H. R. O'Connell, A. Stolzmann, L. Florea, J. Shragge, M. Oristaglio, C. Morgan, J. Turner, R. Beal, A. Bauer, and S. P. Reidel (submitted). An active- and passive-source nodal seismic dataset for CO2 sequestration site characterization in the Columbia River Basalts of south-central Washington, U.S.A. *Seismological Research Letters*.

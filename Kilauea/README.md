@@ -1,6 +1,6 @@
 # Kilauea relief (190 mm, 4x, receiver dots)
 
-Updated 2026-11-22 21:40 MST (private paths removed; 21:15 citations and published-file note added; 2026-11-13 05:57 MST: scale and VE text moved to the north wall on the 0.9 mm dot version; 0.9 mm dots added 05:47)
+Updated 2026-11-22 21:20 MST (private paths removed; 21:15 citations and published-file note added; 2026-11-13 05:57 MST: scale and VE text moved to the north wall on the 0.9 mm dot version; 0.9 mm dots added 05:47)
 
 ## Citation and published files
 The dots are the stations of the 2023 Kilauea summit nodal array. Please cite:
