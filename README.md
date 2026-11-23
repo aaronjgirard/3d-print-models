@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-22 21:45 MST
+Updated 2026-11-22 21:59 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -11,19 +11,19 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 
 | folder | what |
 |---|---|
-| `Marble Run/` | Marbleworks-compatible marble run: generated buckets, tubes, cascades, merges, plus Pyrce007's set (see licenses below) |
+| `Marble_Run/` | Marbleworks-compatible marble run: generated buckets, tubes, cascades, merges, plus Pyrce007's set (see licenses below) |
 | `Kilauea/` | 190 mm relief of the Kilauea summit with the 2023 nodal array as raised dots |
 | `WA_DNR/` | relief of the Horse Heaven Hills (WA) CO2 site survey with its receivers as raised dots |
 | `Mountains/` | Mount Rainier (with the Disappointment Cleaver route) and Mount St. Helens before 1980 and in 2022, all at one scale |
 | `dragon-egg/` | spirit dragon and a two-part egg, with OrcaSlicer presets |
-| `secret drawers/` | dial and two-drawer puzzle box |
+| `secret_drawers/` | dial and two-drawer puzzle box |
 | `biserica_neagra_3dprint/` | the Black Church of Brasov, rebuilt from a public scan as a printable solid |
 | `CSM_GP_logos/` | Colorado School of Mines Geophysics logo and banner plaques |
 | `train-rails/` | straight, 22.5 degree curve and fit-test piece that join a battery Christmas-train set, with wood-grain ties and full-plate layouts |
 | `VLAD_4in_quarter_thick.3mf` | small name plate |
 | `cli_slice/` | OrcaSlicer command-line presets, plus a Klipper-accurate print-time estimator |
 | `sv06.sh` | run the printer from a terminal through Moonraker (`3dprint`, `3dstatus`, ...) |
-| `Printer Fix/` | longboard pads, a fix Sovol suggested that helped |
+| `Printer_Fix/` | longboard pads, a fix Sovol suggested that helped |
 | `printer_diagnostics/`, `maintenance/` | input shaping, cruise ratio and camera-light fixes, with before and after configs |
 
 G-code is not included: it is specific to my printer and rebuilds from the models with `cli_slice/slice.sh`. Each folder's README says how its models were made and how to rebuild them.
@@ -44,8 +44,8 @@ The license text is the legal version; this list is only a summary.
 
 | what | owner | license |
 |---|---|---|
-| `Marble Run/stl/marbleworks/`, `Marble Run/ref/marbleworks/` | [Pyrce007, Marbleworks Marble Mazes](https://www.thingiverse.com/thing:4202442) | CC BY (see `Marble Run/ref/marbleworks/LICENSE.txt`); renamed only |
-| `Marble Run/stl/custom/twopost_1loop_l.stl`, `clicky_5_half_l.stl` | remixes of Pyrce007's `twopost_1loop` and `clicky_5_half` | CC BY, credit Pyrce007; my changes (made by `src/refit.py`) are Apache-2.0 |
+| `Marble_Run/stl/marbleworks/`, `Marble_Run/ref/marbleworks/` | [Pyrce007, Marbleworks Marble Mazes](https://www.thingiverse.com/thing:4202442) | CC BY (see `Marble_Run/ref/marbleworks/LICENSE.txt`); renamed only |
+| `Marble_Run/stl/custom/twopost_1loop_l.stl`, `clicky_5_half_l.stl` | remixes of Pyrce007's `twopost_1loop` and `clicky_5_half` | CC BY, credit Pyrce007; my changes (made by `src/refit.py`) are Apache-2.0 |
 | `biserica_neagra_3dprint/*.stl` | built from [Biserica Neagra din Brasov](https://sketchfab.com/3d-models/biserica-neagra-din-brasov-8458157f7a71408189c4d630ce82133b) by Institutul National al Patrimoniului (cimec) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), credit cimec; `make_stl.py` is Apache-2.0 |
 | the logo artwork in `CSM_GP_logos/` | Colorado School of Mines, Department of Geophysics | trademark, not licensed here; the plaque geometry around it is Apache-2.0 |
 

@@ -14,12 +14,12 @@ sv06_host.txt
 *.tif
 *.tif.zip
 *.tif.ovr
-Mountains/St. Helens/dem/cache/
+Mountains/St_Helens/dem/cache/
 biserica_neagra_3dprint/raw/
 
 ## third-party models with no clear license: kept local, never published
-Cascade game VLAD/
-Car parts/
+Cascade_game_VLAD/
+Car_parts/
 
 ## superseded relief versions, rebuilt by the commands in each README
 WA_DNR/hhh_survey_dots_vexag3.stl

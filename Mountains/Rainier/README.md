@@ -1,8 +1,8 @@
 # Mount Rainier relief, with the Disappointment Cleaver route
 
-Updated 2026-11-13 23:33 MST (print started again)
+Updated 2026-11-22 21:59 MST (print started again)
 
-Geometry of the base model is described in `../St. Helens/README.md` (36 km UTM square centred on the summit, 127 mm wide, VE 2x). The best-fit centre is UTM 10N 594478 E, 5189568 N (rms misfit 0.026 mm).
+Geometry of the base model is described in `../St_Helens/README.md` (36 km UTM square centred on the summit, 127 mm wide, VE 2x). The best-fit centre is UTM 10N 594478 E, 5189568 N (rms misfit 0.026 mm).
 
 | file | what | top | layers | filament | time |
 |---|---|---|---|---|---|
