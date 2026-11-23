@@ -1,0 +1,14 @@
+{
+  "lines"  : ["ʻOumuamua", "1:2000"],
+  "caps"   : [7.5, 5.5],
+  "gap"    : 4.0,
+  "font"   : "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+  "width"  : 64.0,
+  "height" : 32.0,
+  "radius" : 3.0,
+  "base"   : 2.4,
+  "rise"   : 0.8,
+  "border" : 1.2,
+  "margin" : 4.0,
+  "out"    : "oumuamua_plaque.stl"
+}

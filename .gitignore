@@ -38,3 +38,10 @@ Kilauea/kilauea_relief_receiver_holes_190mm_NEW.3mf
 ## local only: originals and backups brought in from ~/3Dprinting (2026-11-22)
 Kilauea/source/
 orca-user/
+
+## ESO 'Oumuamua model: license for 3D models unclear, kept local (see oumuamua/README.md)
+oumuamua/raw/
+oumuamua/oumuamua_1to*.stl
+oumuamua/presets/printer.json
+oumuamua/presets/filament.json
+oumuamua/presets/process.json

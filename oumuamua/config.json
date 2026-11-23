@@ -1,0 +1,8 @@
+{
+  "obj"    : "raw/obj/interstellarRock-Martin.obj",
+  "real_m" : 400.0,
+  "scale"  : 2000,
+  "rotz"   : 45.0,
+  "ntri"   : 400000,
+  "out"    : "oumuamua_1to2000.stl"
+}
