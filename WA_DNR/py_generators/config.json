@@ -1,0 +1,23 @@
+{
+    "boundary_kmz" : "~/Dropbox/CSM_AARON/WA_COLUMBIA_RIVER_VALLEY/SRL_paper/figure_data/fig02/9_Sq_Mi_3D_Boundary.kmz",
+    "receiver_csv" : "~/Dropbox/CSM_AARON/WA_COLUMBIA_RIVER_VALLEY/SRL_paper/figure_data/fig02/receivers_post_plot_deployed.csv",
+    "not_recovered": [1019, 1063, 1084, 1090, 1148],
+    "dem_tiles"    : [
+        "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/WA_FEMAHQ_2018_D18/TIFF/USGS_1M_11_x26y510_WA_FEMAHQ_2018_D18.tif",
+        "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/WA_FEMAHQ_2018_D18/TIFF/USGS_1M_11_x27y510_WA_FEMAHQ_2018_D18.tif",
+        "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/WA_ColumbiaValley_2018_D19/TIFF/USGS_1M_11_x27y510_WA_ColumbiaValley_2018_D19.tif"
+    ],
+    "crs"          : "EPSG:26911",
+    "dem_pad_m"    : 20.0,
+    "max_dim_mm"   : 190.0,
+    "min_thick_mm" : 15.0,
+    "vexag"        : 3.0,
+    "cell_mm"      : 0.2,
+    "hole_diam_mm" : 1.5,
+    "hole_depth_mm": 2.0,
+    "hole_segs"    : 32,
+    "edge_wall_mm" : 0.8,
+    "simplify_mm"  : 0.001,
+    "out_dir"      : "~/3Dprinting/WA_COLUMBIA_RIVER_VALLEY/out",
+    "name"         : "hhh_survey_vexag3"
+}

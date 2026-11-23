@@ -1,0 +1,26 @@
+{
+    "stl_in"      : "mount_rainier_5in_square_2x.stl",
+    "stl_out"     : "mount_rainier_5in_square_2x_dc_route.stl",
+    "route_csv"   : "route_dc.csv",
+    "crs"         : "EPSG:26910",
+    "center_utm"  : [594478.34, 5189568.32],
+    "side_m"      : 36000.0,
+    "side_mm"     : 127.0,
+    "overpass"    : "https://overpass-api.de/api/interpreter",
+    "osm_bbox"    : [46.780, -121.770, 46.860, -121.700],
+    "start"       : {"name": "Skyline Trailhead", "lat": 46.78642, "lon": -121.73645},
+    "end"         : {"name": "Columbia Crest",    "lat": 46.85287, "lon": -121.76041},
+    "via"         : [{"name": "Camp Muir",        "lat": 46.83544, "lon": -121.73285}],
+    "ridge_w"     : 0.9,
+    "ridge_h"     : 1.2,
+    "sink"        : 0.6,
+    "step"        : 0.25,
+    "simplify"    : 0.05,
+    "segs"        : 24,
+    "pad_d"       : 3.0,
+    "pad_h"       : 1.5,
+    "pads"        : [
+        {"name": "Camp Muir",         "lat": 46.83544, "lon": -121.73285},
+        {"name": "Skyline Trailhead", "lat": 46.78642, "lon": -121.73645}
+    ]
+}

@@ -1,0 +1,11 @@
+#!/bin/sh
+## cameralight 0|1: set the SV06 ACE camera light through the sysfs pin the
+## screen app exports (exports it first if the screen app has not yet)
+pin=67
+dir=/sys/class/gpio/gpio$pin
+case "$1" in 0|1) ;; *) echo "usage: cameralight 0|1" >&2; exit 2 ;; esac
+if [ ! -e "$dir" ]; then
+    echo $pin > /sys/class/gpio/export
+    echo out  > "$dir/direction"
+fi
+echo "$1" > "$dir/value"

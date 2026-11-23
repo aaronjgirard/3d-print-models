@@ -1,0 +1,822 @@
+<?xml version="1.0"?>
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20230914</CreaDate>
+		<CreaTime>13163700</CreaTime>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<SyncOnce>FALSE</SyncOnce>
+		<DataProperties>
+			<lineage>
+				<Process ToolSource="c:\arcgis\pro\Resources\ArcToolbox\toolboxes\Image Analyst Tools.tbx\RasterCalculator" Date="20230914" Time="131637">RasterCalculator " "msh_1952_dem_nad83_utm10.tif" * .3048" D:\ssd_gis\volcano_msh\081423_msh_dem\081423_msh_dem_scratch.gdb\t2r_16ft_derived_contours_mean_utm_2_nad83m</Process>
+				<Process ToolSource="c:\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CopyRaster" Date="20230914" Time="132122">CopyRaster t2r_16ft_derived_contours_mean_utm_2_nad83m "C:\Users\jbard\OneDrive - DOI\gis\volcano_msh\msh_1952_dem\revised_dem_hs_and_metadata\msh_1952_dem_nad83_utm10.tif" # # 3.4e+38 NONE NONE "32 bit float" NONE NONE "TIFF format" NONE CURRENT_SLICE NO_TRANSPOSE</Process>
+				<Process ToolSource="c:\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Rename" Date="20240110" Time="114849">Rename "C:\Users\jbard\OneDrive - DOI\gis\volcano_msh\msh_1952_dem\revised_dem_hs_and_metadata\msh_1952_dem_nad83_utm10.tif" "C:\Users\jbard\OneDrive - DOI\gis\volcano_msh\msh_1952_dem\revised_dem_hs_and_metadata\msh_pre_eruption_dem_nad83_utm10.tif" RasterDataset</Process></lineage>
+			<itemProps>
+				<itemName Sync="TRUE">msh_1952_dem_nad83_utm10.tif</itemName>
+				<itemLocation>
+					<linkage Sync="TRUE">file://C:\Users\jbard\OneDrive - DOI\gis\volcano_msh\msh_1952_dem\revised_dem_hs_and_metadata\msh_1952_dem_nad83_utm10.tif</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+				</itemLocation>
+				<nativeExtBox>
+					<westBL Sync="TRUE">540391.358581</westBL>
+					<eastBL Sync="TRUE">569131.358581</eastBL>
+					<southBL Sync="TRUE">5111472.333897</southBL>
+					<northBL Sync="TRUE">5131152.333897</northBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</nativeExtBox>
+				<imsContentType Sync="TRUE">002</imsContentType></itemProps>
+			<coordRef>
+				<type Sync="TRUE">Projected</type>
+				<geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+				<csUnits Sync="TRUE">Linear Unit: Meter (1.000000)</csUnits>
+				<projcsn Sync="TRUE">NAD_1983_UTM_Zone_10N</projcsn>
+				<peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/3.1.0'&gt;&lt;WKT&gt;PROJCS[&amp;quot;NAD_1983_UTM_Zone_10N&amp;quot;,GEOGCS[&amp;quot;GCS_North_American_1983&amp;quot;,DATUM[&amp;quot;D_North_American_1983&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Transverse_Mercator&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,500000.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,0.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-123.0],PARAMETER[&amp;quot;Scale_Factor&amp;quot;,0.9996],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,0.0],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;EPSG&amp;quot;,26910]]&lt;/WKT&gt;&lt;XOrigin&gt;-5120900&lt;/XOrigin&gt;&lt;YOrigin&gt;-9998100&lt;/YOrigin&gt;&lt;XYScale&gt;450445547.3910538&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;26910&lt;/WKID&gt;&lt;LatestWKID&gt;26910&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+			</coordRef>
+			<RasterProperties>
+				<General>
+					<PixelDepth Sync="TRUE">32</PixelDepth>
+					<HasColormap Sync="TRUE">FALSE</HasColormap>
+					<CompressionType Sync="TRUE">LZW</CompressionType>
+					<NumBands Sync="TRUE">1</NumBands>
+					<Format Sync="TRUE">TIFF</Format>
+					<HasPyramids Sync="TRUE">TRUE</HasPyramids>
+					<SourceType Sync="TRUE">continuous</SourceType>
+					<PixelType Sync="TRUE">floating point</PixelType>
+					<NoDataValue Sync="TRUE">3.4e+38</NoDataValue>
+				</General>
+			</RasterProperties>
+		</DataProperties>
+		<SyncDate>20240110</SyncDate>
+		<SyncTime>11474300</SyncTime>
+		<ModDate>20240110</ModDate>
+		<ModTime>11474300</ModTime>
+		<scaleRange>
+			<minScale>62500</minScale>
+			<maxScale>62500</maxScale>
+		</scaleRange>
+	</Esri>
+	<mdChar>
+		<CharSetCd value="004"/>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd value="005"/>
+	</mdHrLv>
+	<mdContact>
+		<rpIndName>Joseph A Bard</rpIndName>
+		<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+		<rpPosName>Geographer</rpPosName>
+		<rpCntInfo>
+			<cntPhone>
+				<voiceNum>360-993-8982</voiceNum>
+			</cntPhone>
+			<cntAddress addressType="postal">
+				<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+				<city>Vancouver</city>
+				<adminArea>WA</adminArea>
+				<postCode>98683</postCode>
+				<country>US</country>
+				<eMailAdd>jbard@usgs.gov</eMailAdd>
+			</cntAddress>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<mdDateSt>2024</mdDateSt>
+	<mdStanName>ArcGIS Metadata</mdStanName>
+	<mdStanVer>1.0</mdStanVer>
+	<distInfo>
+		<distributor>
+			<distorCont>
+				<rpIndName>GS ScienceBase</rpIndName>
+				<rpOrgName>U.S. Geological Survey</rpOrgName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>1-888-275-8747</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="postal">
+						<delPoint>Denver Federal Center, Building 810, Mail Stop 302</delPoint>
+						<city>Denver</city>
+						<adminArea>CO</adminArea>
+						<postCode>80225</postCode>
+						<country>US</country>
+						<eMailAdd>sciencebase@usgs.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005"/>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>Digital Data</formatName>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.5066/P91W7C1L</linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distTranOps>
+			<onLineSrc>
+				<linkage>https://doi.org/10.5066/P91W7C1L</linkage>
+			</onLineSrc>
+		</distTranOps>
+		<distFormat><formatName Sync="TRUE">Raster Dataset</formatName></distFormat></distInfo>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>Digital elevation model of Mount St. Helens, Washington and vicinity prior to the 1980 eruption</resTitle>
+			<date>
+				<pubDate>2024</pubDate>
+			</date>
+			<citRespParty>
+				<rpOrgName>Joseph A. Bard<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>Randi Phillips-Netherton<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+			</citRespParty>
+			<citRespParty>
+				<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+				<rpCntInfo>
+					<cntAddress>
+						<delPoint>Reston, VA<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="010"/>
+				</role>
+			</citRespParty>
+			<presForm>
+				<PresFormCd value="005"/>
+			</presForm>
+			<presForm>
+				<fgdcGeoform>raster digital data</fgdcGeoform>
+			</presForm>
+			<otherCitDet>Suggested citation: Bard, J.A. and Phillips-Netherton, R. 2024, Digital elevation model of Mount St. Helens, Washington and vicinity prior to the 1980 eruption: U.S. Geological Survey data release, https://doi.org/10.5066/P91W7C1L</otherCitDet>
+		</idCitation>
+		<idAbs>On May 18, 1980, Mount St. Helens, Washington, exploded in a spectacular and devastating eruption that resulted in previously unimaginable events that drastically altered the mountain and the surrounding area. One unprecedented event was the collapse of the summit and north flank of the volcano forming a huge landslide known as the ‘debris avalanche’ with a total volume of about 2.5 km3 (3.3 billion cubic yards). The debris avalanche swept around and up ridges to the north, but most of it turned westward as far as 23 km (14 mi) down the valley of the North Fork Toutle River and formed a hummocky deposit. This had a profound effect on the topography of the area, including transforming the summit cone of the volcano into an amphitheater-shaped crater, in places, burying the valley north of the volcano under hundreds of feet of debris, and filling the Spirit Lake basin raising the surface elevation 64 m (210 ft). 
+This release consists of a 10-meter resolution digital elevation model, covering an area of 196.45 sq km, and hillshade map of the summit and valley north of the volcano circa 1952 surface derived from contour lines digitized from historic topographic maps. These data represent the paleo topography of Mt St. Helens and vicinity that were most significantly altered by the 1980 eruption and debris avalanche.</idAbs>
+		<idPurp>These data, a raster digital elevation model derived historic topographic maps of Mount St. Helens and the adjacent vicinity, contribute to the study of volcanic landforms and landscape modification resulting from volcanic eruptions.</idPurp>
+		<idStatus>
+			<ProgCd value="001"/>
+		</idStatus>
+		<idPoC>
+			<rpIndName>Joseph A Bard</rpIndName>
+			<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+			<rpPosName>Geographer</rpPosName>
+			<rpCntInfo>
+				<cntPhone>
+					<voiceNum>360-993-8982</voiceNum>
+				</cntPhone>
+				<cntAddress addressType="postal">
+					<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+					<city>Vancouver</city>
+					<adminArea>WA</adminArea>
+					<postCode>98683</postCode>
+					<country>US</country>
+					<eMailAdd>jbard@usgs.gov</eMailAdd>
+				</cntAddress>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007"/>
+			</role>
+		</idPoC>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="011"/>
+			</maintFreq>
+		</resMaint>
+		<placeKeys>
+			<keyword>United States of America</keyword>
+			<keyword>Mount St. Helens</keyword>
+			<keyword>Pacific Northwest</keyword>
+			<keyword>Washington</keyword>
+			<keyword>Cascade Range</keyword>
+		</placeKeys>
+		<themeKeys>
+			<keyword>elevation</keyword>
+			<thesaName>
+				<resTitle>ISO 19115 Topic Category</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>Deposit morphology</keyword>
+			<keyword>Debris avalanche</keyword>
+			<keyword>Geology</keyword>
+			<keyword>Volcano</keyword>
+			<keyword>explosive eruption</keyword>
+			<keyword>Topography</keyword>
+			<keyword>Paleo topography</keyword>
+		</themeKeys>
+		<searchKeys>
+			<keyword>elevation</keyword>
+			<keyword>Deposit morphology</keyword>
+			<keyword>Debris avalanche</keyword>
+			<keyword>Geology</keyword>
+			<keyword>Volcano</keyword>
+			<keyword>explosive eruption</keyword>
+			<keyword>Topography</keyword>
+			<keyword>Paleo topography</keyword>
+			<keyword>United States of America</keyword>
+			<keyword>Mount St. Helens</keyword>
+			<keyword>Pacific Northwest</keyword>
+			<keyword>Washington</keyword>
+			<keyword>Cascade Range</keyword>
+		</searchKeys>
+		<resConst>
+			<Consts><useLimit>None.  Users are advised to read the dataset's metadata thoroughly to understand appropriate use and data limitations.</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useLimit>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</useLimit>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>None.  Please see 'Distribution Info' for details.</othConsts>
+			</LegConsts>
+		</resConst>
+		<aggrInfo>
+			<aggrDSName>
+				<resTitle>ILWIS 3.0 Academic User’s Guide</resTitle>
+				<date>
+					<pubDate>2001-05</pubDate>
+				</date>
+				<resEd>3.0, Chapter 10</resEd>
+				<citRespParty>
+					<rpOrgName>International Institute for Aerospace Survey and Earth Sciences, Enschede<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+					<role>
+						<RoleCd value="006"/>
+					</role>
+				</citRespParty>
+				<citRespParty>
+					<rpOrgName>International Institute for Aerospace Survey and Earth Sciences, Enschede<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+					<rpCntInfo>
+						<cntAddress>
+							<delPoint>Enschede, The Netherlands<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="010"/>
+					</role>
+				</citRespParty>
+				<presForm>
+					<PresFormCd value="publication"/>
+				</presForm>
+				<presForm>
+					<fgdcGeoform>publication</fgdcGeoform>
+				</presForm>
+				<citOnlineRes>
+					<linkage>https://52north.org/files/ilwis/Documentation/chap10.pdf</linkage>
+				</citOnlineRes>
+			</aggrDSName>
+			<assocType>
+				<AscTypeCd value="001"/>
+			</assocType>
+		</aggrInfo>
+		<spatRpType>
+			<SpatRepTypCd value="002"/>
+		</spatRpType>
+		<tpCat>
+			<TopicCatCd value="006"/>
+		</tpCat>
+		<tpCat>
+			<TopicCatCd value="008"/>
+		</tpCat>
+		<envirDesc>Datasets: msh_1952_dem.tif (7.88 MB) and msh_1952_hs.tif (1.47 MB) were produced using Esri ArcGIS pro version 3.0.3 installed on a computer running Windows 10 Enterprise version 22H2.</envirDesc>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox>
+					<exTypeCode>true</exTypeCode>
+					<westBL>-122.4769</westBL>
+					<eastBL>-122.1018</eastBL>
+					<northBL>46.3327</northBL>
+					<southBL>46.1533</southBL>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<dataExt>
+			<exDesc>ground condition</exDesc>
+			<tempEle>
+				<TempExtent>
+					<exTemp>
+						<TM_Instant>
+							<tmPosition>1952</tmPosition>
+						</TM_Instant>
+					</exTemp>
+				</TempExtent>
+			</tempEle>
+			<geoEle/></dataExt>
+		<suppInfo>The DEM in this release is well fit to the source maps and therefore provides an adequate representation of the topography surface prior to the 1980 eruption. Users of these data must be aware of the inherent limitations of source maps and of the methods used to derive these data. Although the digital form of these data removes the constraint imposed by the scale of a paper maps (1:62,500), the detail and accuracy of these data cannot be greater than that of the source maps.
+Prior to the 1980 eruption, the most current topographic maps of the area were published in the 1950s at a scale of 1:62,500 with contours derived photogrammetrically from aerial photographs captured in 1952. At this time, dense stands of mature conifer forests encircled the volcano, potentially obscuring view of the bare ground in some places within the extent of the maps that comprise this release. 
+The method for creating the DEM uses averaging to reduce 'stair-step' artifacts in areas with shallow slopes or low relief, which commonly occur with interpolation methods taking contour lines as inputs. The resulting DEM is smoother than USGS DEMs of similar resolution and subtle topographic features are not present in many areas and spot elevations specified in the source maps may not be exatly reproduced within this DEM. 
+</suppInfo>
+		<dataLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><dataExt><geoEle><GeoBndBox esriExtentType="search"><exTypeCode Sync="TRUE">1</exTypeCode><westBL Sync="TRUE">-122.476897</westBL><eastBL Sync="TRUE">-122.101840</eastBL><northBL Sync="TRUE">46.332742</northBL><southBL Sync="TRUE">46.153322</southBL></GeoBndBox></geoEle></dataExt></dataIdInfo>
+	<dqInfo>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005"/>
+			</scpLvl>
+		</dqScope>
+		<report type="DQQuanAttAcc">
+			<measDesc>Absolute accuracy assessment of these data with respect to the ground surface is not possible in areas that were drastically altered by the 1980 eruption. Therefore, accuracy of these data was assessed relative to the source topographic maps.
+Relative vertical accuracy was assessed by sampling the DEM at 55,304 points along the digitized contour lines and taking the differences between the expected values (contour elevations) and measured values (DEM elevations). Relative horizontal accuracy was assessed by comparing the locations these points to contours lines derived from the DEM of the same elevations.
+The absolute horizontal accuracy standard for USGS topographic maps requires that the positions of 90 percent of all points tested must be accurate within 1/50th of an inch (0.05 centimeters) on the map. For 1:62,500 the source maps, 1/50th of an inch on the map equates to 31.76 m (104.16 ft) on the ground. The absolute vertical accuracy standard for USGS topographic maps require that the elevation of 90 percent of all points tested must be correct within half of the contour interval. Contour interval of the source maps is 80 ft (24.384 m). The measured relative horizontal and relative vertical error of the DEM are within the envelope of error of the absolute accuracy standards required for a 1:62,500 scale USGS topographic map.
+</measDesc>
+		</report>
+		<report type="DQConcConsis">
+			<measDesc>Data cover the entire area specified for this project. </measDesc>
+		</report>
+		<report type="DQCompOm">
+			<measDesc>This dataset only includes information collected in the aerial survey of 1952.</measDesc>
+		</report>
+		<report type="DQAbsExtPosAcc" dimension="horizontal">
+			<measDesc>Relative horizontal error: 4.013 m (13.164 ft), median: 2.315 m (7.592 ft), and 90 percent of points tested were within 7.718 m (25.316 ft) of expected locations.</measDesc>
+		</report>
+		<report type="DQAbsExtPosAcc" dimension="vertical">
+			<measDesc>Relative mean vertical error: -0.056 m (-0.184 ft), standard deviation: 2.591 m (8.502 ft) and 90 percent of data points tested were between -4.242 m (-13.919 ft) and 4.102 m (13.459 ft) of expected values.</measDesc>
+		</report>
+		<dataLineage>
+			<prcStep>
+				<stepDesc>Digitize topographic maps using ArcGIS Pro to create vectors datasets (a) of 80 ft interval elevation contour lines [Contours_80], (b) stream lines, (c) lake polygons, and (d) elevation points, e.g., mountain peaks. Source maps are scanned paper 1:62,500 USGS topographic maps, and in the summit area, scanned stable mylar bases. Therefore, in the summit region, lines are considered accurate but may not exactly match the scanned paper maps. The scanned paper maps were hand digitized by tracing the contours, lakes, streams, and point elevations. In the summit region, the scanned mylar base was edited to remove all pixels that did not represent contour lines (e.g. text and glacial extents). The Thin tool was used to prepare the image for creating vector lines using the Raster to Polyline tool. Finally, all elevation attributes were added to the contour lines and the topology was verified.</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Interpolate a DEM [DEM_B] using the Borgefors distance method described in the ILWIS 3.0 User’s Guide, 2001 (see Cross Reference for citation). Following recommendations in the User's Guide, small enclosed contours were created to supplement the digitized contours on hilltops to improve the interpolation in these areas (without these additional contours hilltops may be artificially flattened). </stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Applying a smoothing mean function (ArcGIS Pro Focal Statistics tool, 3x3 window) to DEM_B to create DEM_S. </stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>From DEM_S, generate 2 ft interval contour lines [Contours_2ft] using ArcGIS Pro Contour function. The Contour tool's documentation recommends applying a smoothing function to prepare a DEM for contouring.</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Interpolate 8 DEMs [DEM_1-DEM_8] using the ArcGIS Pro Topo to Raster tool with default parameters. Inputs are elevation contours, stream lines, lake polygons, and elevation points. All DEMs uses the same stream, lake, and elevation points, but the elevation contours are varied such that DEM_1 uses Contours_80 supplemented with contours at 16 ft intervals from Contours_2ft, DEM_2 uses a subset Contours_2ft where each contour values is 2 ft greater than the contours used to produce DEM_1, and this pattern is repeated for DEM_3-DEM_8. For example:
+If the contours used to create DEM_1 are Elevation (ft) = (0, 16, 32, 48, 64, 80), 
+the contours used to create DEM_2 are Elevation (ft) = (2, 18, 34, 50, 66, 82), 
+the contours used to create DEM_3 are Elevation (ft) = (4, 20, 36, 52, 68, 84)…,
+the contours used to create DEM_8 are Elevation (ft) = (14, 30, 46, 62, 78, 94)</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Use ArcGIS Raster Calculator to calculate the arithmetic mean of DEM_1-DEM_8 to create DEM_Mean.</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Use ArcGIS Pro Extract by Mask tool to subset DEM_Mean to create DEM_Mask. The mask is a polygon equal to the extent of the original contour lines, buffered -100 m inward from the edge to reduce erroneous values and edge effects due to the interpolation method used by the Topo to Raster tool.</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Reproject DEM_Mask from North_American_1927_Polyconic to NAD83 UTM10 N to create the final DEM: msh_1952_dem_nad83_utm10.tif</stepDesc>
+				<stepDateTm>2023</stepDateTm>
+				<stepProc>
+					<rpIndName>Joseph A Bard</rpIndName>
+					<rpOrgName>U.S. Geological Survey, ALASKA REGION</rpOrgName>
+					<rpPosName>Geographer</rpPosName>
+					<rpCntInfo>
+						<cntPhone>
+							<voiceNum>360-993-8982</voiceNum>
+						</cntPhone>
+						<cntAddress addressType="postal">
+							<delPoint>1300 SE Cardinal Court Bldg. 10</delPoint>
+							<city>Vancouver</city>
+							<adminArea>WA</adminArea>
+							<postCode>98683</postCode>
+							<country>US</country>
+							<eMailAdd>jbard@usgs.gov</eMailAdd>
+						</cntAddress>
+					</rpCntInfo>
+					<role>
+						<RoleCd value="009"/>
+					</role>
+				</stepProc>
+			</prcStep>
+			<dataSource>
+				<srcDesc>Source map of digitized features.</srcDesc>
+				<srcMedName>
+					<MedNameCd value="digital and/or hardcopy"/>
+				</srcMedName>
+				<srcScale>
+					<rfDenom>62500</rfDenom>
+				</srcScale>
+				<srcCitatn>
+					<resTitle>USGS 1:62500-scale Quadrangle for Mt St. Helens, WA 1958</resTitle>
+					<resAltTitle>Quadrangle for Mt St. Helens, WA 1958</resAltTitle>
+					<date>
+						<pubDate>1958</pubDate>
+					</date>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<role>
+							<RoleCd value="006"/>
+						</role>
+					</citRespParty>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<rpCntInfo>
+							<cntAddress>
+								<delPoint>Reston, VA<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+							</cntAddress>
+						</rpCntInfo>
+						<role>
+							<RoleCd value="010"/>
+						</role>
+					</citRespParty>
+					<presForm>
+						<PresFormCd value="topographic map"/>
+					</presForm>
+					<presForm>
+						<fgdcGeoform>Topographic map</fgdcGeoform>
+					</presForm>
+					<datasetSeries>
+						<seriesName>Historical Topographic Maps 15 x 15 Minute Map Series</seriesName>
+						<issId>Mt St. Helens, Washington</issId>
+					</datasetSeries>
+					<citOnlineRes>
+						<linkage>https://www.sciencebase.gov/catalog/item/5a8a3cc9e4b00f54eb3e77c9</linkage>
+					</citOnlineRes>
+				</srcCitatn>
+				<srcExt>
+					<exDesc>observed</exDesc>
+					<tempEle>
+						<TempExtent>
+							<exTemp>
+								<TM_Instant>
+									<tmPosition>1952</tmPosition>
+								</TM_Instant>
+							</exTemp>
+						</TempExtent>
+					</tempEle>
+				</srcExt>
+			</dataSource>
+			<dataSource>
+				<srcDesc>Source map of digitized features.</srcDesc>
+				<srcMedName>
+					<MedNameCd value="digital and/or hardcopy"/>
+				</srcMedName>
+				<srcScale>
+					<rfDenom>62500</rfDenom>
+				</srcScale>
+				<srcCitatn>
+					<resTitle>USGS 1:62500-scale Quadrangle for Spirit Lake, WA 1957</resTitle>
+					<resAltTitle>Quadrangle for Spirit Lake, WA 1957</resAltTitle>
+					<date>
+						<pubDate>1957</pubDate>
+					</date>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<role>
+							<RoleCd value="006"/>
+						</role>
+					</citRespParty>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<rpCntInfo>
+							<cntAddress>
+								<delPoint>Reston, VA<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+							</cntAddress>
+						</rpCntInfo>
+						<role>
+							<RoleCd value="010"/>
+						</role>
+					</citRespParty>
+					<presForm>
+						<PresFormCd value="topographic map"/>
+					</presForm>
+					<presForm>
+						<fgdcGeoform>Topographic map</fgdcGeoform>
+					</presForm>
+					<datasetSeries>
+						<seriesName>Historical Topographic Maps 15 x 15 Minute Map Series</seriesName>
+						<issId>Spirit Lake, Washington</issId>
+					</datasetSeries>
+					<citOnlineRes>
+						<linkage>https://www.sciencebase.gov/catalog/item/5a8a3d0ae4b00f54eb3e7f82</linkage>
+					</citOnlineRes>
+				</srcCitatn>
+				<srcExt>
+					<exDesc>observed</exDesc>
+					<tempEle>
+						<TempExtent>
+							<exTemp>
+								<TM_Instant>
+									<tmPosition>1952</tmPosition>
+								</TM_Instant>
+							</exTemp>
+						</TempExtent>
+					</tempEle>
+				</srcExt>
+			</dataSource>
+			<dataSource>
+				<srcDesc>Source map of digitized features.</srcDesc>
+				<srcMedName>
+					<MedNameCd value="digital and/or hardcopy"/>
+				</srcMedName>
+				<srcScale>
+					<rfDenom>62500</rfDenom>
+				</srcScale>
+				<srcCitatn>
+					<resTitle>USGS 1:62500-scale Quadrangle for Elk Rock, WA 1953</resTitle>
+					<resAltTitle>Quadrangle for Elk Rock, WA 1953</resAltTitle>
+					<date>
+						<pubDate>1953</pubDate>
+					</date>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<role>
+							<RoleCd value="006"/>
+						</role>
+					</citRespParty>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<rpCntInfo>
+							<cntAddress>
+								<delPoint>Reston, VA<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+							</cntAddress>
+						</rpCntInfo>
+						<role>
+							<RoleCd value="010"/>
+						</role>
+					</citRespParty>
+					<presForm>
+						<PresFormCd value="topographic map"/>
+					</presForm>
+					<presForm>
+						<fgdcGeoform>Topographic map</fgdcGeoform>
+					</presForm>
+					<datasetSeries>
+						<seriesName>Historical Topographic Maps 15 x 15 Minute Map Series</seriesName>
+						<issId>Elk Rock, WA 1953</issId>
+					</datasetSeries>
+					<citOnlineRes>
+						<linkage>https://www.sciencebase.gov/catalog/item/5a8a3c6ae4b00f54eb3e6c5d</linkage>
+					</citOnlineRes>
+				</srcCitatn>
+				<srcExt>
+					<exDesc>observed</exDesc>
+					<tempEle>
+						<TempExtent>
+							<exTemp>
+								<TM_Instant>
+									<tmPosition>1952</tmPosition>
+								</TM_Instant>
+							</exTemp>
+						</TempExtent>
+					</tempEle>
+				</srcExt>
+			</dataSource>
+			<dataSource>
+				<srcDesc>Source map of digitized features.</srcDesc>
+				<srcMedName>
+					<MedNameCd value="digital and/or hardcopy"/>
+				</srcMedName>
+				<srcScale>
+					<rfDenom>62500</rfDenom>
+				</srcScale>
+				<srcCitatn>
+					<resTitle>USGS 1:62500-scale Quadrangle for Cougar, WA 1953</resTitle>
+					<resAltTitle>Quadrangle for Cougar, WA 1953</resAltTitle>
+					<date>
+						<pubDate>1953</pubDate>
+					</date>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<role>
+							<RoleCd value="006"/>
+						</role>
+					</citRespParty>
+					<citRespParty>
+						<rpOrgName>USGS<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></rpOrgName>
+						<rpCntInfo>
+							<cntAddress>
+								<delPoint>Reston, VA<!-- WARNING: translation from FGDC is ambiguous, this may require correction --></delPoint>
+							</cntAddress>
+						</rpCntInfo>
+						<role>
+							<RoleCd value="010"/>
+						</role>
+					</citRespParty>
+					<presForm>
+						<PresFormCd value="topographic map"/>
+					</presForm>
+					<presForm>
+						<fgdcGeoform>Topographic map</fgdcGeoform>
+					</presForm>
+					<datasetSeries>
+						<seriesName>Historical Topographic Maps 15 x 15 Minute Map Series</seriesName>
+						<issId>Cougar, Washington</issId>
+					</datasetSeries>
+					<citOnlineRes>
+						<linkage>https://www.sciencebase.gov/catalog/item/5a8a3c5de4b00f54eb3e6a9a</linkage>
+					</citOnlineRes>
+				</srcCitatn>
+				<srcExt>
+					<exDesc>observed</exDesc>
+					<tempEle>
+						<TempExtent>
+							<exTemp>
+								<TM_Instant>
+									<tmPosition>1952</tmPosition>
+								</TM_Instant>
+							</exTemp>
+						</TempExtent>
+					</tempEle>
+				</srcExt>
+			</dataSource>
+		</dataLineage>
+	</dqInfo>
+	<spatRepInfo>
+		<Georect>
+			<numDims>3</numDims>
+			<axisDimension type="001">
+				<dimSize>1968</dimSize>
+				<dimResol><value Sync="TRUE" uom="m">10.000000</value></dimResol></axisDimension>
+			<axisDimension type="002">
+				<dimSize>2874</dimSize>
+				<dimResol><value Sync="TRUE" uom="m">10.000000</value></dimResol></axisDimension>
+			<axisDimension type="003">
+				<dimSize>1</dimSize>
+			</axisDimension>
+			<cellGeo>
+				<CellGeoCd value="002" Sync="TRUE"/>
+			</cellGeo>
+			<tranParaAv Sync="TRUE">1</tranParaAv><chkPtAv Sync="TRUE">0</chkPtAv><cornerPts><pos Sync="TRUE">540391.358581 5111472.333897</pos></cornerPts><cornerPts><pos Sync="TRUE">540391.358581 5131152.333897</pos></cornerPts><cornerPts><pos Sync="TRUE">569131.358581 5131152.333897</pos></cornerPts><cornerPts><pos Sync="TRUE">569131.358581 5111472.333897</pos></cornerPts><centerPt><pos Sync="TRUE">554761.358581 5121312.333897</pos></centerPt><ptInPixel><PixOrientCd Sync="TRUE" value="001"></PixOrientCd></ptInPixel></Georect>
+	</spatRepInfo>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>msh_1952_dem_nad83_utm10.tif</enttypl>
+				<enttypd>Raster geospatial data file.</enttypd>
+				<enttypds>Producer Defined</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>Value</attrlabl>
+				<attrdef>Unique numeric values contained in each raster cell.</attrdef>
+				<attrdefs>Producer Defined</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>344.5744934082</rdommin>
+						<rdommax>2946.3852539062</rdommax>
+					</rdom>
+				</attrdomv>
+			</attr>
+		</detailed>
+	</eainfo>
+	<mdLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdHrLvName Sync="TRUE">dataset</mdHrLvName><refSysInfo><RefSystem><refSysID><identCode code="26910" Sync="TRUE"></identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">6.13(3.0.1)</idVersion></refSysID></RefSystem></refSysInfo><contInfo><ImgDesc><contentTyp><ContentTypCd Sync="TRUE" value="001"></ContentTypCd></contentTyp><covDim><Band><dimDescrp Sync="TRUE">Band_1</dimDescrp><maxVal Sync="TRUE">2946.385254</maxVal><minVal Sync="TRUE">344.574493</minVal><bitsPerVal Sync="TRUE">32</bitsPerVal><valUnit><UOM type="length"></UOM></valUnit></Band></covDim></ImgDesc></contInfo></metadata>

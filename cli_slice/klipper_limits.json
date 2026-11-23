@@ -1,0 +1,13 @@
+{
+    "_note"         : "SV06 ACE values from Moonraker configfile settings, 2026-11-12. Keep in step with printer.cfg.",
+    "accel"         : 20000,
+    "vmax"          : 600,
+    "mcr"           : 0.75,
+    "scv"           : 5.0,
+    "icv"           : 1.0,
+    "zv"            : 15,
+    "za"            : 200,
+    "ev"            : 120,
+    "ea"            : 5000,
+    "margin"        : 0.05
+}

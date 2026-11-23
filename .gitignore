@@ -1,0 +1,36 @@
+## printer-specific, regenerable from the models with cli_slice
+*.gcode
+
+## os, python and slicer clutter
+.DS_Store
+__pycache__/
+.venv/
+00000.log
+
+## local printer address (sv06.sh falls back to its built-in default)
+sv06_host.txt
+
+## raw inputs: DEM rasters and downloaded scans (sources are named in each README)
+*.tif
+*.tif.zip
+*.tif.ovr
+Mountains/St. Helens/dem/cache/
+biserica_neagra_3dprint/raw/
+
+## third-party models with no clear license: kept local, never published
+Cascade game VLAD/
+Car parts/
+
+## superseded relief versions, rebuilt by the commands in each README
+WA_DNR/hhh_survey_dots_vexag3.stl
+WA_DNR/hhh_survey_dots_vexag3.3mf
+WA_DNR/hhh_survey_dots_vexag3_scale.stl
+WA_DNR/hhh_survey_dots_vexag3_sealevel.stl
+WA_DNR/hhh_survey_dots1p2_vexag3.stl
+WA_DNR/hhh_survey_dots1p2_vexag3_scale.stl
+WA_DNR/hhh_survey_dots0p9_vexag3.stl
+WA_DNR/hhh_survey_dots0p9_vexag3_scale.stl
+WA_DNR/py_generators/out/hhh_survey_vexag3.stl
+Kilauea/kilauea_190mm_4x_dots_v2_scale.stl
+Kilauea/kilauea_190mm_4x_dots0p9.stl
+Kilauea/kilauea_relief_receiver_holes_190mm_NEW.3mf

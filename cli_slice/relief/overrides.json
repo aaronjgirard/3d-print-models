@@ -1,0 +1,12 @@
+{
+    "process": {
+        "gap_fill_target"       : "everywhere",
+        "min_width_top_surface" : "500%",
+        "curr_bed_type"         : "High Temp Plate",
+        "sparse_infill_pattern" : "adaptivecubic"
+    },
+    "machine": {
+        "machine_end_gcode"  : "G90\nG1 Z{min(max_layer_z + 20, max_print_height)} F600\nG1 X0 Y{print_bed_max[1]} F6000\nEND_PRINT\n",
+        "layer_change_gcode" : "SET_PRINT_STATS_INFO TOTAL_LAYER=[total_layer_count]\nSET_PRINT_STATS_INFO CURRENT_LAYER={layer_num + 1}\n"
+    }
+}

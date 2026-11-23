@@ -1,0 +1,11 @@
+{
+  "glb": "raw/biserica_neagra_din_brasov.glb",
+  "prefix": "Model",
+  "maxdim": 180.0,
+  "vox": 0.35,
+  "close": 2,
+  "cut": 2.5,
+  "ntri": 350000,
+  "out": "biserica_neagra_ready.stl",
+  "open": 3
+}

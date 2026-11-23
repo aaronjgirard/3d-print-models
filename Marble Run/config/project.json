@@ -1,0 +1,93 @@
+{
+    "dirs": {
+        "marbleworks" : "stl/marbleworks",
+        "tubes"       : "stl/tubes",
+        "custom"      : "stl/custom",
+        "preview"     : "preview",
+        "ref"         : "ref/marbleworks"
+    },
+    "tubes": {
+        "tube_single.stl" : "tube_1.stl",
+        "tube_double.stl" : "tube_2.stl",
+        "tube_triple.stl" : "tube_3.stl",
+        "tube_quad.stl"   : "tube_4.stl"
+    },
+    "titles": {
+        "conn_50"       : "Connector 50 mm",
+        "conn_100"      : "Connector 100 mm",
+        "conn_150"      : "Connector 150 mm",
+        "conn_200"      : "Connector 200 mm",
+        "tube_1"        : "Tube, 1 tall",
+        "tube_2"        : "Tube, 2 tall",
+        "tube_3"        : "Tube, 3 tall",
+        "tube_4"        : "Tube, 4 tall",
+        "bucket_ring"   : "Ring Bowl",
+        "bucket_side"   : "Side Bucket",
+        "bucket_kid"    : "Kid Bucket",
+        "bucket_side2"  : "Side Bucket v2",
+        "tube_1_v2"     : "Tube v2, 1 tall",
+        "tube_2_v2"     : "Tube v2, 2 tall",
+        "tube_3_v2"     : "Tube v2, 3 tall",
+        "tube_4_v2"     : "Tube v2, 4 tall",
+        "finish_raised" : "Race Finish, raised labels",
+        "finish_inset"  : "Race Finish, inset labels",
+        "plinko_1out"   : "Plinko, 1 outlet",
+        "plinko_2out"   : "Plinko, 2 outlets",
+        "cascade"       : "Switchback Cascade",
+        "merge_y"       : "Y Merge",
+        "merge_opp"     : "Opposite Merge",
+        "twopost_1loop_l" : "Two Posts One Loop, long span",
+        "clicky_5_half_l" : "Clicky Ramp 5 Step, long span",
+        "cascade_l"       : "Switchback Cascade, long span"
+    },
+    "connector": {
+        "_note"     : "from fit_ladder.stl / fit_ladder_1p5.stl and tube_*.stl; plug_od is fit-ladder step 1.5 (steps 1/2/3 = 25.7/25.8/25.9)",
+        "post_od"   : 29.6,
+        "socket_id" : 25.6,
+        "plug_od"   : 25.75,
+        "plug_id"   : 21.6,
+        "plug_len"  : 11.0,
+        "plug_slot" : 12.8
+    },
+    "marble": 14.5,
+    "tube_pitch": 47.3,
+    "spans": {
+        "_note"  : "post-to-post spacing for the two planned versions of each two-post piece; raw caliper/tape readings. long centre = gap + post_od (29.6, the design value, not measured on the set); long gap remeasured by Aaron 2026-11-15 12:35 MST as 156.2 (was 154.9, centre 184.5). short centre not derived (which inner walls is unconfirmed). real plugs measure 25.4",
+        "short"  : {"suffix": "_s", "gap": 125.5, "walls": "socket inner wall to socket inner wall"},
+        "long"   : {"suffix": "_l", "gap": 156.2, "walls": "gap between the outsides of the two sockets (nearest sides)", "centre": 185.8}
+    },
+    "refit": {
+        "_note"      : "imported Marbleworks pieces rebuilt for the measured set by src/refit.py. post values are in source coordinates: xy axis, levels (bottom, top, in whole tube pitches), slot (direction of the source plug slot, deg), slot_depth (mm the slot runs below the plug base where it ends in the wall; it is then closed with the post's own wall from slot_fill.turn deg away. 0 where the slot opens into a window: the new shoulder is left open over it instead, open_half deg either side, so the slot runs to the top as in the source). options that remove the need for supports: gable [direction deg, half width deg, turn deg, drop mm, notch mm] makes a window top a 45 deg point 1 mm under the shoulder: wall taken from turn deg away is added over the two 45 deg lines for drop mm below the peak, and the wall under them is cut for notch mm; arch [direction deg, rise mm, half width mm, depth mm] cuts the shallow shoulders of a round window top that runs into the open slot back to 45 deg lines meeting rise mm above the post body top; ceiling puts a 45 deg cone ceiling over a socket nothing passes through, keeping at least ceiling.floor mm of the floor above it; keel adds a 45 deg keel under the track between the posts",
+        "src_pitch"  : 50.0,
+        "src_socket" : 27.0,
+        "src_od"     : 31.0,
+        "socket_len" : 16.0,
+        "rigid"      : 17.0,
+        "blend"      : 25.0,
+        "slot_fill"  : {"half": 30.0, "turn": 75.0},
+        "open_half"  : 17.0,
+        "ceiling"    : {"floor": 1.2, "embed": 0.3, "step": 0.4},
+        "keel"       : {"reach": 16.0, "step": 0.5, "embed": 0.3, "into": 1.5},
+        "pieces"     : {
+            "twopost_1loop" : {"posts": [{"xy": [-74.5, -42.5], "levels": [0, 2], "slot": 285, "slot_depth": 2.5},
+                                         {"xy": [59.5, -42.5],  "levels": [0, 2], "slot": 240, "slot_depth": 7.0}]},
+            "clicky_5_half" : {"keel": true,
+                               "posts": [{"xy": [-64.5, -64.5], "levels": [1, 2], "slot": 0, "slot_depth": 0, "ceiling": true, "arch": [0, 2.2, 8.5, 11.8]},
+                                         {"xy": [167.6, -64.5], "levels": [0, 1], "slot": 0, "slot_depth": 7.5, "gable": [180, 55, 90, 12.0, 3.0]}]}
+        }
+    },
+    "cascade": {
+        "_note"      : "src/cascade.py. span is the long centre 185.8 less 2 mm: Aaron found the printed clicky_5_half_l about 2 mm too long (2026-11-17). levels: the emit post bottom sits this many tube pitches up. sill_e is above the emit post bottom, sill_r above the bed. drop is floor to floor at each hole. gap is the clearance from the ramp ends to the towers under and over the posts. floor_tilt is the slope of the emit floor over the socket cone",
+        "span"       : 183.8,
+        "levels"     : 2,
+        "sill_e"     : 24.0,
+        "sill_r"     : 17.0,
+        "floor_tilt" : 0.47,
+        "win_w"      : 17.0,
+        "drop"       : 31.5,
+        "hole_r"     : 8.75,
+        "end"        : 2.4,
+        "gap"        : 3.0,
+        "plate"      : 3.0
+    }
+}
