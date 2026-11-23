@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-22 21:36 MST
+Updated 2026-11-22 21:45 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -19,6 +19,7 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 | `secret drawers/` | dial and two-drawer puzzle box |
 | `biserica_neagra_3dprint/` | the Black Church of Brasov, rebuilt from a public scan as a printable solid |
 | `CSM_GP_logos/` | Colorado School of Mines Geophysics logo and banner plaques |
+| `train-rails/` | straight, 22.5 degree curve and fit-test piece that join a battery Christmas-train set, with wood-grain ties and full-plate layouts |
 | `VLAD_4in_quarter_thick.3mf` | small name plate |
 | `cli_slice/` | OrcaSlicer command-line presets, plus a Klipper-accurate print-time estimator |
 | `sv06.sh` | run the printer from a terminal through Moonraker (`3dprint`, `3dstatus`, ...) |
