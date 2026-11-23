@@ -1,6 +1,6 @@
 # 3d-print-models: rules for new work
 
-Updated 2026-11-22 21:15 MST
+Updated 2026-11-22 21:58 MST
 
 This folder is the public repo `github.com/aaronjgirard/3d-print-models`. Every model Aaron makes goes here and is Apache-2.0 by default.
 
@@ -10,4 +10,11 @@ This folder is the public repo `github.com/aaronjgirard/3d-print-models`. Every 
 - **Survey and research data:** cite the source papers in the folder README and the root README "Citing" section; update citations when papers are published.
 - **Size:** G-code is never committed. Keep each file under 100 MB (GitHub limit); commit only the current version of large reliefs and git-ignore superseded ones, keeping their rebuild commands in the README. Raw inputs (DEMs, scans) stay out.
 - **3MF projects:** fill the project License field with `Apache-2.0` (or the third-party license) when saving in OrcaSlicer.
+- **License headers, before every commit and push:** every script (`.py`, `.sh`, and extensionless shebang scripts like `cameralight`) carries these two lines, right after the shebang if there is one, else at the top; other sessions sometimes overwrite files and drop them, so check every time:
+  ```
+  ## Copyright 2026 Aaron Girard
+  ## SPDX-License-Identifier: Apache-2.0
+  ```
+  Exception: a script whose help text is read from its own comment block (`sv06.sh`) takes them below that block. Check with `git ls-files -co --exclude-standard | grep -E '\.(py|sh)$|/cameralight$' | while read f; do grep -q SPDX-License-Identifier "$f" || echo "MISSING $f"; done`.
+- **One commit per project:** commit each folder's or topic's changes separately (train-rails, camera light, ...); never sweep another session's unrelated changes into a commit.
 - Commits are authored by Aaron only; no Claude co-author line.
