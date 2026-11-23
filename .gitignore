@@ -34,3 +34,8 @@ WA_DNR/py_generators/out/hhh_survey_vexag3.stl
 Kilauea/kilauea_190mm_4x_dots_v2_scale.stl
 Kilauea/kilauea_190mm_4x_dots0p9.stl
 Kilauea/kilauea_relief_receiver_holes_190mm_NEW.3mf
+
+## local only: originals and backups brought in from ~/3Dprinting (2026-11-22)
+Kilauea/source/
+dragon-egg/
+orca-user/
