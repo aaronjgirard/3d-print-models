@@ -2,12 +2,24 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
 ## cameralight 0|1: set the SV06 ACE camera light through the sysfs pin the
-## screen app exports (exports it first if the screen app has not yet)
+## screen app exports (exports it first if the screen app has not yet), then
+## copy the state into the screen app's led_state flag so its light dialog
+## shows it and its next button press toggles from it
 pin=67
 dir=/sys/class/gpio/gpio$pin
+app=/home/sovol/printer_data/build/mksclient
+app_sha=9d47a86dd4d29615c463fb38a4e0c3f6bf4a00bd9c6e4ded7e32a2ec5a20b364
+led_off=0xaf921f8         # led_state address in that exact build (nm)
 case "$1" in 0|1) ;; *) echo "usage: cameralight 0|1" >&2; exit 2 ;; esac
 if [ ! -e "$dir" ]; then
     echo $pin > /sys/class/gpio/export
     echo out  > "$dir/direction"
 fi
 echo "$1" > "$dir/value"
+
+## only touch the screen app's memory if it is the build the address came from
+pid=$(pidof mksclient) || exit 0
+[ "$(sha256sum < /proc/$pid/exe | cut -d' ' -f1)" = "$app_sha" ] || exit 0
+base=$(awk -v app="$app" '$6 == app {split($1, a, "-"); print a[1]; exit}' /proc/$pid/maps)
+[ -n "$base" ] || exit 0
+printf "\\00$1" | dd of=/proc/$pid/mem bs=1 seek=$((0x$base + led_off)) conv=notrunc 2>/dev/null

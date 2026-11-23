@@ -4,11 +4,12 @@
 ##############################################################################
 ## apply.sh: make the SV06 ACE camera light work from BOTH the touchscreen
 ## and Mainsail/Obico. Run from this folder on the Mac, only when the printer
-## is idle (it refuses during a print). Staged 2026-11-22 09:39 MST.
+## is idle (it refuses during a print). Updated 2026-11-22 21:42 MST.
 ##
 ## Steps:
 ##   1. install gcode_shell_command.py into Klipper (from ~/kiauh/resources)
-##   2. install /usr/local/bin/cameralight (root-owned, writes the sysfs pin)
+##   2. install /usr/local/bin/cameralight (root-owned, writes the sysfs pin
+##      and copies the state into the screen app's led_state flag)
 ##   3. back up and replace printer_data/config/light.cfg (printer.cfg already
 ##      has [include light.cfg], so it is not touched)
 ##   4. stop the screen app, restore the original mksclient from
