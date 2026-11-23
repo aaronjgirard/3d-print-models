@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-22 21:22 MST
+Updated 2026-11-22 21:28 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -21,6 +21,7 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 | `VLAD_4in_quarter_thick.3mf` | small name plate |
 | `cli_slice/` | OrcaSlicer command-line presets, plus a Klipper-accurate print-time estimator |
 | `sv06.sh` | run the printer from a terminal through Moonraker (`3dprint`, `3dstatus`, ...) |
+| `Printer Fix/` | longboard pads, a fix Sovol suggested that helped |
 | `printer_diagnostics/`, `maintenance/` | input shaping, cruise ratio and camera-light fixes, with before and after configs |
 
 G-code is not included: it is specific to my printer and rebuilds from the models with `cli_slice/slice.sh`. Each folder's README says how its models were made and how to rebuild them.
