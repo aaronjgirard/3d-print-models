@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-22 21:28 MST
+Updated 2026-11-22 21:24 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 

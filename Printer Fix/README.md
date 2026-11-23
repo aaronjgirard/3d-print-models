@@ -1,6 +1,6 @@
 # Printer fix: longboard pads
 
-Updated 2026-11-22 21:28 MST
+Updated 2026-11-22 21:24 MST
 
 Three longboard pads (`Longboard_pads.STL`, `Longboard_pads_2.STL`, `Longboard_pads_3.STL`) printed on the SV06 ACE on 2026-11-17 (PLA, 0.20 mm layers, about 1 h 15 min). Sovol suggested this fix, and it was helpful.
 
