@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Copy the Marbleworks (Pyrce007) STLs and the 1-4 pitch tubes into the project
 under short names.

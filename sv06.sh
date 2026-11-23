@@ -17,6 +17,8 @@
 ## Printer address: SV06_HOST if set, else sv06_host.txt next to this
 ## script, else 192.168.86.229:7125.
 ##############################################################################
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 set -euo pipefail
 
 self=$(readlink "$0" || echo "$0")

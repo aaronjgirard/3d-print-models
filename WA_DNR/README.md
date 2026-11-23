@@ -1,6 +1,6 @@
 # hhh survey relief model (WA DNR 3D survey, Columbia River valley)
 
-Updated 2026-11-22 21:15 MST (citation and published-file note added; 2026-11-17 20:42 MST: array center lat/lon on the south wall; 0.9 mm dot version, brown PLA+, 20:38)
+Updated 2026-11-22 21:40 MST (private paths removed; 21:15 citation and published-file note added; 2026-11-17 20:42 MST: array center lat/lon on the south wall; 0.9 mm dot version, brown PLA+, 20:38)
 
 ## Citation and published files
 The receivers are the deployed stations of the WA DNR Horse Heaven Hills 3D survey. Please cite: Girard, A. J., D. H. R. O'Connell, A. Stolzmann, L. Florea, J. Shragge, M. Oristaglio, C. Morgan, J. Turner, R. Beal, A. Bauer, and S. P. Reidel (submitted). An active- and passive-source nodal seismic dataset for CO2 sequestration site characterization in the Columbia River Basalts of south-central Washington, U.S.A. *Seismological Research Letters*.
@@ -8,9 +8,9 @@ The receivers are the deployed stations of the WA DNR Horse Heaven Hills 3D surv
 The public repo carries only the current print, `hhh_survey_dots0p9_vexag3_scale_latlon.stl`. The older STLs below are git-ignored; rebuild them with the commands given, starting from `py_generators/make_print.py` (needs the source files listed under Source data). Model and scripts are Apache-2.0.
 
 ## Source data
-In ~/Dropbox/CSM_AARON/WA_COLUMBIA_RIVER_VALLEY/:
-- DEM: `AGU2026/figure_build/inputs/merged_dem_timeslice.tif` (3 m lidar, EPSG:32611, UTM 11N)
-- Receivers: `SRL_paper/figure_data/fig02/receivers_post_plot_deployed.csv` (150 post-plot stations, lat/lon)
+From the survey project files of Girard et al. (submitted), not in this repo:
+- DEM: `merged_dem_timeslice.tif` (3 m lidar, EPSG:32611, UTM 11N)
+- Receivers: `receivers_post_plot_deployed.csv` (150 post-plot stations, lat/lon)
 
 ## hhh_survey_vexag3.stl, recovered by fitting the STL to those files (Nov 2026)
 - Horizontal: 1 mm = 29.42 m, no rotation. Model SW corner at E 268132, N 5092508 (UTM 11N); the model covers 5000 x 5590 m.

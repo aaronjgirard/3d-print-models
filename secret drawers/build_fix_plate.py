@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build a one-part reprint 3MF (default: the lower tube) with a support enforcer under the lock pin slot.
 

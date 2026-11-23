@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Two-layer puzzle drawer box ('Dial & Drawers'). Units mm, z up, box centred on x = y = 0.
 
 Layout (world coordinates, assembled, everything closed):

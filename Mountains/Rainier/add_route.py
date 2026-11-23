@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Add a climbing route to the Rainier relief STL as a raised ridge, with round
 pads at named points (camp, trailhead).

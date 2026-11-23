@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Switchback cascade on the long span ("cascade" in config/project.json).
 

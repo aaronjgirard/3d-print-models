@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Cut recessed text into a vertical side wall of a relief STL.
 

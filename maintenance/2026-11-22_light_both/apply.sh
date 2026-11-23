@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 ##############################################################################
 ## apply.sh: make the SV06 ACE camera light work from BOTH the touchscreen
 ## and Mainsail/Obico. Run from this folder on the Mac, only when the printer

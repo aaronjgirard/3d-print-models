@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Concept pieces: racing finish, peg trays, combiners.
 
 Usage:

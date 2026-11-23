@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Terrain-relief STL with blind receiver holes -> same relief with RAISED receiver dots, optionally
 re-scaling the vertical exaggeration. Works on the STL alone (no DEM needed).
 

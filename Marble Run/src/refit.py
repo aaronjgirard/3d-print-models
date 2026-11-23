@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Refit imported Marbleworks pieces to the measured set ("refit" in config/project.json).
 

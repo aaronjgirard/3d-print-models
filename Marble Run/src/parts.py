@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Shared building blocks for Marbleworks-compatible pieces. Units mm, z up.
 
 Post convention (connector sizes from the fit ladder, config/project.json):

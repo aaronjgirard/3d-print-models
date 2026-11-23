@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build flat OrcaSlicer 2.5.0 printer, process and filament preset JSONs from the
 config block Orca writes at the end of every G-code, then apply an overrides

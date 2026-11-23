@@ -1,4 +1,6 @@
 #!/bin/sh
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 ## cameralight 0|1: set the SV06 ACE camera light through the sysfs pin the
 ## screen app exports (exports it first if the screen app has not yet)
 pin=67

@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build flat OrcaSlicer 2.5.0 printer, process and filament preset JSONs from the
 settings stored in a project 3MF, then apply an overrides file.

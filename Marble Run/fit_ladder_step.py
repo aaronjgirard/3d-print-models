@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Make an extra fit-ladder block with a plug diameter between the existing steps.
 

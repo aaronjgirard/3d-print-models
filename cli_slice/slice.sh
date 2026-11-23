@@ -1,4 +1,6 @@
 #!/bin/bash
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 ## slice a model or project 3MF with the presets of one style (a subfolder
 ## here: relief, tall_thin, ...), check the G-code, then open it in
 ## OrcaSlicer's preview. never uploads or prints. the time lines in the G-code

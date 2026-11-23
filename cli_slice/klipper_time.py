@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Estimate the print time of a G-code file with Klipper's lookahead planner
 (toolhead.py Move, calc_junction and flush, plus the extruder corner limit),

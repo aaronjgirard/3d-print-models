@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Plot power spectral density from Klipper SHAPER_CALIBRATE CSVs on one log
 axis, with the tested band shaded.

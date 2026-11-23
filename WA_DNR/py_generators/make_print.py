@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build a 3D-printable terrain model of the Horse Heaven Hills (WA DNR) survey
 area from the USGS 3DEP 1 m lidar DEM, cut to the survey polygon, with a

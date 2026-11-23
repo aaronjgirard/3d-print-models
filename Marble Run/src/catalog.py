@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Render every project STL into one contact sheet, each tile labelled with the
 piece name and its file name.

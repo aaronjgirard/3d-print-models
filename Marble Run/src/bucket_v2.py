@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Concept B, revision 3: drop down the post onto a concave fillet that runs tangent into a floor
 sloped away from the post, slot open from floor to shoulder, bore-wide at the post and wider into the bucket,
 larger bottom curve at the far end, rounded rim with inward lip, flared base.

@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Bucket-stand concepts for a Marbleworks-style marble run. Units: mm, z up.
 
 Usage:

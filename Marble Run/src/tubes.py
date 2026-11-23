@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Straight tubes N pitches tall with the fit-ladder connector (config/project.json).
 
 Same body as stl/tubes (OD 29.6, bore 25.6 straight through, 47.3 mm per pitch),

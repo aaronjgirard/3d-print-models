@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Rebuild the Black Church scan as a solid, watertight, 180 mm STL.
 

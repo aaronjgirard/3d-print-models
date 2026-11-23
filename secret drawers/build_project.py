@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build the secret drawers OrcaSlicer project: accent floor liners plus a multi-plate 3MF.
 

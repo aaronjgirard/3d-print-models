@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 QC preview of the print: top view (shaded, model mm) with hole positions, and
 an oblique view of the binary STL.

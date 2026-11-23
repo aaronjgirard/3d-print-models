@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Build 3D-printable relief models of Mount St. Helens before the 1980 eruption
 and today, at the same footprint, scale and vertical exaggeration as the

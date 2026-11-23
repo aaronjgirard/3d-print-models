@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 """Painter's-algorithm renders of the puzzle box: stills (outside + cut-away) and a GIF of the solve."""
 import sys, os, numpy as np, trimesh
 import matplotlib; matplotlib.use('Agg')

@@ -1,3 +1,5 @@
+## Copyright 2026 Aaron Girard
+## SPDX-License-Identifier: Apache-2.0
 '''
 Receiver dot width sweep on the densest inch of the Kilauea relief.
 
