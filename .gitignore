@@ -39,9 +39,10 @@ Kilauea/kilauea_relief_receiver_holes_190mm_NEW.3mf
 Kilauea/source/
 orca-user/
 
-## ESO 'Oumuamua model: license for 3D models unclear, kept local (see oumuamua/README.md)
+## ESO ʻOumuamua: raw downloads, generated presets and regenerable outputs stay local
 oumuamua/raw/
-oumuamua/oumuamua_1to*.stl
 oumuamua/presets/printer.json
 oumuamua/presets/filament.json
 oumuamua/presets/process.json
+oumuamua/oumuamua_on_stand.stl
+oumuamua/oumuamua.3mf

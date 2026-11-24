@@ -1,0 +1,14 @@
+{
+  "base"     : "../secret_drawers/project_settings_base.json",
+  "style"    : "../cli_slice/relief",
+  "out"      : "oumuamua.3mf",
+  "bed"      : 220.0,
+  "plates"   : [
+    {"name": "rock (tree supports)",          "stl": "oumuamua_1to2000.stl", "rotz":  0.0,
+     "settings": {"enable_support": "1", "support_type": "tree(auto)", "support_style": "organic",
+                  "support_threshold_angle": "30", "support_on_build_plate_only": "1"}},
+    {"name": "plaque (pause at layer 13)",    "stl": "oumuamua_plaque.stl",  "rotz":  0.0,
+     "pause": {"top_z": 2.65, "msg": "Change filament"}},
+    {"name": "stand (white PLA)",             "stl": "oumuamua_stand.stl",   "rotz": 45.0}
+  ]
+}

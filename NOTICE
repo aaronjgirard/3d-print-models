@@ -23,8 +23,11 @@ Colorado School of Mines, Department of Geophysics
   The logo artwork in CSM_GP_logos/ is a trademark of the Colorado School of
   Mines and is not licensed under Apache-2.0 or any other license here.
 
-'Oumuamua 3D model by ESO/M. Kornmesser, European Southern Observatory
+ʻOumuamua 3D model by ESO/M. Kornmesser, European Southern Observatory
   https://www.eso.org/public/products/models3d/oumuamua/
-  oumuamua/make_stl.py builds a printable solid from that model. The model
-  and the solid built from it are not in this repository and are not
-  licensed here; ESO requires the credit line "ESO/M. Kornmesser".
+  oumuamua/oumuamua_1to2000.stl is a printable solid built from that model by
+  oumuamua/make_stl.py (welded, rescaled to 1:2000, decimated). It keeps ESO's
+  terms: credit "ESO/M. Kornmesser" visibly, and ESO says the model is not
+  available for sale. It is not licensed under Apache-2.0. The stand
+  (oumuamua/oumuamua_stand.stl), whose cups are shaped to fit the rock, is
+  Apache-2.0.

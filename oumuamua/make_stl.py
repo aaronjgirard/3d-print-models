@@ -1,7 +1,7 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
 '''
-Turn ESO's 'Oumuamua model (ESO/M. Kornmesser,
+Turn ESO's ʻOumuamua model (ESO/M. Kornmesser,
 https://www.eso.org/public/products/models3d/oumuamua/) into a printable STL.
 
 Pipeline: load the obj, merge the uv-seam vertices so the shell closes,

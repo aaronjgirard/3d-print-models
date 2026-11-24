@@ -1,7 +1,7 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
 '''
-Build flat OrcaSlicer presets for the 'Oumuamua print: copy a cli_slice style
+Build flat OrcaSlicer presets for the ʻOumuamua print: copy a cli_slice style
 and apply the process overrides in presets/overrides.json (tree supports).
 '''
 import argparse, json, os, shutil

@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-23 15:22 MST
+Updated 2026-11-23 21:44 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -17,7 +17,7 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 | `Mountains/` | Mount Rainier (with the Disappointment Cleaver route) and Mount St. Helens before 1980 and in 2022, all at one scale |
 | `dragon-egg/` | spirit dragon and a two-part egg, with OrcaSlicer presets |
 | `secret_drawers/` | dial and two-drawer puzzle box |
-| `oumuamua/` | 'Oumuamua, the interstellar object, at 1:2000 (200 mm) from ESO's 3D model, printed on tree supports, with a name and scale plaque (the rock is kept local until its license is settled) |
+| `oumuamua/` | ʻOumuamua, the interstellar object, at 1:2000 (200 mm) from ESO's 3D model, with a name and scale plaque and a display stand, as a three-plate Orca project |
 | `biserica_neagra_3dprint/` | the Black Church of Brasov, rebuilt from a public scan as a printable solid |
 | `CSM_GP_logos/` | Colorado School of Mines Geophysics logo and banner plaques |
 | `train-rails/` | straight, 22.5 degree curve and fit-test piece that join a battery Christmas-train set, with wood-grain ties and full-plate layouts |
@@ -49,7 +49,7 @@ The license text is the legal version; this list is only a summary.
 | `Marble_Run/stl/custom/twopost_1loop_l.stl`, `clicky_5_half_l.stl` | remixes of Pyrce007's `twopost_1loop` and `clicky_5_half` | CC BY, credit Pyrce007; my changes (made by `src/refit.py`) are Apache-2.0 |
 | `biserica_neagra_3dprint/*.stl` | built from [Biserica Neagra din Brasov](https://sketchfab.com/3d-models/biserica-neagra-din-brasov-8458157f7a71408189c4d630ce82133b) by Institutul National al Patrimoniului (cimec) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), credit cimec; `make_stl.py` is Apache-2.0 |
 | `Printer_Fix/longboard_pads_installed.png` | Sovol, from the [Sovol wiki](https://wiki.sovol3d.com/en/SV06-ACE-Troubleshooting/SV06-ACE-screen-flickers-and-image-is-not-fully-displayed) | Sovol's photo, not licensed here |
-| `oumuamua/oumuamua_1to2000.stl` (built locally, not in git) | ESO/M. Kornmesser, [ESO 3D model of 'Oumuamua](https://www.eso.org/public/products/models3d/oumuamua/) | ESO's terms, credit "ESO/M. Kornmesser"; `make_stl.py` and the plaque are Apache-2.0 |
+| `oumuamua/oumuamua_1to2000.stl` | built from the [ESO 3D model of ʻOumuamua](https://www.eso.org/public/products/models3d/oumuamua/) by ESO/M. Kornmesser | ESO's terms: credit "ESO/M. Kornmesser" visibly, not for sale; the scripts, plaque and stand are Apache-2.0 |
 | the logo artwork in `CSM_GP_logos/` | Colorado School of Mines, Department of Geophysics | trademark, not licensed here; the plaque geometry around it is Apache-2.0 |
 
 Elevation data in `Mountains/` comes from USGS (public domain); sources are listed in each README.

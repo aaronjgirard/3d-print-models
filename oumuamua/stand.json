@@ -1,0 +1,21 @@
+{
+  "rock"      : "oumuamua_1to2000.stl",
+  "rock_cfg"  : "config.json",
+  "base_t"    :  5.0,
+  "side"      :  4.0,
+  "radius"    :  4.0,
+  "lift"      : 32.0,
+  "post_x"    : 55.0,
+  "post_w"    : 14.0,
+  "cup"       :  9.0,
+  "gap"       :  0.3,
+  "grid"      :  0.25,
+  "plaque"    : [64.0, 32.0, 3.2],
+  "tilt"      : 60.0,
+  "slot_d"    :  3.0,
+  "slot_c"    :  0.25,
+  "front"     :  4.0,
+  "prop"      : [30.0, 14.0, 22.0],
+  "out"       : "oumuamua_stand.stl",
+  "out_rock"  : "oumuamua_on_stand.stl"
+}

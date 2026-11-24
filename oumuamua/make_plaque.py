@@ -1,7 +1,7 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
 '''
-Name plaque for the 'Oumuamua print: a rounded plate with a raised border
+Name plaque for the ʻOumuamua print: a rounded plate with a raised border
 and raised lines of text (name, scale), centered, printed flat.
 '''
 import argparse, json
