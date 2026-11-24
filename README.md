@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-23 21:44 MST
+Updated 2026-11-23 21:52 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -49,7 +49,7 @@ The license text is the legal version; this list is only a summary.
 | `Marble_Run/stl/custom/twopost_1loop_l.stl`, `clicky_5_half_l.stl` | remixes of Pyrce007's `twopost_1loop` and `clicky_5_half` | CC BY, credit Pyrce007; my changes (made by `src/refit.py`) are Apache-2.0 |
 | `biserica_neagra_3dprint/*.stl` | built from [Biserica Neagra din Brasov](https://sketchfab.com/3d-models/biserica-neagra-din-brasov-8458157f7a71408189c4d630ce82133b) by Institutul National al Patrimoniului (cimec) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), credit cimec; `make_stl.py` is Apache-2.0 |
 | `Printer_Fix/longboard_pads_installed.png` | Sovol, from the [Sovol wiki](https://wiki.sovol3d.com/en/SV06-ACE-Troubleshooting/SV06-ACE-screen-flickers-and-image-is-not-fully-displayed) | Sovol's photo, not licensed here |
-| `oumuamua/oumuamua_1to2000.stl` | built from the [ESO 3D model of ʻOumuamua](https://www.eso.org/public/products/models3d/oumuamua/) by ESO/M. Kornmesser | ESO's terms: credit "ESO/M. Kornmesser" visibly, not for sale; the scripts, plaque and stand are Apache-2.0 |
+| `oumuamua/oumuamua_1to2000.stl`, `oumuamua/oumuamua_stand.stl` | the rock and its stand, built from the [ESO 3D model of ʻOumuamua](https://www.eso.org/public/products/models3d/oumuamua/) by ESO/M. Kornmesser | ESO's terms: credit "ESO/M. Kornmesser" visibly, not for sale; the scripts and plaque are Apache-2.0 |
 | the logo artwork in `CSM_GP_logos/` | Colorado School of Mines, Department of Geophysics | trademark, not licensed here; the plaque geometry around it is Apache-2.0 |
 
 Elevation data in `Mountains/` comes from USGS (public domain); sources are listed in each README.

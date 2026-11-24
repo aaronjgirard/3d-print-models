@@ -1,6 +1,6 @@
 # ʻOumuamua
 
-Updated 2026-11-23 21:45 MST
+Updated 2026-11-23 21:52 MST
 
 ʻOumuamua, the first interstellar object seen passing through the Solar System, at 1:2000, made from ESO's artist's 3D model, with a name and scale plaque and a display stand. ESO gives its length as about 400 m, so the rock is 200 mm long (40 x 34 mm across). The OrcaSlicer project `oumuamua.3mf` has three plates:
 
@@ -16,8 +16,8 @@ Updated 2026-11-23 21:45 MST
 | `build_project.py`, `project.json` | the three-plate 3MF: `cli_slice/relief` settings over a saved Orca project config, tree supports on the rock, the pause on the plaque plate |
 | `make_presets.py`, `presets/overrides.json` | flat presets with tree supports, for slicing the rock STL on its own |
 | `add_pause.py` | insert a filament-change pause at the start of one layer of an already sliced G-code |
-| `oumuamua_1to2000.stl` | the rock, credit ESO/M. Kornmesser (see below) |
-| `oumuamua_plaque.stl`, `oumuamua_stand.stl` | the plaque and the stand |
+| `oumuamua_1to2000.stl`, `oumuamua_stand.stl` | the rock and the stand, credit ESO/M. Kornmesser (see below) |
+| `oumuamua_plaque.stl` | the plaque |
 | `oumuamua_on_stand.stl`, `oumuamua.3mf` | rock placed on the stand (for checks) and the project; rebuilt by the commands below, not in git |
 
 ## Rebuild
@@ -41,4 +41,4 @@ At the plaque pause, swap the filament, then `RESUME`.
 ## Source and license
 Model: ESO/M. Kornmesser, ʻOumuamua (3D model), European Southern Observatory, https://www.eso.org/public/products/models3d/oumuamua/ (downloaded 2026-11-23). Put into `raw/`: the OBJ and Cinema 4D zips and the TIFF render from that page.
 
-`oumuamua_1to2000.stl` is built from that model and keeps ESO's terms, not Apache-2.0: ESO asks for the full credit line, **ESO/M. Kornmesser**, shown visibly for fee-free use, and says the model "is not available for sale". ESO's copyright page puts its images, videos and music under CC BY 4.0 but does not name 3D models. The ESO downloads (`raw/`) are not in git. The stand, plaque, scripts and presets are Apache-2.0.
+`oumuamua_1to2000.stl` is built from that model, and `oumuamua_stand.stl` has cups cast from it; both keep ESO's terms, not Apache-2.0: ESO asks for the full credit line, **ESO/M. Kornmesser**, shown visibly for fee-free use, and says the model "is not available for sale". ESO's copyright page puts its images, videos and music under CC BY 4.0 but does not name 3D models. The ESO downloads (`raw/`) are not in git. The plaque, scripts and presets are Apache-2.0.

@@ -28,6 +28,6 @@ Colorado School of Mines, Department of Geophysics
   oumuamua/oumuamua_1to2000.stl is a printable solid built from that model by
   oumuamua/make_stl.py (welded, rescaled to 1:2000, decimated). It keeps ESO's
   terms: credit "ESO/M. Kornmesser" visibly, and ESO says the model is not
-  available for sale. It is not licensed under Apache-2.0. The stand
-  (oumuamua/oumuamua_stand.stl), whose cups are shaped to fit the rock, is
-  Apache-2.0.
+  available for sale. The stand (oumuamua/oumuamua_stand.stl), whose cups
+  are cast from the rock, carries the same ESO terms. Neither is licensed
+  under Apache-2.0.
