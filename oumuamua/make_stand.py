@@ -8,7 +8,7 @@ tilted slot with a prop behind it for the plaque, which stands under the rock
 between the posts.
 
 The rock is taken from the print STL, turned back to its display pose
-(rotz in the rock config undone) and lifted above the base.
+(rotz, then roll, in the rock config undone) and lifted above the base.
 '''
 import argparse, json
 
@@ -27,8 +27,9 @@ def display_pose(par):
         trimesh.Trimesh: rock
     '''
     rck = trimesh.load(par['rock'])
-    rot = json.load(open(par['rock_cfg']))['rotz']
-    rck.apply_transform(trimesh.transformations.rotation_matrix(np.radians(-rot), [0, 0, 1]))
+    cfg = json.load(open(par['rock_cfg']))
+    rck.apply_transform(trimesh.transformations.rotation_matrix(np.radians(-cfg['rotz']), [0, 0, 1]))
+    rck.apply_transform(trimesh.transformations.rotation_matrix(np.radians(-cfg.get('roll', 0.0)), [1, 0, 0]))
     bnd = rck.bounds
     rck.apply_translation([-(bnd[0, 0] + bnd[1, 0]) / 2, -(bnd[0, 1] + bnd[1, 1]) / 2, -bnd[0, 2]])
     return rck

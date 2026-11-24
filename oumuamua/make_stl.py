@@ -7,8 +7,10 @@ https://www.eso.org/public/products/models3d/oumuamua/) into a printable STL.
 Pipeline: load the obj, merge the uv-seam vertices so the shell closes,
 align the principal axes (long axis on x, thinnest axis on z), scale the
 long axis to the real length over the map scale (400 m at 1:2000 is 200 mm),
-decimate, turn about z (diagonal on the bed), center on x=y=0 and rest on
-z=0. The model floats on its curved underside, so print it with supports.
+decimate, roll about x (roll -90 lays the display back, +y, on the bed, so
+the underside that sits in the stand cups and the top both print as walls),
+turn about z (diagonal on the bed), center on x=y=0 and rest on z=0. The
+back still needs supports.
 '''
 import argparse, json, time
 import numpy as np
@@ -77,6 +79,7 @@ def main(par):
     msh.apply_scale(lng / msh.extents[0])
     if par['ntri'] < len(msh.faces):
         msh = decimate(msh, par['ntri'])
+    msh.apply_transform(trimesh.transformations.rotation_matrix(np.radians(par['roll']), [1, 0, 0]))
     msh.apply_transform(trimesh.transformations.rotation_matrix(np.radians(par['rotz']), [0, 0, 1]))
     bnd = msh.bounds
     msh.apply_translation([-(bnd[0, 0] + bnd[1, 0]) / 2, -(bnd[0, 1] + bnd[1, 1]) / 2, -bnd[0, 2]])
@@ -90,10 +93,11 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--cfg', default='config.json')
     ap.add_argument('--scale', type=float, help='map scale denominator (2000 for 1:2000)')
+    ap.add_argument('--roll',  type=float, help='roll about the long axis before printing [deg]')
     ap.add_argument('--rotz',  type=float, help='turn about z on the bed [deg]')
     ap.add_argument('--out')
     a   = ap.parse_args()
     par = json.load(open(a.cfg))
-    for k in ('scale', 'rotz', 'out'):
+    for k in ('scale', 'roll', 'rotz', 'out'):
         if getattr(a, k) is not None: par[k] = getattr(a, k)
     main(par)
