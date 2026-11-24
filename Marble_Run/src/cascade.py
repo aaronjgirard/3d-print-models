@@ -22,7 +22,8 @@ from scipy.optimize import brentq
 from manifold3d import Manifold, CrossSection, FillRule
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from parts import POST_OD, POST_ID, PLUG_OD, PLUG_ID, PLUG_LEN, SHOULDER, SOCKET, MARBLE, CH_R, CH_WALL, CH_H
+from rounds import slot_cutter
+from parts import POST_OD, POST_ID, PLUG_OD, PLUG_ID, PLUG_LEN, PLUG_SLOT_R, SHOULDER, SOCKET, MARBLE, CH_R, CH_WALL, CH_H
 from parts import Piece, cyl, box, union, export
 from project import load_cfg, out_dirs
 
@@ -94,14 +95,14 @@ def window(x, d, sill, w, top, r0):
 
 def plug_open(pc, x, top, d, w):
     '''
-    Shoulder and plug with the window slot through them, added late so no cut can notch them.
+    Shoulder and plug with the window slot through them (its top corners rounded), added late so no cut can notch them.
     '''
     e  = 0.01
     sh = (cyl(SHOULDER, POST_OD / 2, x, 0, top - SHOULDER)
           - cyl(SHOULDER + 2 * e, POST_ID / 2 + e, x, 0, top - SHOULDER - e, r2=PLUG_ID / 2 - e))
     rg = cyl(PLUG_LEN, PLUG_OD / 2, x, 0, top) - cyl(PLUG_LEN + 2, PLUG_ID / 2, x, 0, top - 1)
     xa, xb = sorted((x, x + d * (POST_OD / 2 + 1)))
-    pc.late.append((sh + rg) - box(xa, xb, -w / 2, w / 2, top - SHOULDER - 1, top + PLUG_LEN + 1))
+    pc.late.append((sh + rg) - slot_cutter(xa, xb, 0, top - SHOULDER - 1, top + PLUG_LEN, w, PLUG_SLOT_R))
 
 
 def plate_wedges(par, yp, pairs, xB, xT, mingap=5.0):

@@ -1,6 +1,6 @@
 # Marble Run
 
-Updated 2026-11-22 21:15 MST (license section added; previous update 2026-11-17 16:51 MST)
+Updated 2026-11-24 00:06 MST (matte PLA tube plate sent; plug gap top corners rounded, all pieces rebuilt 00:04; previous update 2026-11-22 21:15 MST)
 
 Marbleworks-compatible marble run pieces for the SV06 ACE: the Pyrce007
 Marbleworks Marble Mazes set, the 1 to 4 pitch tubes designed here, and
@@ -40,8 +40,13 @@ Generated pieces use the fit-ladder connector (`connector` in `config/project.js
 |---|---|
 | post OD | 29.6 |
 | socket bore | 25.6 |
-| plug | split ring, OD 25.75 (fit-ladder step 1.5), bore 21.6, 11 long, 12.8 slot facing +x |
+| plug | split ring, OD 25.75 (fit-ladder step 1.5), bore 21.6, 11 long, 12.8 slot facing +x, the two top corners of the slot rounded r 2 (`plug_slot_r`) |
 | shoulder | 45 deg, 2 mm, bore 25.6 to 21.6 |
+
+Rule (Aaron, 2026-11-23): every plug keeps its split-ring gap, and the two corners at the very top
+of the gap (where each ring end meets the plug top) are rounded; never one without both.
+`src/rounds.py` makes the gap cut; `parts.add_plug`, `stand.post` (the buckets) and
+`cascade.plug_open` all use it, so every generated piece gets it.
 
 Fit-ladder steps 1/2/3 are plug OD 25.7/25.8/25.9. Change `plug_od` and
 rebuild to switch. Marble diameter is 14.5 (`marble`); channels, windows and
@@ -91,6 +96,9 @@ two openings; the keel ridge is 5.15 mm under the old underside and at least 16.
 `cascade_l` built 2026-11-17 16:30 MST: watertight, one body, 183.7 cm3. Every downward face is
 45 deg or steeper except the raised post's bottom ring, and a 0.2 mm layer check finds nothing else
 starting in the air.
+All pieces rebuilt 2026-11-24 00:00 MST with the gap top corners rounded (r 2): every STL in
+`stl/custom` watertight, one body each; each changed only by about 4.14 mm3 per plug (6.29 on the
+`cascade_l` open-slot plug). Every G-code staged before this has square gap corners.
 `plinko_*` (234 to 237 mm) and `merge_opp` (240 mm) are longer than the
 220 mm bed side and need a diagonal placement; `finish_*` is 217 mm.
 
@@ -148,6 +156,13 @@ with thin branches (`--tree-support-branch-diameter 2 --tree-support-wall-count 
 thin, minimal trees). Planner 3 h 23 min, 3 h 33 min with margin, 96.7 g, 5.5 g of it support, one
 tree, all under the raised post. It replaces the 5 mm branch slice (3 h 36 min, 7.0 g of support).
 Staged, not sent.
+
+2026-11-24 00:03 MST: `tubes_2x3_4x2_matte_PLA_0.20mm_4h50m.gcode`, two `tube_3_v2` and four
+`tube_2_v2` (gap top corners rounded) on one plate, matte rainbow PLA. Presets rebuilt from the
+2026-11-17 tube plate with `cli_slice/presets_from_gcode.py`; the config block differs from it only
+in the filament name, colour and max volumetric speed (15 mm3/s for matte, was 18); temperatures
+220 / 210, fan 80 to 100%. Orca auto-arrange: a 2 x 3 grid, 2 mm apart. Planner 4 h 36 min,
+4 h 50 min with margin (Orca says 3 h 03 min), 135.0 g, 764 layers. Sent and started 2026-11-24 00:06 MST at Aaron's request.
 
 ## Naming
 

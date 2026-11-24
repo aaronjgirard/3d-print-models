@@ -19,11 +19,13 @@ except Exception:
 ## connector sizes from the fit ladder (config/project.json)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from project import load_cfg
+from rounds import slot_cutter
 CFG = load_cfg()
 CON = CFG["connector"]
 POST_OD, POST_ID = CON["post_od"], CON["socket_id"]      # post body
 MALE_OD, MALE_ID, MALE_LEN = CON["plug_od"], CON["plug_id"], CON["plug_len"]  # split-ring end that slides into a tube socket
 MALE_SLOT = CON["plug_slot"]                              # split-ring gap, faces +x
+MALE_SLOT_R = CON["plug_slot_r"]                          # [mm] radius on the two top corners of the gap
 MARBLE = CFG["marble"]
 
 def cyl(h, r, z=0, x=0, y=0, r2=None):
@@ -54,13 +56,13 @@ def post(x, y, z_base, z_top, chute_z, exit_dir):
     """Hollow post with a sloped floor at chute_z and a window facing exit_dir (+1 = +x)."""
     body = cyl(z_top - z_base, POST_OD / 2, z_base, x, y)
     bore = cyl(z_top - chute_z, POST_ID / 2, chute_z, x, y)
-    ## split-ring male end on a 45 deg shoulder, returned with the wedge so it is added after the cuts
+    ## split-ring male end (gap top corners rounded) on a 45 deg shoulder, returned with the wedge so it is added after the cuts
     e, sh_h = 0.01, (POST_ID - MALE_ID) / 2
     shoulder = (cyl(sh_h, POST_OD / 2, z_top - sh_h, x, y)
                 - cyl(sh_h + 2 * e, POST_ID / 2 + e, z_top - sh_h - e, x, y, MALE_ID / 2 - e))
     male = (cyl(MALE_LEN, MALE_OD / 2, z_top, x, y)
             - cyl(MALE_LEN + 2, MALE_ID / 2, z_top - 1, x, y)
-            - box(x, x + MALE_OD / 2 + 1, y - MALE_SLOT / 2, y + MALE_SLOT / 2, z_top - e, z_top + MALE_LEN + 1))
+            - slot_cutter(x, x + MALE_OD / 2 + 1, y, z_top - e, z_top + MALE_LEN, MALE_SLOT, MALE_SLOT_R))
     solid = body
     hole = bore
     ## sloped floor: wedge filling the bore bottom, high at the back, low at the window

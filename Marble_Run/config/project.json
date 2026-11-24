@@ -41,13 +41,14 @@
         "cascade_l"       : "Switchback Cascade, long span"
     },
     "connector": {
-        "_note"     : "from fit_ladder.stl / fit_ladder_1p5.stl and tube_*.stl; plug_od is fit-ladder step 1.5 (steps 1/2/3 = 25.7/25.8/25.9)",
+        "_note"     : "from fit_ladder.stl / fit_ladder_1p5.stl and tube_*.stl; plug_od is fit-ladder step 1.5 (steps 1/2/3 = 25.7/25.8/25.9). plug_slot_r rounds the two top corners of the split-ring gap, where each ring end meets the plug top (Aaron 2026-11-23: every plug has the gap and rounded top corners, never without)",
         "post_od"   : 29.6,
         "socket_id" : 25.6,
         "plug_od"   : 25.75,
         "plug_id"   : 21.6,
         "plug_len"  : 11.0,
-        "plug_slot" : 12.8
+        "plug_slot" : 12.8,
+        "plug_slot_r": 2.0
     },
     "marble": 14.5,
     "tube_pitch": 47.3,

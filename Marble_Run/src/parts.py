@@ -12,6 +12,7 @@ import os, sys, numpy as np, trimesh
 from manifold3d import Manifold, CrossSection, FillRule, set_circular_segments
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from project import load_cfg
+from rounds import slot_cutter
 SEG = 72
 set_circular_segments(SEG)
 
@@ -21,6 +22,7 @@ PITCH = 50.0
 POST_OD, POST_ID = CON["post_od"], CON["socket_id"]
 PLUG_OD, PLUG_ID, PLUG_LEN = CON["plug_od"], CON["plug_id"], CON["plug_len"]
 PLUG_SLOT = CON["plug_slot"]  # split-ring gap, faces +x
+PLUG_SLOT_R = CON["plug_slot_r"]  # [mm] radius on the two top corners of the gap
 SOCKET = 16.0
 MARBLE = CFG["marble"]
 WIN_W, WIN_H = MARBLE + 7, MARBLE + 8
@@ -55,13 +57,13 @@ class Piece:
 SHOULDER = (POST_ID - PLUG_ID) / 2   # 45 deg shoulder height, as on the tubes and fit ladder
 
 def add_plug(pc, x, y, top):
-    """Split-ring plug on a 45 deg shoulder at height top, added late so no cut can notch it."""
+    """Split-ring plug (gap top corners rounded) on a 45 deg shoulder at height top, added late so no cut can notch it."""
     e = 0.01
     sh = (cyl(SHOULDER, POST_OD / 2, x, y, top - SHOULDER)
           - cyl(SHOULDER + 2 * e, POST_ID / 2 + e, x, y, top - SHOULDER - e, r2=PLUG_ID / 2 - e))
     ring = (cyl(PLUG_LEN, PLUG_OD / 2, x, y, top)
             - cyl(PLUG_LEN + 2, PLUG_ID / 2, x, y, top - 1)
-            - box(x, x + PLUG_OD / 2 + 1, y - PLUG_SLOT / 2, y + PLUG_SLOT / 2, top - e, top + PLUG_LEN + 1))
+            - slot_cutter(x, x + PLUG_OD / 2 + 1, y, top - e, top + PLUG_LEN, PLUG_SLOT, PLUG_SLOT_R))
     pc.late.append(sh + ring)
 
 def post(pc, x, y, z0, kind, sill=None, dirs=(), plug=True):
