@@ -101,14 +101,18 @@ dur  = ps["print_duration"]
 cur  = ps["info"]["current_layer"]
 tot  = ps["info"]["total_layer"] or meta.get("layer_count")
 
+## before the first extrusion (START_PRINT heating, cleaning, probing) there is no layer yet
+if cur is None and dur == 0:
+    cur = "starting"
 ## no layer markers in the g-code: infer the layer from nozzle height (reads high during a z-hop)
-if cur is None and meta.get("layer_height"):
+elif cur is None and meta.get("layer_height"):
     z0  = meta.get("first_layer_height", meta["layer_height"])
     cur = max(1, round((s["gcode_move"]["gcode_position"][2] - z0) / meta["layer_height"]) + 1)
     cur = min(cur, tot) if tot else cur
 print(f"state   : {ps['state']}  {ps['filename']}")
 if ps["state"] in ("printing", "paused"):
-    print(f"progress: {100 * frac:.1f}%   layer {cur if cur is not None else '?'} of {tot or '?'}")
+    lyr = f"starting, {tot or '?'} layers" if cur == "starting" else f"layer {cur if cur is not None else '?'} of {tot or '?'}"
+    print(f"progress: {100 * frac:.1f}%   {lyr}")
     print(f"elapsed : {dur / 3600:.2f} h printing, {ps['total_duration'] / 3600:.2f} h total")
     if frac > 0.02:
         rem = dur * (1 / frac - 1)
