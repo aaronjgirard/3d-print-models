@@ -13,7 +13,7 @@ curve, as on the originals.
 Measured on the originals (caliper, Nov 22 2026; the first batch of readings carried a 35.5 mm
 offset and is corrected here):
   gauge 31.8 inside rail to inside rail, rail 1.55 to 1.7 thick and 7.0 tall, tie tops 2.2,
-  ties 7.4 wide and 46 long, straight 164 rail end to rail end, 8 curves make 180 degrees.
+  ties 7.4 wide and 46 long, straight 163.2 rail end to rail end (Nov 24), 8 curves make 180 degrees.
   Male end: 1.0 mm plate reaching 5.3 past the end tie, then a 3.0 mm block 8.7 long and 15.2 wide;
   the plate is wider than the block (about 20 to 22 mm, from photos). The last tie has no ends past
   the rails, and the rail ends are raised underneath so the other piece's prongs slide under them.
@@ -27,9 +27,9 @@ offset and is corrected here):
   As far as the geometry shows, a joint goes together at an angle: the prongs have to get under the
   other piece's rail ends while the bridge drops onto the plate in front of the block, so the prongs flex.
 
-Curve radius: a single curve measured 155.0 end to end at the outer rail (offset-corrected), which
-gives 380 at the centerline; 8 curves measured 80 to 82 cm across the open ends, which gives 383 to
-393 if measured at the outer rails, with the joints splaying a little. CURVE_R = 380.
+Curve radius: with the caliper on the two ends of the inside rail, an original curve reads 153.74 and the
+first printed curve (CURVE_R 380, from an earlier reading taken as the outside rail) read 141.16, 0.5% under
+the model's 141.87. Each 1 mm of that reading is 2.56 mm of radius, so CURVE_R = 412.3 (Nov 24 2026).
 Original curves turn right going from the tab end to the prong end; so do these.
 """
 import math
@@ -52,17 +52,20 @@ TIE_HALF = 23.0                  # 46 mm ties
 WEB_IN = 10.0                    # low web along the inside of each rail; the windows between ties are 20 wide
 WEB_H = 1.2
 END_H = 3.0                      # male last tie and female deck (block height, so the block sits flush)
-STRAIGHT_L = 164.0
+STRAIGHT_L = 164.0               # original 163.2; prints read 0.5% short (curve 141.16 vs 141.87), 163.2 / 0.995
 CURVE_DEG = 22.5
-CURVE_R = 380.0
+CURVE_R = 412.3                  # inner rail end to end: original 153.74, printed R 380 curve 141.16 (Nov 24)
 TIE_PITCH = 21.0                 # target spacing; the originals are about 21 on the straight
+CURVE_TIES = 6                   # the original curves have 6 full ties, about 23 apart along the centerline;
+CURVE_FIRST_TIE_C = 25.3         # the first one centred this far from the tab end (photo against the caliper
+                                 # scale, Nov 24 2026, about +-1 mm); the last one touches the deck, as here
 
 # ---------------- male (tab) end, printed values ----------------
 LAST_TIE_W = TIE_W               # last tie, no ends past the rails
 PLATE_T = 0.8                    # under the original bridge, which clears a 1.0 plate
 PLATE_HALF = 9.5                 # 19.0 wide (originals about 20 to 22)
 PLATE_EAR = 5.0                  # the wide part of the plate stops here; the block width continues to the block
-BLOCK_S0, BLOCK_S1 = 5.35, 13.9  # from the end face: original block 5.3 to 14.0
+BLOCK_S0, BLOCK_S1 = 5.85, 13.9  # from the end face (original block 5.3 to 14.0); 5.35 was tight in an original
 BLOCK_HALF = 7.55                # 15.1 wide (original 15.2)
 BLOCK_CH = 0.4                   # chamfer on the block's top edges
 M_RECESS_T = 12.3                # recess under the rail ends for the original prongs (inner edge 12.75)
@@ -207,15 +210,20 @@ def diff(a, cuts):
 # ---------------- layout ----------------
 def tie_centers(L, R=None):
     """Full ties between the male end region and the female deck, evenly spaced near TIE_PITCH.
-    On a curve the first tie moves back until its inner end clears the straight prongs of the next piece."""
+    On a curve the first tie moves back until its inner end clears the straight prongs of the next piece, and the
+    count and the first tie follow the original curves (CURVE_TIES, CURVE_FIRST_TIE_C)."""
     s0 = FIRST_TIE_S
     if R is not None:
         s0 = max(s0, R * math.asin(PRONG_CLEAR_X / (R - TIE_HALF)))
     s_first = s0 + TIE_W / 2
     s_last = L - DECK_L - TIE_W / 2          # last tie touches the deck, like the originals' long end deck
+    if R is not None and CURVE_TIES:         # curves: tie count and first tie as on the original curves
+        s_first = max(s_first, CURVE_FIRST_TIE_C)
     if s_last < s_first:
         return []
     n = max(1, int(round((s_last - s_first) / TIE_PITCH)) + 1)
+    if R is not None and CURVE_TIES:
+        n = CURVE_TIES
     if n == 1:
         return [s_first]
     return list(np.linspace(s_first, s_last, n))

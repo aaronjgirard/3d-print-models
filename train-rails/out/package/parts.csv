@@ -1,4 +1,4 @@
 part, x mm, y mm, z mm, PLA g (rough)
 track_test_piece, 60.2, 46.0, 7.0, 4
 track_straight, 191.2, 46.0, 7.0, 15
-track_curve_22_5, 179.8, 77.3, 7.0, 14
+track_curve_22_5, 192.2, 79.5, 7.0, 14

@@ -157,7 +157,7 @@ def dimensions(st):
     out.append(("rail end to rail end", probe(st, -1, L + 1, 15.95, 17.55, 4, 6)[3] - probe(st, -1, L + 1, 15.95, 17.55, 4, 6)[0], 164.0))
     out.append(("tab plate thickness", probe(st, -4, -1, -1, 1, -1, 5)[5], 0.8))
     blk = probe(st, -20, -1, -12, 12, 1.5, 2.5)          # above the plate, below the chamfer
-    out.append(("block length", blk[3] - blk[0], 8.55))
+    out.append(("block length", blk[3] - blk[0], T.BLOCK_S1 - T.BLOCK_S0))
     out.append(("block width", blk[4] - blk[1], 15.1))
     out.append(("block reaches past the end face", -blk[0], 13.9))
     pr = probe(st, L + 1, L + 20, 0, 30, 0.2, 0.6)

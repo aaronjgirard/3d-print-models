@@ -5,7 +5,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 
 R = "out/renders"
-PANELS = [("straight.png", "Straight, 164 mm"), ("curve.png", "Curve, 22.5 deg, R 380 mm"),
+PANELS = [("straight.png", "Straight, 164 mm"), ("curve.png", "Curve, 22.5 deg, R 412 mm"),
           ("grain_ties.png", "Wood grain on the tie tops"), ("prong_L.png", "Prong end: raised L, thin plate from the rail end"),
           ("joint_orig_male.png", "Original tab end (blue) in a printed prong end"),
           ("joint_orig_female.png", "Printed tab end in an original prong end (blue)")]

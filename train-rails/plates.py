@@ -187,7 +187,75 @@ def make(part, fp_turn, lay, name, title, edge):
     return fps
 
 
+def load_stl(path):
+    """Manifold from an STL (a part from another project, in print orientation)."""
+    import trimesh
+    from manifold3d import Manifold, Mesh
+    tm = trimesh.load(path)
+    return Manifold(Mesh(vert_properties=np.asarray(tm.vertices, np.float32), tri_verts=np.asarray(tm.faces, np.uint32)))
+
+
+def curve_and_straight(name="plate_curve_straight", gap=GAP, edge=EDGE, extra=()):
+    """One curve and one straight, the straight beside the curve's chord at the closest pitch that keeps `gap`
+    (either side, either way round, slid along x), centred on the bed. Parts in `extra` (STL paths) go in a
+    row in front of the track pieces, `gap` apart."""
+    cfp, c_turn = curve_fp()
+    sfp = straight_fp()
+    ## straight centroid on the curve's, then offset in y (pitch) and x (shift)
+    dx0, dy0 = cfp.centroid.x - sfp.centroid.x, cfp.centroid.y - sfp.centroid.y
+    s_c = affinity.translate(sfp, dx0, dy0)
+    for pitch in np.arange(20.0, 100.0, 0.25):
+        for side in (1, -1):
+            for ang in (0.0, 180.0):
+                for shift in np.arange(-20, 20.5, 1.0):
+                    q = affinity.translate(affinity.rotate(s_c, ang, origin="centroid"), shift, side * pitch)
+                    if fits([cfp, q], gap, edge):
+                        break
+                else:
+                    continue
+                break
+            else:
+                continue
+            break
+        else:
+            continue
+        break
+    else:
+        raise RuntimeError("curve and straight do not fit")
+    fps, dx, dy = centre([cfp, q])
+    curve = T.curve().rotate((0, 0, c_turn)).translate((dx, dy, 0))
+    s0 = T.straight().translate((dx0, dy0, 0))
+    cx, cy = s_c.centroid.x, s_c.centroid.y
+    straight = (s0.translate((-cx, -cy, 0)).rotate((0, 0, ang))
+                .translate((cx + shift + dx, cy + side * pitch + dy, 0)))
+    parts = [curve, straight]
+    x = unary_union(fps).bounds[0]
+    y1 = unary_union(fps).bounds[1] - gap
+    for path in extra:
+        m = load_stl(path)
+        b = m.bounding_box()
+        m = m.translate((x - b[0], y1 - b[4], -b[2]))
+        parts.append(m)
+        fps.append(footprint(m, zs=(0.1,)))
+        x += b[3] - b[0] + gap
+    export_plate(parts, name)
+    title = "1 curve + 1 straight" + (f" + {len(extra)} more" if extra else "")
+    draw(fps, title, f"out/plates/{name}.png", edge)
+    print(f"curve and straight: pitch {pitch:.2f} mm, straight {'turned 180 deg, ' if ang else ''}"
+          f"shifted {shift:.1f} mm")
+    summary(fps)
+    return fps
+
+
 if __name__ == "__main__":
+    import sys
+    if "--curve-straight" in sys.argv:        # only the one-curve, one-straight plate; --extra NAME a.stl b.stl ...
+        if "--extra" in sys.argv:
+            i = sys.argv.index("--extra")
+            curve_and_straight(name=f"plate_curve_straight_{sys.argv[i + 1]}", extra=sys.argv[i + 2:])
+        else:
+            curve_and_straight()
+        sys.exit()
     panels = []
     sfp = straight_fp()
     b = sfp.bounds
