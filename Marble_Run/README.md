@@ -1,6 +1,6 @@
 # Marble Run
 
-Updated 2026-11-25 09:56 MST (Epitrochoid keel_v3 plug now the current 25.75 / 21.6; 09:55 MST: 45 deg keel, tall trees dropped, top post reworked)
+Updated 2026-11-25 11:34 MST (Epitrochoid keel_v4: keel anchored to the post, bed and trees after the v3 print threw spaghetti; 09:56 MST: keel_v3 plug now the current 25.75 / 21.6; 09:55 MST: 45 deg keel, tall trees dropped, top post reworked)
 
 Marbleworks-compatible marble run pieces for the SV06 ACE: the Pyrce007
 Marbleworks Marble Mazes set, the 1 to 4 pitch tubes designed here, and
@@ -177,12 +177,17 @@ only its last 1 mm is opened to 21.6.
 |---|---|
 | `Epitrochoid_refit_47p3.stl` | the refit without trees (2026-11-08) |
 | `Epitrochoid_supports_only.stl` | the designed-in trees alone (37 bodies, 68 cm3; from the 2026-11-08 build) |
-| `Epitrochoid_keel_v3.stl` | **print this one**: keel, short trees, reworked top post |
+| `Epitrochoid_keel_v4.stl` | **print this one**: anchored keel, short trees, reworked top post |
 
-`Epitrochoid_keel_v3.stl` (`src/epi_keel.py`, then `src/epi_top.py`; config `epi_keel`, `epi_top`):
+`Epitrochoid_keel_v4.stl` (`src/epi_keel.py`, then `src/epi_top.py`; config `epi_keel`, `epi_top`):
 - 45 deg V keel under every track underside, like `clicky_5_half_l`, followed layer by layer where the
-  track passes over itself; at most 7.2 mm deep (the round track bottom is steeper than 45 deg toward
-  its edges), never within 16.5 mm of the layer below (marble 14.5 + 2).
+  track passes over itself, never within 16.5 mm of the layer below (marble 14.5 + 2).
+- No keel starts in midair. Every keel bottom is raised where needed until it climbs, by at least
+  0.02 mm per mm, from an anchor: the bed, a kept tree, the post, or track with no keel under it. The
+  flood that does this runs over exactly the squares the keel mesh is built from.
+- The keel is joined to the post (tube). Its inner edge runs 1.4 mm into the post wall. Within 6 mm of
+  the wall, the keel bottom falls at 45 deg straight in to it, so the lowest ridge grows out of the
+  post from about Z 10 (at most 14.7 mm under the old underside there).
 - Trees: the 12 bed trees no taller than 117.5 mm (one turn, against shaking) and the 20 short struts
   between turns are kept; the five tall bed trees (147 to 210 mm) are gone.
 - Top post: current plug (25.75 / 21.6); its gap faces the exit window with the window's own side faces (+-49 deg) carried
@@ -190,21 +195,25 @@ only its last 1 mm is opened to 21.6.
   floor is now a 45 deg underside rising from the exit-side wall (Z 196.2) to the back wall; a web
   fills the slit between the right-hand track wall and the window edge, flat at the shoulder top and
   falling 45 deg along the wall.
-- Checks: watertight, one body. Area flatter than 45 deg 3,863 mm2 (17,661 with the full trees);
-  nothing larger than 0.5 mm2 starts in the air (323 specks along the keel ridge, which climbs only
-  about 5 deg with the track, so its bottom edge may print rough).
+- Checks: watertight, one body, **0 islands starting in the air** (slices every 0.2 mm, Z 0 to 247.5);
+  area flatter than 45 deg 6,569 mm2 (17,661 with the full trees).
 
 ```bash
-python src/epi_top.py          # writes Epitrochoid_keel_v3.stl (about 12 s)
+python src/epi_top.py          # writes Epitrochoid_keel_v4.stl (about 50 s)
 ```
-Superseded and git-ignored: `Epitrochoid_refit_with_supports.stl` (47p3 + every tree, 2026-11-08) and
-`Epitrochoid_refit_with_supports_v2.stl` (that with the top-post changes, no keel); set `"keel": false`
-in `epi_top` to rebuild v2 from the first.
+Superseded and git-ignored: `Epitrochoid_refit_with_supports.stl` (47p3 + every tree, 2026-11-08),
+`Epitrochoid_refit_with_supports_v2.stl` (that with the top-post changes, no keel; set `"keel": false`
+in `epi_top` to rebuild it from the first) and `Epitrochoid_keel_v3.stl` (commit ffd6530).
 
-Slice, 2026-11-25 09:56 MST (new plug): `epitrochoid_keel_v3_matte_PLA_0.20mm_12h11m.gcode`, stock
+v3 failed on the printer, 2026-11-25 about 11:00 MST: spaghetti from layer 75 (Z 15). Its keel was
+masked 0.7 mm short of the post. The lowest point of its ridge (Z 13.65, beside the post) had nothing
+under it, and every bump along the ridge (it climbs only about 5 deg with the track) started a new
+island: 323 in all. The island check had reported them before slicing.
+
+Slice, 2026-11-25 11:28 MST: `epitrochoid_keel_v4_matte_PLA_0.20mm_12h27m.gcode`, stock
 `0.20mm Standard @Sovol SV06 ACE` with Orca supports off, matte rainbow PLA (220 / 210, 15 mm3/s,
-fan 80 to 100%). Planner 11 h 37 min, 12 h 11 min with margin (Orca 9 h 27 min), 277.5 g, 1237
-layers. The full-tree v2 sliced to 19 h 01 min and 315.4 g. Not sent; untested on the printer.
+fan 80 to 100%). Planner 11 h 52 min, 12 h 27 min with margin (Orca 9 h 37 min), 277.8 g, 1237
+layers. Sent and started by Aaron 2026-11-25 about 11:30 MST.
 
 ## Naming
 

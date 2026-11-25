@@ -14,10 +14,19 @@ room over a channel floor, a hood, a lower turn); where it would, that cell keep
 its old underside. Trees from the bed taller than keep_top and every tree that
 does not reach the bed are dropped unless keep_struts.
 
+A keel bottom must never start in midair (Aaron 2026-11-25, the v3 print). Every
+point of it is raised, where needed, until it can be reached from an anchor (the
+bed, the post, a kept tree) along its own layer while only climbing, by at least
+rise mm per mm, so each printed layer grows out of the one below; an underside
+shallower than min_depth counts as track, which stands on its own. The keel's inner
+edge is pulled fuse_in mm into the post wall, and within web mm of the wall the
+keel bottom falls at 45 deg to it, so a ridge beside the post starts on the post.
+
 Usage:
     python src/epi_keel.py [--out STL]      # writes the keeled piece without the epi_top changes
 '''
 import argparse
+import heapq
 import os
 import sys
 
@@ -114,25 +123,65 @@ def keel_bottom(D, h, reach, ndir, jump):
     return zk.reshape(D.shape)
 
 
-def keel_mesh(xs, ys, D, Z, embed, jump, min_depth):
+def post_web(xs, ys, D, Z, post_ro, reach):
     '''
-    Closed solid between each underside (raised by embed) and its keel bottom: one
-    quad per grid square whose four corners lie on one layer, side walls round the edge.
+    Lowers the keel bottom next to the post to a 45 deg cone falling straight in to
+    the post wall, under the lowest keel within reach of the wall (and within
+    reach of it around the post), so a ridge that bottoms out beside the post
+    runs down into the post wall instead of starting in midair.
 
     Args:
-        xs, ys (ndarray): grid axes
-        D      (ndarray): (nx, ny, k) undersides, inf where none
-        Z      (ndarray): keel bottoms, same shape
-        embed  (float):   [mm] how far the top runs into the track
-        jump   (float):   [mm] largest step between corners of one quad
-        min_depth (float): [mm] squares with no corner deeper than this are left out
+        D, Z    (ndarray): undersides and keel bottoms
+        post_ro (float):   [mm] post outer radius
+        reach   (float):   [mm] how far out from the wall, and around it, the web reaches
 
     Returns:
-        Manifold: the keel
+        ndarray: keel bottoms
+    '''
+    nx, ny, km = D.shape
+    h      = xs[1] - xs[0]
+    gx, gy = np.meshgrid(xs, ys, indexing='ij')
+    dw     = np.hypot(gx, gy) - post_ro
+    th     = np.arctan2(gy, gx)
+    pi, pj, pk = np.nonzero(np.isfinite(D) & (dw <= reach)[:, :, None])
+    dp     = D[pi, pj, pk]
+    ## height the cone would have at the wall, from each source: keel bottom less its distance out
+    c      = np.full(len(pi), np.inf)
+    nr     = int(np.ceil(2 * reach / h))
+    for di in range(-nr, nr + 1):
+        for dj in range(-nr, nr + 1):
+            qi, qj = pi + di, pj + dj
+            inb    = (qi >= 0) & (qi < nx) & (qj >= 0) & (qj < ny)
+            qi, qj = np.where(inb, qi, 0), np.where(inb, qj, 0)
+            cand   = D[qi, qj]
+            k      = np.argmin(np.abs(cand - dp[:, None]), axis=1)
+            dq     = cand[np.arange(len(k)), k]
+            zq     = Z[qi, qj, k]
+            l      = h * np.hypot(di, dj)
+            ## same layer and around the post by no more than reach
+            arc    = np.abs(np.angle(np.exp(1j * (th[qi, qj] - th[pi, pj])))) * (post_ro + reach / 2)
+            ok     = inb & (dw[qi, qj] <= reach) & (arc <= reach) & (np.abs(dq - dp) < l + 1.0) & np.isfinite(zq)
+            c      = np.where(ok, np.minimum(c, zq - dw[qi, qj]), c)
+    Z = Z.copy()
+    Z[pi, pj, pk] = np.minimum(Z[pi, pj, pk], c + dw[pi, pj])
+    return Z
+
+
+def squares(D, jump):
+    '''
+    Grid squares whose four corners lie on one layer: the faces of the keel and the
+    links the flood follows, so both see the same piece.
+
+    Args:
+        D    (ndarray): (nx, ny, k) undersides, inf where none
+        jump (float):   [mm] largest step between corners of one square
+
+    Returns:
+        ndarray: (n, 4) corner node ids (cell * k + layer), counter-clockwise
     '''
     nx, ny, km = D.shape
     Df  = D.reshape(-1, km)
-    ## corner 0 of each quad, every layer
+    ## corner 0 of each square, every layer
     i0, j0, k0 = np.nonzero(np.isfinite(D[:-1, :-1]))
     d0  = D[i0, j0, k0]
     ids = [(i0 * ny + j0) * km + k0]
@@ -144,10 +193,8 @@ def keel_mesh(xs, ys, D, Z, embed, jump, min_depth):
         ok  &= np.abs(dd - d0) < jump
         ids.append(((i0 + di) * ny + j0 + dj) * km + k)
     q = np.stack(ids, axis=1)[ok]
-    ## each corner node must also agree with its neighbours in the quad
-    dq = Df.ravel()[q]
-    zq = Z.reshape(-1, km).ravel()[q]
-    q  = q[(np.ptp(dq, axis=1) < jump) & ((dq - zq).max(axis=1) > min_depth)]
+    ## each corner node must also agree with its neighbours in the square
+    q = q[np.ptp(Df.ravel()[q], axis=1) < jump]
     ## squares built twice from two close layers share a directed edge, and a corner where
     ## two squares touch only at that point gives a side-wall edge four faces: drop the
     ## squares involved until neither is left
@@ -164,17 +211,100 @@ def keel_mesh(xs, ys, D, Z, embed, jump, min_depth):
         if not (dup.any() or pin.any()):
             break
         q = q[~(dup | pin)]
+    return q
+
+
+def anchors(xs, ys, D, Z, sup, post_r, post_w, min_depth):
+    '''
+    Undersides whose keel bottom is held up: on the bed, next to the post, inside a
+    kept tree, or with no keel at all (the track itself, which stands without one).
+    '''
+    gx, gy = np.meshgrid(xs, ys, indexing='ij')
+    fin    = np.isfinite(D)
+    anc    = fin & ((np.hypot(gx, gy) < post_r + post_w)[:, :, None] | (Z <= 0.0) | (D - Z <= min_depth))
+    for p in sup:
+        lo, hi = p.bounds
+        box    = (gx >= lo[0]) & (gx <= hi[0]) & (gy >= lo[1]) & (gy <= hi[1])
+        ci     = np.nonzero(box[:, :, None] & fin & (D >= lo[2]) & (Z <= hi[2]))
+        if len(ci[0]):
+            pts = np.c_[gx[ci[:2]], gy[ci[:2]], np.minimum(Z[ci], hi[2] - 0.3)]
+            inn = p.contains(pts)
+            anc[ci[0][inn], ci[1][inn], ci[2][inn]] = True
+    return anc
+
+
+def flood(D, Z, anc, q, h, rise):
+    '''
+    Lowest keel bottom, no lower than Z, that every underside reaches from an anchor
+    along the square edges while climbing at least rise mm per mm (a priority flood).
+
+    Returns:
+        ndarray: keel bottoms, inf where no anchor can be reached
+    '''
+    a, b, c, d = q.T
+    e    = np.vstack([np.c_[a, b], np.c_[b, c], np.c_[c, d], np.c_[d, a], np.c_[a, c]])
+    ln   = np.r_[np.full(4 * len(q), h), np.full(len(q), h * np.sqrt(2))]
+    e    = np.vstack([e, e[:, ::-1]])
+    ln   = np.r_[ln, ln]
+    srt  = np.argsort(e[:, 0], kind='stable')
+    e, ln = e[srt], ln[srt]
+    st   = np.searchsorted(e[:, 0], np.arange(D.size + 1))
+    z    = Z.ravel()
+    B    = np.full(D.size, np.inf)
+    a    = np.nonzero(anc.ravel())[0]
+    B[a] = z[a]
+    hp   = [(B[i], i) for i in a]
+    heapq.heapify(hp)
+    done = np.zeros(D.size, bool)
+    while hp:
+        bb, i = heapq.heappop(hp)
+        if done[i]:
+            continue
+        done[i] = True
+        for j, l in zip(e[st[i]:st[i + 1], 1], ln[st[i]:st[i + 1]]):
+            if not done[j]:
+                cc = max(z[j], bb + rise * l)
+                if cc < B[j]:
+                    B[j] = cc
+                    heapq.heappush(hp, (cc, j))
+    return B.reshape(D.shape)
+
+
+def keel_mesh(xs, ys, D, Z, q, embed, fuse=None):
+    '''
+    Closed solid between each underside (raised by embed) and its keel bottom over
+    the given squares, side walls round the edge.
+
+    Args:
+        xs, ys (ndarray): grid axes
+        D      (ndarray): (nx, ny, k) undersides, inf where none
+        Z      (ndarray): keel bottoms, same shape
+        q      (ndarray): squares from squares()
+        embed  (float):   [mm] how far the top runs into the track
+        fuse   (tuple):   (r0, r1, r_in) [mm] corners between r0 and r1 from the axis are
+                          moved in radially, r0 to r_in and r1 staying put, to join the post
+
+    Returns:
+        Manifold: the keel
+    '''
+    nx, ny, km = D.shape
+    Df  = D.reshape(-1, km)
     used, inv = np.unique(q.ravel(), return_inverse=True)
     q   = inv.reshape(q.shape)
     cell, lay = used // km, used % km
     gx, gy = xs[cell // ny], ys[cell % ny]
+    if fuse:
+        r0, r1, ri = fuse
+        r      = np.hypot(gx, gy)
+        rn     = np.where(r < r1, ri + (r - r0) * (r1 - ri) / (r1 - r0), r)
+        gx, gy = gx * rn / r, gy * rn / r
     top = np.c_[gx, gy, Df.ravel()[used] + embed]
     ## corners with no keel sit just under the underside, so no face lies on it
     bot = np.c_[gx, gy, np.minimum(Z.reshape(-1, km).ravel()[used], Df.ravel()[used] - 0.05)]
     n   = len(used)
     a, b, c, d = q.T
     f   = [np.c_[a, b, c], np.c_[a, c, d], np.c_[a, c, b] + n, np.c_[a, d, c] + n]
-    ## boundary edges: directed quad edges whose reverse is not used
+    ## boundary edges: directed square edges whose reverse is not used
     e   = np.vstack([np.c_[a, b], np.c_[b, c], np.c_[c, d], np.c_[d, a]])
     key = e[:, 0].astype(np.int64) * n + e[:, 1]
     rev = e[:, 1].astype(np.int64) * n + e[:, 0]
@@ -222,13 +352,22 @@ def build(cfg):
     below[:, :, 0] = 0.0
     Z[:, :, 0] = np.maximum(Z[:, :, 0], 0.0)
     Z  = np.where(Z < below, D, Z)
+    ## the web to the post stops at the clearance instead of being dropped, so it stays whole
+    Z  = np.minimum(Z, np.maximum(post_web(xs, ys, D, Z, k['post_ro'], k['web']), below))
     Z  = np.where(Z < k['bed_snap'], 0.0, Z)
     Z  = np.minimum(Z, D)
-    keel = keel_mesh(xs, ys, D, Z, k['embed'], k['jump'], k['min_depth'])
     sup  = kept_supports(os.path.join(root, k['supports']), k['keep_top'], k['keep_struts'])
-    m    = Manifold.batch_boolean([to_manifold(base), keel] + [to_manifold(p) for p in sup], OpType.Add)
+    ## no keel bottom in midair: raise it until it climbs from an anchor
     fin  = np.isfinite(D)
-    info = {'keel_cm3': keel.volume() / 1000, 'deepest': float((D[fin] - Z[fin]).max()), 'trees': len(sup)}
+    q    = squares(D, k['jump'])
+    anc  = anchors(xs, ys, D, Z, sup, k['post_r'], k['anchor_w'], k['min_depth'])
+    B    = flood(D, Z, anc, q, k['grid'], k['rise'])
+    Z    = np.where(np.isfinite(B), np.minimum(B, D), D)
+    fuse = (k['post_r'], k['post_r'] + k['fuse_w'], k['post_ro'] - k['fuse_in'])
+    keel = keel_mesh(xs, ys, D, Z, q, k['embed'], fuse)
+    m    = Manifold.batch_boolean([to_manifold(base), keel] + [to_manifold(p) for p in sup], OpType.Add)
+    info = {'keel_cm3': keel.volume() / 1000, 'deepest': float((D[fin] - Z[fin]).max()), 'trees': len(sup),
+            'unanchored': int((fin & ~np.isfinite(B)).sum()), 'pits': int((fin & np.isfinite(B) & (B > D + 1e-6)).sum())}
     return m, info
 
 

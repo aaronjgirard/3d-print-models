@@ -92,7 +92,7 @@
         "plate"      : 3.0
     },
     "epi_keel": {
-        "_note"      : "src/epi_keel.py, 45 deg keel under the whole Epitrochoid track (Aaron 2026-11-25: like the clicky ramp, so the tall trees can go; keep the bed trees up to about layer 570 for one turn of support against shaking). base is the refit without trees, supports the designed-in trees. grid, reach, jump in mm; ndir rays per point; clear is the room kept over the layer below (marble 14.5 + 2); keel bottoms under bed_snap go to the bed; keep_top is the tallest bed tree kept; keep_struts keeps the short trees between turns",
+        "_note"      : "src/epi_keel.py, 45 deg keel under the whole Epitrochoid track (Aaron 2026-11-25: like the clicky ramp, so the tall trees can go; keep the bed trees up to about layer 570 for one turn of support against shaking). base is the refit without trees, supports the designed-in trees. grid, reach, jump in mm; ndir rays per point; clear is the room kept over the layer below (marble 14.5 + 2); keel bottoms under bed_snap go to the bed; keep_top is the tallest bed tree kept; keep_struts keeps the short trees between turns. no keel bottom in midair (Aaron 2026-11-25, v3 print threw spaghetti from a ridge starting at Z 13.65 beside the post): every keel bottom is raised until it climbs, by at least rise mm per mm, from an anchor (bed, kept tree, or within anchor_w of post_r); the keel's inner edge, post_r to post_r + fuse_w, is pulled to fuse_in inside post_ro; within web mm of the post wall the keel bottom falls at 45 deg to the wall (Aaron: connected all the way at the bottom to the tube)",
         "base"       : "Epitrochoid_refit_47p3.stl",
         "supports"   : "Epitrochoid_supports_only.stl",
         "grid"       : 0.5,
@@ -105,12 +105,18 @@
         "min_depth"  : 0.3,
         "post_r"     : 15.5,
         "keep_top"   : 117.5,
-        "keep_struts": true
+        "keep_struts": true,
+        "rise"       : 0.02,
+        "web"        : 6.0,
+        "anchor_w"   : 1.0,
+        "post_ro"    : 14.78,
+        "fuse_w"     : 3.0,
+        "fuse_in"    : 1.4
     },
     "epi_top": {
         "_note"      : "src/epi_top.py, top post of the Epitrochoid refit with designed-in supports (Aaron 2026-11-25). mesh coordinates, post axis at x = y = 0. replaces the Nov 8 plug (25.36 / 19.96) with the current connector plug and shoulder (Aaron 2026-11-25), plug top kept at plug_z[1]; the post's funnel bore (25.5 at z 222 to 22.0 at 235.5) is kept and only its last bore_z mm is opened to the plug bore; its gap faces the exit window (exit, deg): radial sides at +-slot_half deg, the window side faces, so the window runs to the top with no overhang (Aaron: no overhang); top corners rounded to slot_r along the outside of the plug (16 was too much, 2026-11-25); the gap runs down from the plug top to slot_zb, below the sleeve band over the window. the midair cone under the landing floor is replaced by a 45 deg underside that starts on the exit-side wall at ramp_z0 and rises toward the back wall.",
         "src"        : "Epitrochoid_refit_with_supports.stl",
-        "out"        : "Epitrochoid_keel_v3.stl",
+        "out"        : "Epitrochoid_keel_v4.stl",
         "keel"       : true,
         "exit"       : -39.0,
         "post_ri"    : 12.78,
