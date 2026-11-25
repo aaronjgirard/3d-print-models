@@ -1,6 +1,6 @@
 # Marble Run
 
-Updated 2026-11-25 09:55 MST (Epitrochoid keel_v3: 45 deg keel, tall trees dropped, top post reworked; previous update 2026-11-24 00:06 MST)
+Updated 2026-11-25 09:56 MST (Epitrochoid keel_v3 plug now the current 25.75 / 21.6; 09:55 MST: 45 deg keel, tall trees dropped, top post reworked)
 
 Marbleworks-compatible marble run pieces for the SV06 ACE: the Pyrce007
 Marbleworks Marble Mazes set, the 1 to 4 pitch tubes designed here, and
@@ -169,7 +169,9 @@ in the filament name, colour and max volumetric speed (15 mm3/s for matte, was 1
 Pyrce007's Epitrochoid 7-2-5 refit to the 47.3 mm pitch, with designed-in trees, then reworked for
 printing (Aaron, 2026-11-25). One solid, 193 x 194 x 247.5 mm. The plug top is exactly five
 `tube_1_v2` pitches plus the plug (shoulder 236.5 = 5 x 47.3, plug 11), so it lines up with a stack
-of five single tubes. Its plug is the Nov 8 size (25.36 OD, 19.96 ID), not the fit-ladder 25.75 / 21.6.
+of five single tubes. Its plug is the current fit-ladder plug (25.75 OD, 21.6 ID, 11 tall, as on the
+v2 tubes; replaced the Nov 8 25.36 / 19.96 plug 2026-11-25 09:56 MST); the post's funnel bore under it is kept and
+only its last 1 mm is opened to 21.6.
 
 | file | what |
 |---|---|
@@ -183,7 +185,7 @@ of five single tubes. Its plug is the Nov 8 size (25.36 OD, 19.96 ID), not the f
   its edges), never within 16.5 mm of the layer below (marble 14.5 + 2).
 - Trees: the 12 bed trees no taller than 117.5 mm (one turn, against shaking) and the 20 short struts
   between turns are kept; the five tall bed trees (147 to 210 mm) are gone.
-- Top post: the plug gap faces the exit window with the window's own side faces (+-49 deg) carried
+- Top post: current plug (25.75 / 21.6); its gap faces the exit window with the window's own side faces (+-49 deg) carried
   straight up through the shoulder and plug, top corners rounded r 2; the midair cone under the landing
   floor is now a 45 deg underside rising from the exit-side wall (Z 196.2) to the back wall; a web
   fills the slit between the right-hand track wall and the window edge, flat at the shoulder top and
@@ -199,9 +201,9 @@ Superseded and git-ignored: `Epitrochoid_refit_with_supports.stl` (47p3 + every 
 `Epitrochoid_refit_with_supports_v2.stl` (that with the top-post changes, no keel); set `"keel": false`
 in `epi_top` to rebuild v2 from the first.
 
-Slice, 2026-11-25 09:43 MST: `epitrochoid_keel_v3_matte_PLA_0.20mm_12h11m.gcode`, stock
+Slice, 2026-11-25 09:56 MST (new plug): `epitrochoid_keel_v3_matte_PLA_0.20mm_12h11m.gcode`, stock
 `0.20mm Standard @Sovol SV06 ACE` with Orca supports off, matte rainbow PLA (220 / 210, 15 mm3/s,
-fan 80 to 100%). Planner 11 h 36 min, 12 h 11 min with margin (Orca 9 h 27 min), 277.4 g, 1237
+fan 80 to 100%). Planner 11 h 37 min, 12 h 11 min with margin (Orca 9 h 27 min), 277.5 g, 1237
 layers. The full-tree v2 sliced to 19 h 01 min and 315.4 g. Not sent; untested on the printer.
 
 ## Naming

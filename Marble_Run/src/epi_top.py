@@ -4,10 +4,13 @@
 Rework the top post of the Epitrochoid refit with designed-in supports
 ("epi_top" in config/project.json).
 
-1. The plug gap moves from the back to the exit window: the old gap is filled
-   with plug ring, and a new gap is cut from the plug top down through the
-   shoulder into the window, its sides on the window's side faces (+-slot_half
-   deg) so nothing overhangs, its two top corners rounded to slot_r along the ring.
+1. The Nov 8 plug (25.36 / 19.96) is replaced by the current one from
+   "connector" (split ring plug_od / plug_id, plug_len tall, as on the v2 tubes),
+   the post's funnel bore under it opened to the plug bore for bore_z mm, the plug top kept
+   at plug_z[1]. Its gap faces the exit window: cut from the plug top down
+   through the shoulder into the window, its sides on the window's side faces
+   (+-slot_half deg) so nothing overhangs, its two top corners rounded to slot_r
+   along the ring.
 2. The cone under the landing floor, whose point starts in midair, becomes a
    45 deg underside that starts on the exit-side wall at ramp_z0 and rises
    toward the back wall.
@@ -51,33 +54,38 @@ def to_trimesh(m):
     return trimesh.Trimesh(np.array(mesh.vert_properties)[:, :3], np.array(mesh.tri_verts))
 
 
-def ring_sector(ri, ro, z0, z1, a0, a1, n=200):
+def plug_parts(c, con):
     '''
-    Ring sector between radii ri and ro, angles a0 to a1 [deg], z0 to z1.
+    Cut and add that swap the old plug for the current one, shoulder top at plug_z[0].
+
+    Returns:
+        tuple: (cut, add) Manifolds
     '''
-    a  = np.radians(np.linspace(a0, a1, n))
-    pts = np.r_[np.c_[ro * np.cos(a), ro * np.sin(a)], np.c_[ri * np.cos(a[::-1]), ri * np.sin(a[::-1])]]
-    return Manifold.extrude(_cs(pts), z1 - z0).translate((0, 0, z0))
+    p0, p1 = c['plug_z']
+    rp     = con['plug_id'] / 2
+    e      = 0.01
+    ## old ring off; the post's funnel bore is kept and only its last step in, to the
+    ## old 19.96 plug bore, is opened to the current plug bore
+    cut = (Manifold.cylinder(p1 - p0 + 1, con['post_od'] / 2 + 1, con['post_od'] / 2 + 1, SEG).translate((0, 0, p0))
+           + Manifold.cylinder(c['bore_z'] + e, rp, rp, SEG).translate((0, 0, p0 - c['bore_z'])))
+    add = (Manifold.cylinder(p1 - p0 + e, con['plug_od'] / 2, con['plug_od'] / 2, SEG)
+           - Manifold.cylinder(p1 - p0 + 1, con['plug_id'] / 2, con['plug_id'] / 2, SEG).translate((0, 0, -0.5))).translate((0, 0, p0 - e))
+    return cut, add
 
 
-def _cs(pts):
-    from manifold3d import CrossSection
-    return CrossSection([np.asarray(pts, float)])
-
-
-def gap_cutter(c):
+def gap_cutter(c, con):
     '''
     New plug gap with radial sides at +-slot_half deg about the exit, the same
     angle as the window's side faces, so the window runs straight up through the
     shoulder and plug with no ledge. The profile is laid out along the ring
-    (s = r_ref * angle) and wrapped, which gives the two top corners a slot_r
+    (s = plug radius * angle) and wrapped, which gives the two top corners a slot_r
     round measured on the outside of the plug.
     '''
     zb, zt = c['slot_zb'], c['plug_z'][1]
     rr     = c['post_ri'] + 2.0 + 1.0
-    rf     = c['r_ref']
+    rf     = con['plug_od'] / 2
     s0     = rf * np.radians(c['slot_half'])
-    wrap   = slot_cutter(c['plug_ri'] - 1.0, rr, 0.0, zb, zt, 2 * s0, c['slot_r'])
+    wrap   = slot_cutter(con['plug_id'] / 2 - 1.0, rr, 0.0, zb, zt, 2 * s0, c['slot_r'])
     wrap   = wrap.refine_to_length(0.4)
     wrap   = wrap.warp_batch(lambda v: np.c_[v[:, 0] * np.cos(v[:, 1] / rf),
                                              v[:, 0] * np.sin(v[:, 1] / rf), v[:, 2]])
@@ -170,9 +178,10 @@ def main():
 
     below, above = ramp_parts(c)
     m = (m - below) + above
-    p0, p1 = c['plug_z']
-    m = m + ring_sector(c['plug_ri'], c['plug_ro'], p0 - 0.2, p1, *c['old_gap'])
-    m = m - gap_cutter(c)
+    con = cfg['connector']
+    cut, add = plug_parts(c, con)
+    m = (m - cut) + add
+    m = m - gap_cutter(c, con)
     m = m + fin(c, to_trimesh(m))
     ## drop zero-volume slivers left where a tree tip meets the keel
     m = Manifold.batch_boolean([p for p in m.decompose() if p.volume() > 1.0], OpType.Add)
