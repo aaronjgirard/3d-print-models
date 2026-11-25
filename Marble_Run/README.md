@@ -1,6 +1,6 @@
 # Marble Run
 
-Updated 2026-11-24 00:06 MST (matte PLA tube plate sent; plug gap top corners rounded, all pieces rebuilt 00:04; previous update 2026-11-22 21:15 MST)
+Updated 2026-11-25 09:55 MST (Epitrochoid keel_v3: 45 deg keel, tall trees dropped, top post reworked; previous update 2026-11-24 00:06 MST)
 
 Marbleworks-compatible marble run pieces for the SV06 ACE: the Pyrce007
 Marbleworks Marble Mazes set, the 1 to 4 pitch tubes designed here, and
@@ -8,7 +8,7 @@ generated pieces (buckets, racing finish, peg trays, cascade, merges).
 Units are mm, z up.
 
 ## License
-The generated pieces, tubes and scripts are Apache-2.0 (root `LICENSE`). The Pyrce007 pieces in `stl/marbleworks/` and `ref/marbleworks/` are [Marbleworks Marble Mazes by Pyrce007](https://www.thingiverse.com/thing:4202442), CC BY (`ref/marbleworks/LICENSE.txt`), renamed only. `stl/custom/twopost_1loop_l.stl` and `clicky_5_half_l.stl` are remixes of his `twopost_1loop` and `clicky_5_half`: they stay CC BY with credit to Pyrce007, and the changes made by `src/refit.py` are Apache-2.0.
+The generated pieces, tubes and scripts are Apache-2.0 (root `LICENSE`). The Pyrce007 pieces in `stl/marbleworks/` and `ref/marbleworks/` are [Marbleworks Marble Mazes by Pyrce007](https://www.thingiverse.com/thing:4202442), CC BY (`ref/marbleworks/LICENSE.txt`), renamed only. `stl/custom/twopost_1loop_l.stl` and `clicky_5_half_l.stl` are remixes of his `twopost_1loop` and `clicky_5_half`: they stay CC BY with credit to Pyrce007, and the changes made by `src/refit.py` are Apache-2.0. The `Epitrochoid_*` files are remixes of his `epi_725` (Epitrochoid 7-2-5): CC BY with credit to Pyrce007; the changes (refit, trees, keel, top post) are Apache-2.0.
 
 ## Layout
 
@@ -164,6 +164,46 @@ in the filament name, colour and max volumetric speed (15 mm3/s for matte, was 1
 220 / 210, fan 80 to 100%. Orca auto-arrange: a 2 x 3 grid, 2 mm apart. Planner 4 h 36 min,
 4 h 50 min with margin (Orca says 3 h 03 min), 135.0 g, 764 layers. Sent and started 2026-11-24 00:06 MST at Aaron's request.
 
+## Epitrochoid (`epi_725` remix)
+
+Pyrce007's Epitrochoid 7-2-5 refit to the 47.3 mm pitch, with designed-in trees, then reworked for
+printing (Aaron, 2026-11-25). One solid, 193 x 194 x 247.5 mm. The plug top is exactly five
+`tube_1_v2` pitches plus the plug (shoulder 236.5 = 5 x 47.3, plug 11), so it lines up with a stack
+of five single tubes. Its plug is the Nov 8 size (25.36 OD, 19.96 ID), not the fit-ladder 25.75 / 21.6.
+
+| file | what |
+|---|---|
+| `Epitrochoid_refit_47p3.stl` | the refit without trees (2026-11-08) |
+| `Epitrochoid_supports_only.stl` | the designed-in trees alone (37 bodies, 68 cm3; from the 2026-11-08 build) |
+| `Epitrochoid_keel_v3.stl` | **print this one**: keel, short trees, reworked top post |
+
+`Epitrochoid_keel_v3.stl` (`src/epi_keel.py`, then `src/epi_top.py`; config `epi_keel`, `epi_top`):
+- 45 deg V keel under every track underside, like `clicky_5_half_l`, followed layer by layer where the
+  track passes over itself; at most 7.2 mm deep (the round track bottom is steeper than 45 deg toward
+  its edges), never within 16.5 mm of the layer below (marble 14.5 + 2).
+- Trees: the 12 bed trees no taller than 117.5 mm (one turn, against shaking) and the 20 short struts
+  between turns are kept; the five tall bed trees (147 to 210 mm) are gone.
+- Top post: the plug gap faces the exit window with the window's own side faces (+-49 deg) carried
+  straight up through the shoulder and plug, top corners rounded r 2; the midair cone under the landing
+  floor is now a 45 deg underside rising from the exit-side wall (Z 196.2) to the back wall; a web
+  fills the slit between the right-hand track wall and the window edge, flat at the shoulder top and
+  falling 45 deg along the wall.
+- Checks: watertight, one body. Area flatter than 45 deg 3,863 mm2 (17,661 with the full trees);
+  nothing larger than 0.5 mm2 starts in the air (323 specks along the keel ridge, which climbs only
+  about 5 deg with the track, so its bottom edge may print rough).
+
+```bash
+python src/epi_top.py          # writes Epitrochoid_keel_v3.stl (about 12 s)
+```
+Superseded and git-ignored: `Epitrochoid_refit_with_supports.stl` (47p3 + every tree, 2026-11-08) and
+`Epitrochoid_refit_with_supports_v2.stl` (that with the top-post changes, no keel); set `"keel": false`
+in `epi_top` to rebuild v2 from the first.
+
+Slice, 2026-11-25 09:43 MST: `epitrochoid_keel_v3_matte_PLA_0.20mm_12h11m.gcode`, stock
+`0.20mm Standard @Sovol SV06 ACE` with Orca supports off, matte rainbow PLA (220 / 210, 15 mm3/s,
+fan 80 to 100%). Planner 11 h 36 min, 12 h 11 min with margin (Orca 9 h 27 min), 277.4 g, 1237
+layers. The full-tree v2 sliced to 19 h 01 min and 315.4 g. Not sent; untested on the printer.
+
 ## Naming
 
 Short `snake_case` names, family first (`hypo_`, `liss_`, `cycloid_`,
@@ -207,3 +247,4 @@ https://www.thingiverse.com/thing:4202442, licensed CC BY. Files are renamed
 only; `ref/marbleworks/names.md` maps each to its original name.
 `twopost_1loop_l` and `clicky_5_half_l` in `stl/custom` are modified from those pieces by
 `src/refit.py` (span, heights and connectors changed), same licence.
+The `Epitrochoid_*` files are modified from `epi_725` (refit, trees, keel, top post), same licence.

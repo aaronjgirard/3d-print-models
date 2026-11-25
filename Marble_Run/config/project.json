@@ -90,5 +90,43 @@
         "end"        : 2.4,
         "gap"        : 3.0,
         "plate"      : 3.0
+    },
+    "epi_keel": {
+        "_note"      : "src/epi_keel.py, 45 deg keel under the whole Epitrochoid track (Aaron 2026-11-25: like the clicky ramp, so the tall trees can go; keep the bed trees up to about layer 570 for one turn of support against shaking). base is the refit without trees, supports the designed-in trees. grid, reach, jump in mm; ndir rays per point; clear is the room kept over the layer below (marble 14.5 + 2); keel bottoms under bed_snap go to the bed; keep_top is the tallest bed tree kept; keep_struts keeps the short trees between turns",
+        "base"       : "Epitrochoid_refit_47p3.stl",
+        "supports"   : "Epitrochoid_supports_only.stl",
+        "grid"       : 0.5,
+        "reach"      : 20.0,
+        "ndir"       : 16,
+        "jump"       : 1.0,
+        "clear"      : 16.5,
+        "bed_snap"   : 1.0,
+        "embed"      : 0.4,
+        "min_depth"  : 0.3,
+        "post_r"     : 15.5,
+        "keep_top"   : 117.5,
+        "keep_struts": true
+    },
+    "epi_top": {
+        "_note"      : "src/epi_top.py, top post of the Epitrochoid refit with designed-in supports (Aaron 2026-11-25). mesh coordinates, post axis at x = y = 0. moves the plug gap from the back (old_gap, deg) to the exit window (exit, deg): radial sides at +-slot_half deg, the window side faces, so the window runs to the top with no overhang (Aaron: no overhang); top corners rounded to slot_r along the ring at r_ref (16 was too much, 2026-11-25); the gap runs down from the plug top to slot_zb, below the sleeve band over the window. the midair cone under the landing floor is replaced by a 45 deg underside that starts on the exit-side wall at ramp_z0 and rises toward the back wall. the plug keeps its Nov 8 size (plug_ro, plug_ri)",
+        "src"        : "Epitrochoid_refit_with_supports.stl",
+        "out"        : "Epitrochoid_keel_v3.stl",
+        "keel"       : true,
+        "exit"       : -39.0,
+        "old_gap"    : [95.0, 195.0],
+        "post_ri"    : 12.78,
+        "plug_ri"    : 9.98,
+        "plug_ro"    : 12.68,
+        "plug_z"     : [236.5, 247.5],
+        "slot_zb"    : 222.0,
+        "slot_half"  : 49.0,
+        "slot_r"     : 2.0,
+        "r_ref"      : 12.68,
+        "ramp_z0"    : 196.2,
+        "cone_top"   : 209.5,
+        "embed"      : 0.3,
+        "post_ro"    : 14.78,
+        "fin"        : {"_note": "web filling the slit between the right-hand track wall and the window edge (Aaron 2026-11-25). box is w0, w1, v0, v1 in exit coordinates (w toward the exit, v to its left) and picks the wall sections; side_deg is the far edge of the post patch it grows from; flat at ztop from the post, then 45 deg down along the wall",
+                        "box": [10.5, 18.0, -13.0, -2.0], "side_deg": -58.0, "z0": 218.0, "ztop": 236.5, "dz": 0.5}
     }
 }
