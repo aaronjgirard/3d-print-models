@@ -9,27 +9,76 @@ import argparse, json
 import manifold3d as m3d
 import numpy as np
 import trimesh
-from matplotlib.font_manager import FontProperties
+from fontTools.ttLib import TTFont
+from matplotlib.font_manager import FontPath, FontProperties
 from matplotlib.textpath import TextPath
 
-def text_section(text, font, cap):
+def face_runs(text, face, glyph_face):
+    '''
+    Split text into runs of one face, characters in glyph_face taking their own face.
+
+    Args:
+        text       (str):  text
+        face       (int):  default face index
+        glyph_face (dict): character -> face index
+
+    Returns:
+        list: [run, face] pairs
+    '''
+    runs = []
+    for ch in text:
+        f = glyph_face.get(ch, face)
+        if runs and runs[-1][1] == f:
+            runs[-1][0] += ch
+        else:
+            runs.append([ch, f])
+    return runs
+
+def run_advance(text, font, face, size):
+    '''
+    Summed advance widths of a run, without kerning.
+
+    Args:
+        text (str):   run
+        font (str):   font file
+        face (int):   face index
+        size (float): em size [mm]
+
+    Returns:
+        float: advance [mm]
+    '''
+    ttf = TTFont(font, fontNumber=face, lazy=True)
+    cmp = ttf.getBestCmap()
+    return size * sum(ttf['hmtx'][cmp[ord(c)]][0] for c in text) / ttf['head'].unitsPerEm
+
+def text_section(text, font, face, cap, glyph_face={}):
     '''
     Text outline as a cross section centered on x and on the cap height.
 
     Args:
-        text (str):   text
-        font (str):   font file
-        cap  (float): cap height [mm]
+        text       (str):   text
+        font       (str):   font file (.ttf, or a .ttc collection)
+        face       (int):   face index in a collection
+        cap        (float): cap height of the default face [mm]
+        glyph_face (dict):  character -> face index, for glyphs set in another face
 
     Returns:
         tuple: CrossSection, text width [mm]
     '''
-    prop  = FontProperties(fname=font)
-    ref   = TextPath((0, 0), 'H', size=10, prop=prop).get_extents()
-    path  = TextPath((0, 0), text, size=10 * cap / ref.height, prop=prop)
-    ext   = path.get_extents()
-    rings = [p - [ext.x0 + ext.width / 2, cap / 2] for p in path.to_polygons()]
-    return m3d.CrossSection(rings, fillrule=m3d.FillRule.EvenOdd), ext.width
+    prop  = lambda f: FontProperties(fname=FontPath(font, f))
+    ref   = TextPath((0, 0), 'H', size=10, prop=prop(face)).get_extents()
+    size  = 10 * cap / ref.height
+    x     = 0.0
+    rings = []
+    ## curves are flattened to about one path unit, so build at 100x and scale back
+    for run, f in face_runs(text, face, glyph_face):
+        rings += [q / 100 for q in TextPath((100 * x, 0), run, size=100 * size, prop=prop(f)).to_polygons()]
+        x     += run_advance(run, font, f, size)
+    pts   = np.vstack(rings)
+    x0    = pts[:, 0].min()
+    x1    = pts[:, 0].max()
+    rings = [p - [(x0 + x1) / 2, cap / 2] for p in rings]
+    return m3d.CrossSection(rings, fillrule=m3d.FillRule.EvenOdd), x1 - x0
 
 def rounded_rect(wid, hgt, rad):
     '''
@@ -59,10 +108,11 @@ def main(par):
     caps = list(par['caps'])
     secs = []
     for txt, i in zip(par['lines'], range(len(caps))):
-        sec, wid = text_section(txt, par['font'], caps[i])
+        txt      = ''.join(par.get('glyph_sub', {}).get(ch, ch) for ch in txt)
+        sec, wid = text_section(txt, par['font'], par.get('face', 0), caps[i], par.get('glyph_face', {}))
         if wid > room:
             caps[i] *= room / wid
-            sec, wid = text_section(txt, par['font'], caps[i])
+            sec, wid = text_section(txt, par['font'], par.get('face', 0), caps[i], par.get('glyph_face', {}))
         secs.append((sec, wid))
     tot = sum(caps) + par['gap'] * (len(caps) - 1)
     yc  = tot / 2

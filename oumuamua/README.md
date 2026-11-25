@@ -1,11 +1,11 @@
 # ʻOumuamua
 
-Updated 2026-11-23 21:54 MST
+Updated 2026-11-24 14:53 MST
 
 ʻOumuamua, the first interstellar object seen passing through the Solar System, at 1:2000, made from ESO's artist's 3D model, with a name and scale plaque and a display stand. ESO gives its length as about 400 m, so the rock is 200 mm long (40 x 34 mm across). The OrcaSlicer project `oumuamua.3mf` has three plates:
 
 1. **Rock**: prints lying on its back (the side that faces away from the viewer on the stand goes on the bed, 40 mm tall), turned 45 degrees to fit the bed (143 x 149 mm footprint), on organic tree supports (set on this object only). That way the underside that sits in the stand cups and the top both print as walls: only 6% of the cup contact area lands on supports and 9% in the 30 to 50 degree droop range, against 47% and 31% printed bottom down, while the top and front stay at 3% and 7%. Printed upside down the cups would be perfect but 32% of the top and front would sit on supports.
-2. **Plaque**: 64 x 32 mm (2.5 x 1.25 in) with raised "ʻOumuamua" and "1:2000" (Arial Bold, the ʻokina is U+02BB). The project pauses after layer 12 and before layer 13 (Z 2.65 mm, the first layer above the plate face) prints, so the text and border print in the swapped filament.
+2. **Plaque**: 64 x 32 mm (2.5 x 1.25 in) with raised "ʻOumuamua" and "1:2000" (Gill Sans SemiBold, face 4 of the macOS `GillSans.ttc`; that face has no ʻokina, U+02BB, so `glyph_sub` in `plaque.json` draws it with the face's left single quote, U+2018, the same turned comma. `glyph_face` can instead take single glyphs from another face of the collection). The project pauses after layer 12 and before layer 13 (Z 2.65 mm, the first layer above the plate face) prints, so the text and border print in the swapped filament.
 3. **Stand** (white PLA): a 200 x 48 mm base, as long as the rock and 4 mm wider each side, with two posts 110 mm apart whose tops are cups cast from the rock's underside, 0.3 mm clearance, and only as high as the rock can lift straight out of. The rock sits 32 mm above the base. Between the posts, under the rock, a 3 mm deep slot holds the plaque at 60 degrees with a small prop behind it; the plaque top clears the rock by 5.7 mm. Turned 45 degrees on its plate.
 
 | file | what |
