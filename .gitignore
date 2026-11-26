@@ -52,3 +52,12 @@ Marble_Run/Epitrochoid_refit_with_supports.stl
 Marble_Run/Epitrochoid_refit_with_supports_v2.stl
 Marble_Run/Epitrochoid_keel_v3.stl
 Marble_Run/epitrochoid_*_matte.3mf
+
+## train-connectors: sliced plate project (carries G-code), regenerable slicer inputs and the flattened stock Orca profiles (slice/fetch_profiles.py, slice/make_presets.py, slice/plate.py rebuild them)
+train-connectors/out/package/black_pla_plate.3mf
+train-connectors/slice/plate/
+train-connectors/slice/out_gcode/
+train-connectors/slice/stock/
+train-connectors/slice/machine.json
+train-connectors/slice/process.json
+train-connectors/slice/filament.json

@@ -1,3 +1,4 @@
 part, x mm, y mm, z mm (print height), volume mm3
-coupler_swivel, 16.0, 9.0, 2.4, 162
-coupler_arm, 19.1, 8.0, 7.6, 689
+coupler_arm, 18.8, 10.0, 4.0, 381
+coupler_swivel, 17.8, 8.6, 6.5, 370
+coupler_kingpin, 6.6, 4.5, 9.5, 152

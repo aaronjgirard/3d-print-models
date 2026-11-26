@@ -1,7 +1,11 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
-"""Export the swivel and arm in print orientation (on their side, the profile flat on the bed) as STL and 3MF into
-out/package, plus a plate with two sets."""
+"""Export the three parts in print orientation as STL and 3MF into out/package, plus a plate with two sets.
+
+- arm: on its side (profile flat on the bed), so no layer line crosses the bend between beam and leg
+- swivel: plate down, cheeks standing up; the hinge holes are teardrops, so nothing bridges
+- kingpin: head down on the bed, shaft up; the lock hole near its tip is a teardrop pointing up
+"""
 import os
 import shutil
 import numpy as np
@@ -16,24 +20,24 @@ def to_trimesh(m):
     return trimesh.Trimesh(vertices=np.asarray(mesh.vert_properties)[:, :3], faces=np.asarray(mesh.tri_verts), process=False)
 
 
-def print_pose(m):
-    """Thickness (y) up, profile on the bed, corner at the origin."""
-    m = m.rotate((-90, 0, 0))
+def on_bed(m):
     b = m.bounding_box()
     return m.translate((-b[0], -b[1], -b[2]))
 
 
 def parts():
-    return {"coupler_swivel": print_pose(C.swivel()), "coupler_arm": print_pose(C.arm())}
+    return {"coupler_arm": on_bed(C.arm().rotate((-90, 0, 0))),
+            "coupler_swivel": on_bed(C.swivel()),
+            "coupler_kingpin": on_bed(C.kingpin().rotate((180, 0, 0)))}
 
 
 def plate(n=2, gap=6.0):
-    """n sets in a row, centered on the 220 x 220 bed."""
+    """n sets, one row each, centered on the 220 x 220 bed."""
     ps = parts()
     placed, y = [], 0.0
     for i in range(n):
         x = 0.0
-        for name in ("coupler_arm", "coupler_swivel"):
+        for name in ("coupler_arm", "coupler_swivel", "coupler_kingpin"):
             m = ps[name]
             b = m.bounding_box()
             placed.append((f"{name}_{i + 1}", m.translate((x, y, 0))))
