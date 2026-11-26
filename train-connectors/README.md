@@ -1,6 +1,6 @@
 # Train coupler (kingpin, swivel and hinged hook arm), version 2, and the tender's clip-on loop
 
-Updated 2026-11-25 23:16 MST
+Updated 2026-11-25 23:22 MST
 
 Replacement for the red hook that couples the battery Christmas-train cars. Every car has a black tab with
 a hole at its front and a black loop at its back; the hook on each car's tab reaches forward into the loop
@@ -18,10 +18,12 @@ and it couples to the original loops on the cars and on the engine. Everything i
   measures 4.7 x 5.3, and did not hold; one side of the arm's hinge hole, in the upper cheek that bridged
   the slot, was jammed with PETG strings and needed cutting out; and the hook should be longer, "like a
   2mm straight bar down THEN the same hook we already have".
-- Version 2 (Nov 25): designed and checked in code; the plate below was printed in black PLA on Nov 25.
+- Version 2 (Nov 25): designed and checked in code; the plate below was printed in black PLA on Nov 25
+  (19.7 min, saved bed mesh instead of the probe, 3 mm brim, U-shaped snap-off wall under the tender loop).
   After that print Aaron asked for the kingpins "1 or 2 layers taller": `KP_EXTRA` (0.4, two layers)
   lowers the lock hole and the tip, so the kingpin is 9.5 long and the lock filament sits 0.55 under the
-  swivel (was 9.1 and 0.15). Two of the longer kingpins were printed on their own the same night.
+  swivel (was 9.1 and 0.15). Two of the longer kingpins were printing on their own at 23:20 MST Nov 25;
+  not yet fitted.
 - Tender's clip-on loop (Nov 25, see its section below): designed and checked in code; printed on the plate
   Nov 25. Its snap-off wall became a U under both side rails as well (see Printing in its section).
 - Both are on one black PLA plate, sliced with a 3 mm brim (`out/package/black_pla_plate.gcode`, about
