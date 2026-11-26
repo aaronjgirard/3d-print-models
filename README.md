@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-26 00:45 MST
+Updated 2026-11-26 12:02 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -22,6 +22,7 @@ I bought a Sovol SV06 ACE (Klipper, 220 x 220 mm bed) that I am learning to use,
 | `CSM_GP_logos/` | Colorado School of Mines Geophysics logo and banner plaques |
 | `train-rails/` | straight, 22.5 degree curve and fit-test piece that join a battery Christmas-train set, with wood-grain ties and full-plate layouts |
 | `train-connectors/` | replacement coupler for the same train cars (version 2: kingpin from the top, swivel and hinged hook arm on 1.75 mm filament pins; version 1 in `v1/`) and a clip-on loop for the tender, all on one black PLA plate |
+| `spiky-twisty-sphere/` | OrcaSlicer presets, slicing script and support check for 3DMakerSpace's [Spiky Sensory Trigger Twisty Spiral Fidget Sphere](https://makerworld.com/models/2433410); the model is not included (its license does not allow sharing the files) |
 | `VLAD_4in_quarter_thick.3mf` | small name plate |
 | `cli_slice/` | OrcaSlicer command-line presets, plus a Klipper-accurate print-time estimator |
 | `sv06.sh` | run the printer from a terminal through Moonraker (`3dprint`, `3dstatus`, ...) |

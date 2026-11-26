@@ -63,3 +63,12 @@ train-connectors/slice/stock/
 train-connectors/slice/machine.json
 train-connectors/slice/process.json
 train-connectors/slice/filament.json
+
+## spiky-twisty-sphere: 3DMakerSpace's model (MakerWorld, Standard Digital File License) and everything built from it stay local; only the README and the scripts are published
+spiky-twisty-sphere/*.3mf
+spiky-twisty-sphere/out/
+spiky-twisty-sphere/slice/plate/
+spiky-twisty-sphere/slice/stock/
+spiky-twisty-sphere/slice/machine.json
+spiky-twisty-sphere/slice/process.json
+spiky-twisty-sphere/slice/filament.json
