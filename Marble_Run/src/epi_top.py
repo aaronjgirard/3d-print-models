@@ -25,7 +25,7 @@ With "keel" set in the config the piece is first rebuilt by src/epi_keel.py (kee
 under the track, tall trees dropped) instead of read from src.
 
 Usage:
-    python src/epi_top.py [--src STL] [--out STL]
+    python src/epi_top.py [--src STL] [--out STL] [--plain]
 '''
 import argparse
 import os
@@ -107,11 +107,77 @@ def ramp_parts(c):
     n     = np.array([np.cos(a), np.sin(a), 1.0]) / np.sqrt(2)
     off   = (z0 + ri) / np.sqrt(2)
     ## the cut stops 0.05 short of the wall (no coincident faces); the fill reaches embed into it
-    cut   = Manifold.cylinder(z1 - z0 + 2, ri - 0.05, ri - 0.05, SEG).translate((0, 0, z0 - 1))
+    rc    = ri + c.get('cut_r', -0.05)
+    cut   = Manifold.cylinder(z1 - z0 + 2, rc, rc, SEG).translate((0, 0, z0 - 1))
     cyl   = Manifold.cylinder(z1 - z0 + 2, ri + e, ri + e, SEG).translate((0, 0, z0 - 1))
     below = cut.trim_by_plane(-n, -off)
     above = cyl.trim_by_plane(n, off) ^ Manifold.cube((60, 60, c['cone_top'] - z0 + 1)).translate((-30, -30, z0 - 1))
     return below, above
+
+
+def under_floor(m, c):
+    '''
+    Fill the gap between the landing floor's underside and the 45 deg ramp plane
+    (the floor dips to about 14 deg there): inside the bore, above the plane and
+    below floor_top, everything is made solid except the landing space over the
+    floor (the empty piece holding the point land_u mm toward the exit at height
+    land_z), which is kept with its outline moved seam mm down, so the fill ends
+    inside the floor and the floor top and window are unchanged.
+    '''
+    ri, z0, zt = c['post_ri'], c['ramp_z0'], c['floor_top']
+    a      = np.radians(c['exit'])
+    n      = np.array([np.cos(a), np.sin(a), 1.0]) / np.sqrt(2)
+    off    = (z0 + ri) / np.sqrt(2)
+
+    def region(top, rr):
+        r = Manifold.cylinder(top - z0 + 1, rr, rr, SEG).translate((0, 0, z0 - 1)).trim_by_plane(n, off)
+        return r ^ Manifold.cube((60, 60, top - z0 + 1)).translate((-30, -30, z0 - 1))
+
+    lx, ly = c['land_u'] * np.cos(a), c['land_u'] * np.sin(a)
+    probe  = Manifold.cube((0.2, 0.2, 0.2)).translate((lx - 0.1, ly - 0.1, c['land_z'] - 0.1))
+    ## the landing space is found in a wider and taller region, so its outline never lies on the fill's
+    land   = [p for p in (region(zt + 2 * c['seam'], ri + c['embed'] + 1.0) - m).decompose() if (p ^ probe).volume() > 1e-6]
+    if not land:
+        return Manifold()
+    return region(zt, ri + c['embed']) - land[0].translate((0, 0, -c['seam']))
+
+
+def exit_bracket(c, t):
+    '''
+    Bracket under the flat start of the track outside the exit window: in the sector
+    ang (deg) and out to r_out, under every bit of track underside lower than z_max
+    (found by rays up from z_from on a grid), solid up to embed mm into the track, its
+    underside the 45 deg cone z = z_top - r_out + r about the post axis, so it grows
+    out of the post wall and needs no support.
+    '''
+    b      = c['bracket']
+    h, ro  = b['grid'], c['post_ro']
+    xs     = np.arange(-b['r_out'], b['r_out'] + h, h)
+    gx, gy = np.meshgrid(xs, xs, indexing='ij')
+    r      = np.hypot(gx, gy)
+    ang    = np.degrees(np.arctan2(gy, gx))
+    sel    = (r > ro - b['embed']) & (r < b['r_out']) & (ang > b['ang'][0]) & (ang < b['ang'][1])
+    P      = np.c_[gx[sel], gy[sel], np.full(sel.sum(), b['z_from'])]
+    loc, ir, _ = t.ray.intersects_location(P, np.tile((0, 0, 1.0), (len(P), 1)), multiple_hits=False)
+    zb     = np.full(len(P), np.inf); zb[ir] = loc[:, 2]
+    k      = zb < b['z_max']
+    if not k.any():
+        return Manifold()
+    za     = b['z_top'] - b['r_out']
+
+    def columns(e):
+        return Manifold.batch_boolean([Manifold.cube((h, h, z1 + e - b['z_from'])).translate((x - h / 2, y - h / 2, b['z_from']))
+                                       for (x, y, _), z1 in zip(P[k], zb[k])], OpType.Add)
+
+    ## up to the track underside, plus embed mm only where that is inside the piece (never through a thin floor)
+    m      = Manifold(Mesh(vert_properties=np.asarray(t.vertices, np.float32), tri_verts=np.asarray(t.faces, np.uint32)))
+    cols   = columns(0.0) + (columns(b['embed']) ^ m)
+    ## inside the cone opening upward from (0, 0, za) at 45 deg
+    zc     = b['z_max'] + 5.0
+    cone   = Manifold.cylinder(zc - za, 0.0, zc - za, SEG).translate((0, 0, za))
+    ## never inside the post wall above keep_z, so the window sill stays where it was
+    wall   = Manifold.cylinder(zc - b['keep_z'] + 1, ro + b['wall_gap'], ro + b['wall_gap'], SEG).translate((0, 0, b['keep_z']))
+    return (cols ^ cone) - wall
 
 
 def fin(c, t):
@@ -166,9 +232,10 @@ def main():
     ap  = argparse.ArgumentParser()
     ap.add_argument('--src', default=os.path.join(root, c['src']))
     ap.add_argument('--out', default=os.path.join(root, c['out']))
+    ap.add_argument('--plain', action='store_true', help='no keel or trees, even with keel set (for slicer supports)')
     a   = ap.parse_args()
 
-    if c.get('keel'):
+    if c.get('keel') and not a.plain:
         import epi_keel
         m, info = epi_keel.build(cfg)
         print('keel %.2f cm3, deepest %.2f mm, %d trees kept' % (info['keel_cm3'], info['deepest'], info['trees']))
@@ -178,6 +245,10 @@ def main():
 
     below, above = ramp_parts(c)
     m = (m - below) + above
+    if 'floor_top' in c:
+        m = m + under_floor(m, c)
+    if 'bracket' in c:
+        m = m + exit_bracket(c, to_trimesh(m))
     con = cfg['connector']
     cut, add = plug_parts(c, con)
     m = (m - cut) + add

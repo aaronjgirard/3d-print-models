@@ -51,6 +51,8 @@ oumuamua/oumuamua.3mf
 Marble_Run/Epitrochoid_refit_with_supports.stl
 Marble_Run/Epitrochoid_refit_with_supports_v2.stl
 Marble_Run/Epitrochoid_keel_v3.stl
+Marble_Run/Epitrochoid_keel_v4.stl
+Marble_Run/Epitrochoid_keel_v5.stl
 Marble_Run/epitrochoid_*_matte.3mf
 
 ## train-connectors: sliced plate project (carries G-code), regenerable slicer inputs and the flattened stock Orca profiles (slice/fetch_profiles.py, slice/make_presets.py, slice/plate.py rebuild them)

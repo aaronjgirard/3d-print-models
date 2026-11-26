@@ -1,6 +1,6 @@
 # 3D print models
 
-Updated 2026-11-25 23:16 MST
+Updated 2026-11-26 00:45 MST
 
 Models, generator scripts, slicer presets and printer notes from my Sovol SV06 ACE.
 
@@ -48,7 +48,7 @@ The license text is the legal version; this list is only a summary.
 |---|---|---|
 | `Marble_Run/stl/marbleworks/`, `Marble_Run/ref/marbleworks/` | [Pyrce007, Marbleworks Marble Mazes](https://www.thingiverse.com/thing:4202442) | CC BY (see `Marble_Run/ref/marbleworks/LICENSE.txt`); renamed only |
 | `Marble_Run/stl/custom/twopost_1loop_l.stl`, `clicky_5_half_l.stl` | remixes of Pyrce007's `twopost_1loop` and `clicky_5_half` | CC BY, credit Pyrce007; my changes (made by `src/refit.py`) are Apache-2.0 |
-| `Marble_Run/Epitrochoid_*.stl` | remixes of Pyrce007's `epi_725` (Epitrochoid 7-2-5) | CC BY, credit Pyrce007; my changes (refit, trees, keel, top post; `src/epi_keel.py`, `src/epi_top.py`) are Apache-2.0 |
+| `Marble_Run/Epitrochoid_*.stl` | remixes of Pyrce007's `epi_725` (Epitrochoid 7-2-5) | CC BY, credit Pyrce007; my changes (refit, trees, keel, top post, loops removed; `src/epi_keel.py`, `src/epi_struts.py`, `src/epi_top.py`, `src/epi_short.py`) are Apache-2.0 |
 | `biserica_neagra_3dprint/*.stl` | built from [Biserica Neagra din Brasov](https://sketchfab.com/3d-models/biserica-neagra-din-brasov-8458157f7a71408189c4d630ce82133b) by Institutul National al Patrimoniului (cimec) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), credit cimec; `make_stl.py` is Apache-2.0 |
 | `Printer_Fix/longboard_pads_installed.png` | Sovol, from the [Sovol wiki](https://wiki.sovol3d.com/en/SV06-ACE-Troubleshooting/SV06-ACE-screen-flickers-and-image-is-not-fully-displayed) | Sovol's photo, not licensed here |
 | `oumuamua/oumuamua_1to2000.stl`, `oumuamua/oumuamua_stand.stl` | the rock and its stand, built from the [ESO 3D model of ʻOumuamua](https://www.eso.org/public/products/models3d/oumuamua/) by ESO/M. Kornmesser | ESO's terms: credit "ESO/M. Kornmesser" visibly, not for sale; the scripts and plaque are Apache-2.0 |

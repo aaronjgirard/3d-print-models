@@ -33,9 +33,11 @@ import sys
 import numpy as np
 import trimesh
 from manifold3d import Manifold, Mesh, OpType
+from scipy.spatial import cKDTree
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from project import load_cfg, root
+import epi_struts
 
 
 def layers(t, h, pad=1.0, kmax=8):
@@ -361,14 +363,73 @@ def build(cfg):
     fin  = np.isfinite(D)
     q    = squares(D, k['jump'])
     anc  = anchors(xs, ys, D, Z, sup, k['post_r'], k['anchor_w'], k['min_depth'])
+    rods = []
+    if 'struts' in k:
+        Z, anc, struts = add_struts(xs, ys, D, U, Z, below, q, anc, k)
+        ends = [tuple(np.round(st['land']['axis'][2], 3)) for st in struts]
+        rods = [epi_struts.strut_mesh(st, k['struts'], xs, ys, U, e not in ends[:i]) for i, (st, e) in enumerate(zip(struts, ends))]
+        rods = [r for r in rods if r is not None]
     B    = flood(D, Z, anc, q, k['grid'], k['rise'])
     Z    = np.where(np.isfinite(B), np.minimum(B, D), D)
     fuse = (k['post_r'], k['post_r'] + k['fuse_w'], k['post_ro'] - k['fuse_in'])
     keel = keel_mesh(xs, ys, D, Z, q, k['embed'], fuse)
-    m    = Manifold.batch_boolean([to_manifold(base), keel] + [to_manifold(p) for p in sup], OpType.Add)
+    m    = Manifold.batch_boolean([to_manifold(base), keel] + [to_manifold(p) for p in sup] + rods, OpType.Add)
+    sl   = []
+    if 'struts' in k and 'sleeve' in k['struts']:
+        sl, sinfo = epi_struts.sleeves(m, struts.runs, k['struts'], k['post_ro'])
+        m  = Manifold.batch_boolean([m] + sl, OpType.Add)
     info = {'keel_cm3': keel.volume() / 1000, 'deepest': float((D[fin] - Z[fin]).max()), 'trees': len(sup),
             'unanchored': int((fin & ~np.isfinite(B)).sum()), 'pits': int((fin & np.isfinite(B) & (B > D + 1e-6)).sum())}
+    if rods:
+        info['struts'] = len(rods)
+        info['strut_cm3'] = sum(r.volume() for r in rods) / 1000
+        info['struts_list'] = struts
+    if sl:
+        info['sleeves'] = sinfo
     return m, info
+
+
+class Struts(list):
+    '''
+    The struts, with the runs they were planned on.
+    '''
+    runs = None
+
+
+def add_struts(xs, ys, D, U, Z, below, q, anc, k):
+    '''
+    Fin under every ridge and struts holding up its 45 deg arches (src/epi_struts.py).
+
+    Returns:
+        tuple: keel floor (fin nodes may go down to the clearance), anchors with the
+               strut tops added, the struts
+    '''
+    c     = k['struts']
+    runs  = epi_struts.find_runs(xs, ys, D, Z, q, k['min_depth'], c['min_nodes'])
+    fin   = epi_struts.fin_nodes(xs, ys, D, runs, c['fin_w'] / 2)
+    floor = Z.copy()
+    ## a fin reaches at most half a span (and a little) under the V, never into the clearance
+    ## anchors keep their own height (lowered, one could start in midair)
+    deep  = fin & ~anc
+    floor[deep] = np.maximum(np.maximum(below[deep], 0.0), Z[deep] - c['span'] / 2 - 1.0)
+    B0    = flood(D, floor, anc, q, k['grid'], k['rise'])
+    ## ridge values from the nearest node of each run
+    nx, ny, km = D.shape
+    cell  = np.arange(D.size) // km
+    rb, rf = [], []
+    for r in runs:
+        nd    = r['nodes']
+        _, j  = cKDTree(np.c_[xs[cell[nd] // ny], ys[cell[nd] % ny]]).query(r['xy'])
+        rb.append(B0.ravel()[nd[j]])
+        rf.append(floor.ravel()[nd[j]])
+    lander = epi_struts.Lander(runs, c, k['post_ro'], xs, ys, U)
+    struts = Struts(epi_struts.plan(runs, lander, rb, rf, c))
+    struts.runs = runs
+    anc   = anc.copy()
+    for ids, z in epi_struts.anchor_nodes(xs, ys, D, fin, struts, c['strut_d'] / 2):
+        anc.ravel()[ids]   = True
+        floor.ravel()[ids] = z
+    return floor, anc, struts
 
 
 def main():

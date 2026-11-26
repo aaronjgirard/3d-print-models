@@ -1,6 +1,6 @@
 # Marble Run
 
-Updated 2026-11-25 11:34 MST (Epitrochoid keel_v4: keel anchored to the post, bed and trees after the v3 print threw spaghetti; 09:56 MST: keel_v3 plug now the current 25.75 / 21.6; 09:55 MST: 45 deg keel, tall trees dropped, top post reworked)
+Updated 2026-11-26 00:45 MST (Epitrochoid 3 tubes tall, 4 loops, Orca tree supports, exit window needs no tree; 2026-11-25 11:34 MST: keel_v4 anchored; 09:56 MST: keel_v3 plug 25.75 / 21.6; 09:55 MST: 45 deg keel, tall trees dropped, top post reworked)
 
 Marbleworks-compatible marble run pieces for the SV06 ACE: the Pyrce007
 Marbleworks Marble Mazes set, the 1 to 4 pitch tubes designed here, and
@@ -177,7 +177,48 @@ only its last 1 mm is opened to 21.6.
 |---|---|
 | `Epitrochoid_refit_47p3.stl` | the refit without trees (2026-11-08) |
 | `Epitrochoid_supports_only.stl` | the designed-in trees alone (37 bodies, 68 cm3; from the 2026-11-08 build) |
-| `Epitrochoid_keel_v4.stl` | **print this one**: anchored keel, short trees, reworked top post |
+| `Epitrochoid_plain.stl` | the refit with the reworked top post and exit window, no keel or trees (for slicer supports) |
+| `Epitrochoid_3tube.stl` | **print this one**: 3 tubes tall (152.9 mm), 4 loops, slicer tree supports |
+
+`Epitrochoid_3tube.stl` (`src/epi_top.py --plain`, then `src/epi_short.py`; config `epi_top`, `epi_short`;
+Aaron 2026-11-26: 3 single tubes tall, 4 loops, a toy for a 4.5 year old, so a rough underside is
+fine but no trees that fall over):
+- The track is one loop repeated: turned -102.85 deg about the post and raised 29.275 mm, every loop
+  lies on the one above (measured by matching the piece to itself between Z 60 and 100: median 0.36,
+  max 1.2 mm; 7-2-5 gives 720 / 7 = 102.86 deg). Three loops are cut out at Z 80 and the two parts
+  joined, the lower one turned to meet the upper (the upper holds the fine exit-window work). The
+  last 6.8 mm come out of Z 17 to 95 by scaling z there by 0.913 (the channel is 8.7% lower inside
+  there, about 18.4 mm for a 14.5 mm marble); socket, exit window and plug keep their sizes. Plug top
+  152.9 = 3 x 47.3 + 11.
+- Exit window (in `src/epi_top.py`, also in the 5-tube pieces): nothing that needs a tree. The ramp
+  under the landing floor is cut 0.1 mm into the bore so the 0.04 mm ledge at Z 206 is gone; the gap
+  between the landing floor and that ramp (the floor was only about 14 deg there) is filled, so the
+  floor's underside is the 45 deg ramp; a bracket under the flat start of the track outside the
+  window has a 45 deg underside rising from the post wall. The opening itself is unchanged.
+- Checks: watertight before writing (a dozen hairline faces under 0.06 mm2 at the bracket top
+  after rounding to float32; the piece loads as a valid solid with an exact vertex merge).
+
+```bash
+python src/epi_top.py --plain --src Epitrochoid_refit_47p3.stl --out Epitrochoid_plain.stl   # about 1 min
+python src/epi_short.py                                                                     # writes Epitrochoid_3tube.stl
+```
+
+Slice, 2026-11-26 00:25 MST: `epitrochoid_3tube_hyperred_PLA_0.28mm_6h55m.gcode`, Hyper PLA+ red
+(220 / 220, 18 mm3/s, fan 80 to 100%), stock `0.20mm Standard @Sovol SV06 ACE` with layer height
+0.28, Orca supports on: Tree (auto), hybrid style, threshold 10 deg, hollow base, independent support
+layer height on (Aaron asked for it back), z-hop 1.0 (was 0.4), avoid crossing walls. Planner 6 h 55
+min with margin, 187.1 g, 914 layers. The tallest unbraced support column scores 16 on a knock-over
+index (1000 L / d^3, L the height above a level, d its filled diameter) where the v4 bed trees that
+fell score 1,305. Sent and started 2026-11-26 00:36 MST at Aaron's request.
+
+`Epitrochoid_keel_v5.stl` (git-ignored, never printed; `python src/epi_top.py` with config
+`epi_keel.struts`): v4 plus a thin fin under each keel ridge with 45 deg arches between 57 struts
+(`src/epi_struts.py`) landing on lower outer walls or the bed, and tapered sleeves on every
+freestanding column over 25 mm (bed trees and struts). It halves the area flatter than 45 deg, but
+the struts on the walls stay about 4 mm thick (no room to widen them beside the track) and still
+score about 1,000 on the knock-over index, so it was set aside for slicer supports.
+
+`Epitrochoid_keel_v4.stl` (superseded, git-ignored; commit 661a57b) (`src/epi_keel.py`, then `src/epi_top.py`; config `epi_keel`, `epi_top`):
 
 `Epitrochoid_keel_v4.stl` (`src/epi_keel.py`, then `src/epi_top.py`; config `epi_keel`, `epi_top`):
 - 45 deg V keel under every track underside, like `clicky_5_half_l`, followed layer by layer where the
@@ -199,7 +240,7 @@ only its last 1 mm is opened to 21.6.
   area flatter than 45 deg 6,569 mm2 (17,661 with the full trees).
 
 ```bash
-python src/epi_top.py          # writes Epitrochoid_keel_v4.stl (about 50 s)
+python src/epi_top.py          # wrote Epitrochoid_keel_v4.stl (now writes v5; drop "struts" from epi_keel for v4)
 ```
 Superseded and git-ignored: `Epitrochoid_refit_with_supports.stl` (47p3 + every tree, 2026-11-08),
 `Epitrochoid_refit_with_supports_v2.stl` (that with the top-post changes, no keel; set `"keel": false`
@@ -214,6 +255,13 @@ Slice, 2026-11-25 11:28 MST: `epitrochoid_keel_v4_matte_PLA_0.20mm_12h27m.gcode`
 `0.20mm Standard @Sovol SV06 ACE` with Orca supports off, matte rainbow PLA (220 / 210, 15 mm3/s,
 fan 80 to 100%). Planner 11 h 52 min, 12 h 27 min with margin (Orca 9 h 37 min), 277.8 g, 1237
 layers. Sent and started by Aaron 2026-11-25 about 11:30 MST.
+
+v4 on the printer, 2026-11-25, cancelled 20:04 MST at layer 405 of 1237: its keel bottom climbed at
+only 1 deg from its anchors, so each layer reached up to 10 mm into the air and hung loops of
+filament. Strings collected on the tops of the 4.8 mm bed trees, and the nozzle (z-hop 0.4) knocked
+three of them over (they stood 68 to 110 mm unbraced). With no trees under it, the track above them
+could not be printed. A partial clog from hours paused hot also made the extruder slip, so the
+runout switch tripped five times. Aaron cleared it with the needle and a cold pull.
 
 ## Naming
 
@@ -258,4 +306,4 @@ https://www.thingiverse.com/thing:4202442, licensed CC BY. Files are renamed
 only; `ref/marbleworks/names.md` maps each to its original name.
 `twopost_1loop_l` and `clicky_5_half_l` in `stl/custom` are modified from those pieces by
 `src/refit.py` (span, heights and connectors changed), same licence.
-The `Epitrochoid_*` files are modified from `epi_725` (refit, trees, keel, top post), same licence.
+The `Epitrochoid_*` files are modified from `epi_725` (refit, trees, keel, top post, loops removed), same licence.
