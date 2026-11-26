@@ -72,3 +72,12 @@ spiky-twisty-sphere/slice/stock/
 spiky-twisty-sphere/slice/machine.json
 spiky-twisty-sphere/slice/process.json
 spiky-twisty-sphere/slice/filament.json
+
+## mom-planter: the sliced project (it carries G-code), font instances and the regenerable slicer inputs stay local (slice/fetch_profiles.py, slice/make_presets.py, export.py rebuild them)
+mom-planter/out/package/mom_planter_HyperPLA.3mf
+mom-planter/out/stl/shift.npy
+mom-planter/fonts/inst/
+mom-planter/slice/stock/
+mom-planter/slice/machine.json
+mom-planter/slice/process.json
+mom-planter/slice/filament.json
