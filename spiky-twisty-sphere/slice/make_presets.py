@@ -1,12 +1,14 @@
 ## Copyright 2026 Aaron Girard
 ## SPDX-License-Identifier: Apache-2.0
 '''
-Write the OrcaSlicer presets for the spiky twisty sphere in basic PLA: the stock
-Sovol SV06 ACE presets from OrcaSlicer 2.5.0 (flattened by fetch_profiles.py) with
-the changes below. The stock value of each setting is in its comment; "same" marks
-a value that already matches stock and is written out so the preset says it.
+Write the OrcaSlicer presets for the spiky twisty sphere in basic PLA or HyperPLA+:
+the stock Sovol SV06 ACE presets from OrcaSlicer 2.5.0 (flattened by
+fetch_profiles.py) with the changes below. The stock value of each setting is in
+its comment; "same" marks a value that already matches stock and is written out so
+the preset says it.
 
-Usage: python slice/make_presets.py [--stock slice/stock] [--out slice]
+Usage: python slice/make_presets.py [--filament basic_pla|hyper_pla]
+                                    [--stock slice/stock] [--out slice]
 '''
 import argparse
 import json
@@ -21,8 +23,9 @@ stock_files = {
     'filament' : 'flat_filament_Generic_PLA_atSovol_SV06_ACE.json',
 }
 preset_names = {
-    'process'  : '0.20mm Spiky sphere @Sovol SV06 ACE',
-    'filament' : 'Basic PLA @Sovol SV06 ACE',
+    'process'   : '0.20mm Spiky sphere @Sovol SV06 ACE',
+    'basic_pla' : 'Basic PLA @Sovol SV06 ACE',
+    'hyper_pla' : 'HyperPLA+ @Sovol SV06 ACE',
 }
 
 ## standing changes (sv06-ace-print-settings skill)
@@ -100,12 +103,28 @@ proc_gap = {
 }
 
 ## basic pla
-fila_chg = {
+fila_pla = {
     'nozzle_temperature_initial_layer' : ['220'],   # [C] 235
     'nozzle_temperature'               : ['210'],   # [C] same
     'filament_max_volumetric_speed'    : ['18'],    # [mm3/s] 21
     'fan_min_speed'                    : ['80'],    # [%] 50
     'fan_max_speed'                    : ['100'],   # [%] 80
+}
+
+## hyperpla+ (a high-speed pla+): 10 C hotter on the other layers, as in the hyper
+## pla+ red marble run slice printed 2026-11-26 (Marble_Run/README.md)
+fila_hyp = {
+    'nozzle_temperature_initial_layer' : ['220'],   # [C] 235
+    'nozzle_temperature'               : ['220'],   # [C] 210
+    'filament_max_volumetric_speed'    : ['18'],    # [mm3/s] 21
+    'fan_min_speed'                    : ['80'],    # [%] 50
+    'fan_max_speed'                    : ['100'],   # [%] 80
+}
+
+## filament choices for --filament
+fila_set = {
+    'basic_pla' : fila_pla,
+    'hyper_pla' : fila_hyp,
 }
 
 
@@ -124,19 +143,22 @@ def load_stock(stock, kind):
         return json.load(fid)
 
 
-def make_presets(stock, out):
+def make_presets(stock, out, fila):
     '''
     Apply the changes to the stock presets and write machine.json, process.json,
-    filament.json and changes_from_stock.json.
+    filament.json (the chosen filament) and changes_from_stock.json (the process
+    changes and the changes of every filament choice).
 
     Args:
         stock   (str): folder holding the flattened stock presets
         out     (str): folder the presets are written to
+        fila    (str): filament choice, a key of fila_set
 
     Returns:
         dict: the changes, by preset kind
     '''
     proc_chg = {**proc_std, **proc_mdl, **proc_sup, **proc_gap}
+    fila_chg = fila_set[fila]
 
     process = load_stock(stock, 'process')
     process.update(proc_chg)
@@ -146,8 +168,8 @@ def make_presets(stock, out):
 
     filament = load_stock(stock, 'filament')
     filament.update(fila_chg)
-    filament['name']                 = preset_names['filament']
-    filament['filament_settings_id'] = [preset_names['filament']]
+    filament['name']                 = preset_names[fila]
+    filament['filament_settings_id'] = [preset_names[fila]]
     filament['from']                 = 'User'
 
     machine = load_stock(stock, 'machine')
@@ -158,22 +180,27 @@ def make_presets(stock, out):
         with open(os.path.join(out, name + '.json'), 'w') as fid:
             json.dump(preset, fid, indent=1, sort_keys=True)
 
-    changes = {'process': proc_chg, 'filament': fila_chg}
+    ## the record lists every filament choice, so it does not depend on the last run
+    record = {
+        'process'  : proc_chg,
+        'filament' : {preset_names[key]: chg for key, chg in fila_set.items()},
+    }
     with open(os.path.join(out, 'changes_from_stock.json'), 'w') as fid:
-        json.dump(changes, fid, indent=1)
-    return changes
+        json.dump(record, fid, indent=1)
+    return {'process': proc_chg, 'filament': fila_chg}
 
 
 def main():
     parser = argparse.ArgumentParser(description='write the sphere presets from the stock sv06 ace presets')
-    parser.add_argument('--stock', default=os.path.join(here, 'stock'), help='flattened stock presets folder')
-    parser.add_argument('--out',   default=here,                        help='folder the presets are written to')
+    parser.add_argument('--filament', default='basic_pla', choices=sorted(fila_set), help='filament the presets are for')
+    parser.add_argument('--stock',    default=os.path.join(here, 'stock'),           help='flattened stock presets folder')
+    parser.add_argument('--out',      default=here,                                  help='folder the presets are written to')
     args = parser.parse_args()
 
-    changes = make_presets(args.stock, args.out)
+    changes = make_presets(args.stock, args.out, args.filament)
     nproc   = len(changes['process'])
     nfila   = len(changes['filament'])
-    print(f'wrote presets to {args.out} ({nproc} process and {nfila} filament settings set)')
+    print(f'wrote presets to {args.out} for {preset_names[args.filament]} ({nproc} process and {nfila} filament settings set)')
 
 
 if __name__ == '__main__':

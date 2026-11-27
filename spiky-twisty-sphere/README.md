@@ -1,6 +1,6 @@
 # Spiky twisty sphere (3DMakerSpace), sliced for the SV06 ACE
 
-Updated 2026-11-26 12:00 MST
+Updated 2026-11-27 11:46 MST
 
 A print-in-place twisty ball: 15 spiral segments, 0.5 mm apart, covered in prismatic spikes, flat at both
 poles. It prints with supports. This folder holds the presets, the slicing and checking scripts and this
@@ -20,11 +20,20 @@ README. The model itself is not here.
 
 - Nov 26 2026: sliced with the OrcaSlicer 2.5.0 command line on the Mac (its first use there), checked,
   and opened in OrcaSlicer in preview-only mode. Not printed yet. Nothing was sent to the printer.
+- Nov 27 2026 11:44 MST: sliced a second time for HyperPLA+ (Aaron's choice of spool). Only the filament
+  preset differs, by one value: Other layers nozzle temperature 220 instead of 210. Same toolpaths, same
+  check results, opened in OrcaSlicer in preview-only mode. Not printed yet. Nothing was sent to the
+  printer.
 
 ## The slice
 
-`out/spiky_twisty_sphere.gcode`, and `out/spiky_twisty_sphere.3mf` next to it (the Orca project: the ball
-with the designer's support blocker, the presets below and the sliced plate).
+Two slices, one per filament, each with its Orca project next to it (the ball with the designer's support
+blocker, the presets below and the sliced plate):
+
+- Basic PLA: `out/spiky_twisty_sphere.gcode` and `out/spiky_twisty_sphere.3mf`
+- HyperPLA+: `out/spiky_twisty_sphere_HyperPLA.gcode` and `out/spiky_twisty_sphere_HyperPLA.3mf`
+
+The numbers below are the same for both.
 
 | | |
 |---|---|
@@ -37,22 +46,31 @@ with the designer's support blocker, the presets below and the sliced plate).
 Orca's footer line says 385 layers because the model is 77.02 mm tall. The last two would only hold
 spike tips too small to print, so the G-code has 383 layer changes.
 
-Look at it before it goes to the printer: `open -a OrcaSlicer out/spiky_twisty_sphere.gcode` opens it in
-preview-only mode. Sending it is a separate step.
+Look at it before it goes to the printer: `open -a OrcaSlicer out/spiky_twisty_sphere.gcode` (or
+`out/spiky_twisty_sphere_HyperPLA.gcode`) opens it in preview-only mode. Sending it is a separate step.
 
 ## Settings
 
 Printer `Sovol SV06 ACE 0.4 nozzle`, filament `Generic PLA @Sovol SV06 ACE`, process
 `0.20mm Standard @Sovol SV06 ACE`, `Bed type` (sidebar, under the printer) Smooth High Temp Plate, 0.4 mm
-brass nozzle, basic PLA. Changes from those stock presets, with the stock value in parentheses ("same"
-means the stock value already matches):
+brass nozzle, basic PLA or HyperPLA+. Changes from those stock presets, with the stock value in
+parentheses ("same" means the stock value already matches):
 
-Filament
+Filament, basic PLA (`Basic PLA @Sovol SV06 ACE`)
 
 - `Filament settings > Filament > Print temperature > Nozzle`: First layer = 220 (235), Other layers = 210 (same)
 - `Filament settings > Filament > Volumetric speed limitation > Max volumetric speed = 18` (21)
 - `Filament settings > Cooling > Part cooling fan > Min fan speed threshold`: Fan speed = 80% (50%)
 - `Filament settings > Cooling > Part cooling fan > Max fan speed threshold`: Fan speed = 100% (80%)
+
+Filament, HyperPLA+ (`HyperPLA+ @Sovol SV06 ACE`): as basic PLA except
+
+- `Filament settings > Filament > Print temperature > Nozzle`: First layer = 220 (235), Other layers = 220 (210)
+
+The 220 on the other layers is the value of the Hyper PLA+ red marble run slice printed Nov 26 2026
+(`Marble_Run/README.md`). The planter's HyperPLA+ preset (`mom-planter/`) has 225 on the first layer; 220
+is kept here, the first layer value Aaron gave for this model. Untested on this model: if strings
+between the spikes are heavy, try 210 on the other layers.
 
 Process, standing changes
 
@@ -119,7 +137,8 @@ P1S. Brim off and the 0.5 mm first layer gap are my changes and have not been pr
 ## Checks
 
 `python slice/check.py` reads the G-code and the plate 3MF and writes
-`out/spiky_twisty_sphere_supports.png`. All pass on the slice above.
+`out/spiky_twisty_sphere_supports.png`. All pass on both slices, with the same numbers (the HyperPLA+
+slice has the same toolpaths; its picture is `out/spiky_twisty_sphere_HyperPLA_supports.png`).
 
 G-code (this is how we know the ACE preset was used):
 
@@ -161,6 +180,16 @@ python slice/check.py                               # the checks and the picture
 open -a OrcaSlicer out/spiky_twisty_sphere.gcode    # look at it, preview-only mode
 ```
 
+The same for HyperPLA+ (`make_presets.py` writes basic PLA unless told otherwise):
+
+```
+name=spiky_twisty_sphere_HyperPLA
+python slice/make_presets.py --filament hyper_pla
+python slice/plate.py --name $name
+python slice/check.py --gcode out/$name.gcode --plate slice/plate/${name}_plate.3mf --fig out/${name}_supports.png
+open -a OrcaSlicer out/$name.gcode
+```
+
 Notes on the OrcaSlicer 2.5.0 command line on the Mac
 (`/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer`), first used Nov 26 2026:
 
@@ -177,7 +206,8 @@ Notes on the OrcaSlicer 2.5.0 command line on the Mac
 
 - `slice/fetch_profiles.py`: fetches and flattens the stock presets (as in `train-connectors/slice/`).
 - `slice/make_presets.py`: the changes above, with the stock values in comments. Writes the three preset
-  files and `changes_from_stock.json`.
+  files for the filament named by `--filament` (`basic_pla` or `hyper_pla`) and `changes_from_stock.json`
+  (the process changes and both filaments).
 - `slice/plate.py`: builds the plate 3MF from the designer's 3MF (moved to the 220 mm bed, filament paint
   cleared, Bambu project settings left out; mesh, size and support blocker untouched) and slices it.
 - `slice/check.py`: the checks and the picture.

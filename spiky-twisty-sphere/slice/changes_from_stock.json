@@ -44,20 +44,39 @@
   "support_object_first_layer_gap": "0.5"
  },
  "filament": {
-  "nozzle_temperature_initial_layer": [
-   "220"
-  ],
-  "nozzle_temperature": [
-   "210"
-  ],
-  "filament_max_volumetric_speed": [
-   "18"
-  ],
-  "fan_min_speed": [
-   "80"
-  ],
-  "fan_max_speed": [
-   "100"
-  ]
+  "Basic PLA @Sovol SV06 ACE": {
+   "nozzle_temperature_initial_layer": [
+    "220"
+   ],
+   "nozzle_temperature": [
+    "210"
+   ],
+   "filament_max_volumetric_speed": [
+    "18"
+   ],
+   "fan_min_speed": [
+    "80"
+   ],
+   "fan_max_speed": [
+    "100"
+   ]
+  },
+  "HyperPLA+ @Sovol SV06 ACE": {
+   "nozzle_temperature_initial_layer": [
+    "220"
+   ],
+   "nozzle_temperature": [
+    "220"
+   ],
+   "filament_max_volumetric_speed": [
+    "18"
+   ],
+   "fan_min_speed": [
+    "80"
+   ],
+   "fan_max_speed": [
+    "100"
+   ]
+  }
  }
 }
